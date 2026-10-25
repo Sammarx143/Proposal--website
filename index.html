@@ -4,92 +4,321 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b080c">
-<title>A Little Something for You ♡</title>
+<meta name="theme-color" content="#fff0f5">
+<title>A Little Something for You 💗</title>
+
 <style>
 :root{
- --bg:#0b080c;--gold:#d9ad7c;--rose:#f2c5d5;
- --cream:#fff3ec;--muted:#c8b6bd;
+ --bg:#fff0f5;
+ --pink:#f7c8d9;
+ --rose:#c75b7a;
+ --gold:#b76e79;
+ --cream:#653746;
+ --muted:#946b78;
 }
 *{box-sizing:border-box}
+
 body{
- margin:0;min-height:100vh;padding:22px 14px;
- display:flex;align-items:center;justify-content:center;
- background:radial-gradient(ellipse at 10% 10%,#633d3930,transparent 43%),
- radial-gradient(ellipse at 90% 90%,#77344a30,transparent 42%),var(--bg);
- color:var(--cream);font-family:"Segoe UI",Arial,sans-serif;
- text-align:center;overflow-x:hidden;
+ margin:0;
+ min-height:100vh;
+ padding:22px 14px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:
+ radial-gradient(ellipse at 10% 10%,#ffd6e5,transparent 45%),
+ radial-gradient(ellipse at 90% 90%,#f8c8dc,transparent 42%),
+ #fff0f5;
+ color:var(--cream);
+ font-family:"Segoe UI",Arial,sans-serif;
+ text-align:center;
+ overflow-x:hidden;
 }
-#particles{position:fixed;inset:0;overflow:hidden;pointer-events:none}
-.particle{position:absolute;bottom:-30px;color:var(--gold);animation:floatUp linear forwards;opacity:0}
-@keyframes floatUp{10%{opacity:.7}100%{transform:translateY(-110vh) rotate(40deg);opacity:0}}
-.shell{width:100%;max-width:470px;position:relative;z-index:1}
-.brand{margin-bottom:19px;color:var(--gold);font-size:10px;letter-spacing:4px;text-transform:uppercase}
+
+#particles{
+ position:fixed;
+ inset:0;
+ overflow:hidden;
+ pointer-events:none;
+ z-index:0;
+}
+
+.particle{
+ position:absolute;
+ bottom:-60px;
+ display:grid;
+ place-items:center;
+ color:#c75b7a;
+ border:1px solid #ffffffc9;
+ border-radius:50%;
+ background:radial-gradient(
+  circle at 30% 25%,
+  #ffffffee 0%,
+  #ffe6f0bb 22%,
+  #f4a9c777 58%,
+  #d875a044 100%
+ );
+ box-shadow:
+  inset -5px -7px 12px #d875a044,
+  inset 4px 5px 10px #ffffffcc,
+  0 5px 18px #cf779033;
+ animation:floatUp linear forwards;
+ opacity:0;
+}
+
+@keyframes floatUp{
+ 10%{opacity:.8}
+ 100%{
+  transform:translate3d(25px,-110vh,0) rotate(35deg);
+  opacity:0;
+ }
+}
+
+.shell{
+ width:100%;
+ max-width:470px;
+ position:relative;
+ z-index:1;
+}
+
+.brand{
+ margin-bottom:19px;
+ color:#a95770;
+ font-size:10px;
+ letter-spacing:4px;
+ text-transform:uppercase;
+}
+
 .card{
- position:relative;overflow:hidden;padding:clamp(26px,7vw,39px) 22px;
- border:1px solid #d9ad7c55;border-radius:9px;
- background:linear-gradient(145deg,#21171ced,#110d11f7);
- box-shadow:0 25px 75px #0009;
+ position:relative;
+ overflow:hidden;
+ padding:clamp(26px,7vw,39px) 22px;
+ border:1px solid #d9a0b7;
+ border-radius:20px;
+ background:linear-gradient(145deg,#fffafd,#ffeaf2);
+ box-shadow:
+  0 25px 75px #b76e7920,
+  inset 0 1px 2px #ffffff;
+ backdrop-filter:blur(12px);
 }
-.card:before{content:"";position:absolute;top:0;left:13%;right:13%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+.card:before{
+ content:"";
+ position:absolute;
+ top:0;left:13%;right:13%;
+ height:2px;
+ background:linear-gradient(90deg,transparent,#c78a94,transparent);
+}
+
 .page{display:none}
-.page.active{display:block;animation:appear .4s ease both}
-@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.eyebrow{margin:8px 0 19px;color:var(--gold);font-size:10px;letter-spacing:2.5px;text-transform:uppercase}
+.page.active{display:block;animation:appear .45s ease both}
+
+@keyframes appear{
+ from{opacity:0;transform:translateY(12px)}
+ to{opacity:1;transform:translateY(0)}
+}
+
+.eyebrow{
+ margin:8px 0 19px;
+ color:#a95770;
+ font-size:10px;
+ letter-spacing:2.5px;
+ text-transform:uppercase;
+}
+
 .emblem{
- width:82px;height:82px;margin:3px auto 22px;border-radius:50%;
- border:1px solid #d9ad7c77;display:grid;place-items:center;
- background:#d9ad7c10;font-size:36px;
+ width:86px;
+ height:86px;
+ margin:3px auto 22px;
+ border-radius:50%;
+ border:1px solid #d9a0b7;
+ display:grid;
+ place-items:center;
+ background:radial-gradient(circle at 30% 25%,#fff,#ffdce9 55%,#f4b4cb);
+ box-shadow:
+  inset -7px -8px 14px #d875a033,
+  inset 5px 5px 12px #ffffff,
+  0 9px 24px #d875a033;
+ font-size:36px;
  animation:glow 2.8s ease-in-out infinite;
 }
-@keyframes glow{50%{transform:scale(1.04);box-shadow:0 0 32px #d9ad7c30}}
-h1{margin:0 0 15px;color:var(--rose);font:normal clamp(32px,8vw,43px)/1.2 Georgia,serif}
-h2{margin:0 0 15px;color:var(--cream);font:normal clamp(23px,6vw,29px)/1.35 Georgia,serif}
-p{margin:12px 0;color:#e9dce0;font-size:15px;line-height:1.8}
-.sub{font-size:12px;color:var(--muted)}
-.ornament{margin:17px 0;color:var(--gold);letter-spacing:7px}
-.rule{height:1px;margin:22px 0;background:linear-gradient(90deg,transparent,#d9ad7c66,transparent)}
-.options{display:grid;gap:10px;margin-top:20px}
+
+@keyframes glow{
+ 50%{
+  transform:translateY(-3px) scale(1.04);
+  box-shadow:0 0 30px #e8a5bd66,inset 4px 4px 12px #fff;
+ }
+}
+
+h1{
+ margin:0 0 15px;
+ color:#b34e70;
+ font:normal clamp(32px,8vw,43px)/1.2 Georgia,serif;
+}
+
+h2{
+ margin:0 0 15px;
+ color:#743b50;
+ font:normal clamp(23px,6vw,29px)/1.35 Georgia,serif;
+}
+
+p{
+ margin:12px 0;
+ color:#754a59;
+ font-size:15px;
+ line-height:1.8;
+}
+
+.sub{font-size:12px;color:#946b78}
+
+.ornament{
+ margin:17px 0;
+ color:#b76e79;
+ letter-spacing:7px;
+}
+
+.rule{
+ height:1px;
+ margin:22px 0;
+ background:linear-gradient(90deg,transparent,#d9a0b7,transparent);
+}
+
+.options{
+ display:grid;
+ gap:10px;
+ margin-top:20px;
+}
+
 .choice{
- width:100%;min-height:47px;padding:12px 14px;
- border:1px solid #d9ad7c66;border-radius:5px;
- color:var(--rose);background:#ffffff06;
- font-size:13px;line-height:1.5;cursor:pointer;
+ width:100%;
+ min-height:47px;
+ padding:12px 14px;
+ border:1px solid #d9a0b7;
+ border-radius:10px;
+ color:#94475f;
+ background:linear-gradient(145deg,#fff,#fff5f9);
+ box-shadow:0 4px 10px #c75b7a0b;
+ font-size:13px;
+ line-height:1.5;
+ cursor:pointer;
+ transition:transform .2s,box-shadow .2s,background .2s;
+}
+
+.choice:hover,.choice:focus{
+ background:#fce0ea;
+ border-color:#b76e79;
+ transform:translateY(-2px);
+ box-shadow:0 7px 16px #c75b7a20;
+}
+
+.btn{
+ width:100%;
+ min-height:48px;
+ margin-top:12px;
+ padding:13px 15px;
+ border-radius:10px;
+ font-size:12px;
+ font-weight:700;
+ letter-spacing:.7px;
+ cursor:pointer;
  transition:.2s;
 }
-.choice:hover,.choice:focus{background:#d9ad7c18;border-color:var(--gold)}
-button{font-family:inherit}
-.btn{
- width:100%;min-height:48px;margin-top:12px;padding:13px 15px;
- border-radius:5px;font-size:12px;font-weight:700;
- letter-spacing:.7px;cursor:pointer;transition:.2s;
-}
+
 .btn:active,.choice:active{transform:scale(.98)}
-.primary{border:1px solid var(--gold);color:#1b1113;background:linear-gradient(110deg,#c99b75,#f0d2b4)}
-.secondary{border:1px solid #d9ad7c66;color:var(--rose);background:transparent}
-.smallnote{margin-top:22px;color:#b7a0a8;font-size:9px;letter-spacing:1.5px;line-height:1.8}
-.progress{display:flex;gap:5px;justify-content:center;margin:0 0 23px}
-.progress span{height:2px;width:22px;background:#49372d}
-.progress span.on{background:var(--gold)}
+
+.primary{
+ border:1px solid #c78a94;
+ color:white;
+ background:linear-gradient(110deg,#ce7895,#e6a7bc);
+ box-shadow:0 5px 16px #d78da644,inset 0 1px #ffffff88;
+}
+
+.primary:hover{
+ transform:translateY(-2px);
+ box-shadow:0 8px 22px #d78da655;
+}
+
+.secondary{
+ border:1px solid #d9a0b7;
+ color:#94475f;
+ background:#fffafd;
+}
+
+.smallnote{
+ margin-top:22px;
+ color:#a87989;
+ font-size:9px;
+ letter-spacing:1.5px;
+ line-height:1.8;
+}
+
+.progress{
+ display:flex;
+ gap:5px;
+ justify-content:center;
+ margin:0 0 23px;
+}
+
+.progress span{
+ height:3px;
+ width:22px;
+ border-radius:5px;
+ background:#f0d2dd;
+}
+
+.progress span.on{background:#c75b7a}
+
 .final-love{
- margin:28px 0 12px;padding-top:24px;border-top:1px solid #d9ad7c55;
- color:var(--rose);font:normal clamp(29px,8vw,39px) Georgia,serif;
- letter-spacing:3px;text-shadow:0 0 25px #e9a8c766;
+ margin:28px 0 12px;
+ padding-top:24px;
+ border-top:1px solid #d9a0b7;
+ color:#b34e70;
+ font:normal clamp(29px,8vw,39px) Georgia,serif;
+ letter-spacing:3px;
+ text-shadow:0 0 20px #e9a8c766;
  animation:loveGlow 2.5s ease-in-out infinite;
 }
-@keyframes loveGlow{50%{text-shadow:0 0 36px #e9a8c7aa}}
-.final-small{font-size:10px;letter-spacing:2.5px;color:var(--gold)}
-.footer{margin-top:19px;color:#947d85;font-size:9px;letter-spacing:2px}
-@media(max-width:360px){.card{padding:24px 16px}p{font-size:14px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
+@keyframes loveGlow{
+ 50%{text-shadow:0 0 30px #e9a8c7aa}
+}
+
+.final-small{
+ font-size:10px;
+ letter-spacing:2px;
+ color:#a95770;
+}
+
+.footer{
+ margin-top:19px;
+ color:#a87989;
+ font-size:9px;
+ letter-spacing:2px;
+}
+
+@media(max-width:360px){
+ .card{padding:24px 16px}
+ p{font-size:14px}
+}
+
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{
+  animation:none!important;
+  transition:none!important;
+ }
+}
 </style>
 </head>
+
 <body>
 <div id="particles" aria-hidden="true"></div>
+
 <main class="shell">
  <div class="brand">♡ A Little Something for You ♡</div>
+
  <section class="card">
 
+  <!-- PAGE 1: INTRO -->
   <div class="page active" id="p1">
    <div class="emblem">♡</div>
    <div class="eyebrow">A private little surprise</div>
@@ -101,52 +330,57 @@ button{font-family:inherit}
    <div class="smallnote">MADE WITH SINCERITY</div>
   </div>
 
+  <!-- PAGE 2: QUESTION 1 -->
   <div class="page" id="p2">
-   <div class="progress"><span class="on"></span><span></span><span></span><span></span><span></span></div>
+   <div class="progress"><span class="on"></span><span></span><span></span><span></span></div>
    <div class="eyebrow">Question 01 · A little beginning</div>
    <div class="emblem">✉</div>
    <h2>Can I tell you something special?</h2>
    <p>There's something I've wanted to say for a while.</p>
    <div class="options">
-    <button class="choice" onclick="answer(3)">Of course! 💗</button>
-    <button class="choice" onclick="answer(3)">Yes, I'm listening ✨</button>
-    <button class="choice" onclick="answer(3)">Tell me, I'm curious 💌</button>
+    <button class="choice" onclick="go(3)">Of course! 💗</button>
+    <button class="choice" onclick="go(3)">Yes, I'm listening ✨</button>
+    <button class="choice" onclick="go(3)">Tell me, I'm curious 💌</button>
+    <button class="choice" onclick="go(3)">Okay, go ahead 🌸</button>
    </div>
    <button class="btn secondary" onclick="go(1)">GO BACK</button>
   </div>
 
+  <!-- PAGE 3: QUESTION 2 -->
   <div class="page" id="p3">
-   <div class="progress"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></div>
+   <div class="progress"><span class="on"></span><span class="on"></span><span></span><span></span></div>
    <div class="eyebrow">Question 02 · Just curious</div>
    <div class="emblem">♡</div>
-   <h2>Can I ask you something?</h2>
-   <p>Kya tum kisi ko pasand karti ho? 🌷</p>
+   <h2>Kya tum kisi ko pasand karti ho?</h2>
+   <p>Be honest… it's just a little question. 🌷</p>
    <div class="options">
-    <button class="choice" onclick="answer(4)">Haan, shayad 💗</button>
-    <button class="choice" onclick="answer(4)">Abhi nahi 😊</button>
-    <button class="choice" onclick="answer(4)">It's a secret 🤭</button>
-    <button class="choice" onclick="answer(4)">I'm not sure yet ✨</button>
+    <button class="choice" onclick="go(4)">Haan, shayad 💗</button>
+    <button class="choice" onclick="go(4)">Abhi nahi 😊</button>
+    <button class="choice" onclick="go(4)">It's a secret 🤭</button>
+    <button class="choice" onclick="go(4)">I'm not sure yet ✨</button>
    </div>
    <button class="btn secondary" onclick="go(2)">PREVIOUS QUESTION</button>
   </div>
 
+  <!-- PAGE 4: QUESTION 3 -->
   <div class="page" id="p4">
-   <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div>
+   <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
    <div class="eyebrow">Question 03 · Matters of the heart</div>
    <div class="emblem">💗</div>
    <h2>Have you ever had a crush on someone?</h2>
    <p>Kabhi kisi ko dekhkar special feeling aayi hai? 🥹</p>
    <div class="options">
-    <button class="choice" onclick="answer(5)">Yes, I have 💕</button>
-    <button class="choice" onclick="answer(5)">Maybe, I'm confused 🌷</button>
-    <button class="choice" onclick="answer(5)">No, not yet 😊</button>
-    <button class="choice" onclick="answer(5)">I won't tell you 🤭</button>
+    <button class="choice" onclick="go(5)">Yes, I have 💕</button>
+    <button class="choice" onclick="go(5)">Maybe, I'm confused 🌷</button>
+    <button class="choice" onclick="go(5)">No, not yet 😊</button>
+    <button class="choice" onclick="go(5)">I won't tell you 🤭</button>
    </div>
    <button class="btn secondary" onclick="go(3)">PREVIOUS QUESTION</button>
   </div>
 
+  <!-- PAGE 5: QUESTION 4 -->
   <div class="page" id="p5">
-   <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
+   <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
    <div class="eyebrow">Question 04 · One last question</div>
    <div class="emblem">🌹</div>
    <h2>If someone liked you, would you want them to tell you honestly?</h2>
@@ -160,6 +394,7 @@ button{font-family:inherit}
    <button class="btn secondary" onclick="go(4)">PREVIOUS QUESTION</button>
   </div>
 
+  <!-- PAGE 6: CONFESSION INTRO -->
   <div class="page" id="p6">
    <div class="emblem">💌</div>
    <div class="eyebrow">A message from my heart</div>
@@ -171,6 +406,7 @@ button{font-family:inherit}
    <button class="btn secondary" onclick="go(1)">START AGAIN</button>
   </div>
 
+  <!-- PAGE 7: FINAL CONFESSION -->
   <div class="page" id="p7">
    <div class="emblem">♥</div>
    <div class="eyebrow">My honest confession</div>
@@ -192,7 +428,8 @@ button{font-family:inherit}
   </div>
 
  </section>
- <div class="footer">A SMALL MESSAGE · A SINCERE HEART</div>
+
+ <div class="footer">A SMALL MESSAGE · A SINCERE HEART ♡</div>
 </main>
 
 <script>
@@ -204,23 +441,34 @@ function go(n){
  if(target)target.classList.add('active');
  window.scrollTo({top:0,behavior:'smooth'});
 }
-function answer(n){
- go(n);
-}
+
 const holder=document.getElementById('particles');
-const symbols=['♡','✦','♥','✧'];
+const symbols=['♥','♡','💗','✧'];
+
 function addParticle(){
  if(holder.childElementCount>18)return;
+
  const el=document.createElement('span');
  el.className='particle';
  el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+
+ const size=22+Math.random()*35;
+ el.style.width=size+'px';
+ el.style.height=size+'px';
  el.style.left=Math.random()*100+'%';
- el.style.fontSize=(11+Math.random()*15)+'px';
+ el.style.fontSize=(size*0.48)+'px';
  el.style.animationDuration=(7+Math.random()*6)+'s';
+
  holder.appendChild(el);
- el.addEventListener('animationend',function(){el.remove()},{once:true});
+
+ el.addEventListener('animationend',function(){
+  el.remove();
+ },{once:true});
 }
-for(let i=0;i<6;i++)setTimeout(addParticle,i*450);
+
+for(let i=0;i<6;i++){
+ setTimeout(addParticle,i*450);
+}
 setInterval(addParticle,1000);
 </script>
 </body>
