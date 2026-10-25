@@ -4,181 +4,224 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#160b20">
-<title>A Little Surprise ♡</title>
+<meta name="theme-color" content="#0b080c">
+<title>A Little Something for You ♡</title>
 <style>
-:root{--pink:#ffb9dc;--light:#ffe5f2;--purple:#d8b9ff}
+:root{
+ --bg:#0b080c;--gold:#d9ad7c;--rose:#f2c5d5;
+ --cream:#fff3ec;--muted:#c8b6bd;
+}
 *{box-sizing:border-box}
 body{
- margin:0;min-height:100vh;padding:22px 15px;
+ margin:0;min-height:100vh;padding:22px 14px;
  display:flex;align-items:center;justify-content:center;
- font-family:"Segoe UI",Arial,sans-serif;color:white;text-align:center;
- background:radial-gradient(ellipse at 10% 10%,#733a82,transparent 42%),
- radial-gradient(ellipse at 90% 90%,#812e66,transparent 40%),
- linear-gradient(135deg,#100817,#21102f 55%,#170b20);
- overflow-x:hidden
+ background:radial-gradient(ellipse at 10% 10%,#633d3930,transparent 43%),
+ radial-gradient(ellipse at 90% 90%,#77344a30,transparent 42%),var(--bg);
+ color:var(--cream);font-family:"Segoe UI",Arial,sans-serif;
+ text-align:center;overflow-x:hidden;
 }
-#hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden}
-.float{position:absolute;bottom:-35px;animation:rise linear forwards;opacity:0}
-@keyframes rise{12%{opacity:.7}100%{transform:translateY(-110vh) rotate(45deg);opacity:0}}
+#particles{position:fixed;inset:0;overflow:hidden;pointer-events:none}
+.particle{position:absolute;bottom:-30px;color:var(--gold);animation:floatUp linear forwards;opacity:0}
+@keyframes floatUp{10%{opacity:.7}100%{transform:translateY(-110vh) rotate(40deg);opacity:0}}
 .shell{width:100%;max-width:470px;position:relative;z-index:1}
-.brand{margin-bottom:17px;color:var(--pink);font-size:10px;letter-spacing:4px;text-transform:uppercase}
+.brand{margin-bottom:19px;color:var(--gold);font-size:10px;letter-spacing:4px;text-transform:uppercase}
 .card{
- position:relative;overflow:hidden;padding:clamp(27px,7vw,40px) 23px;
- border:1px solid #ffdcf544;border-radius:27px;
- background:linear-gradient(145deg,#ffffff1c,#ffffff08);
- backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
- box-shadow:0 25px 80px #0006
+ position:relative;overflow:hidden;padding:clamp(26px,7vw,39px) 22px;
+ border:1px solid #d9ad7c55;border-radius:9px;
+ background:linear-gradient(145deg,#21171ced,#110d11f7);
+ box-shadow:0 25px 75px #0009;
 }
-.card:before{content:"";position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--pink),transparent)}
+.card:before{content:"";position:absolute;top:0;left:13%;right:13%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
 .page{display:none}
-.page.active{display:block;animation:enter .5s ease both}
-@keyframes enter{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-.eyebrow{color:var(--pink);font-size:10px;letter-spacing:3px;text-transform:uppercase;margin:8px 0 20px}
-.heart{
- width:92px;height:92px;margin:4px auto 23px;border-radius:50%;
- display:grid;place-items:center;font-size:43px;
- border:1px solid #ffc5e766;background:#ffacd51a;
- box-shadow:0 0 35px #ffacd522;animation:glow 2.8s ease-in-out infinite
+.page.active{display:block;animation:appear .4s ease both}
+@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{margin:8px 0 19px;color:var(--gold);font-size:10px;letter-spacing:2.5px;text-transform:uppercase}
+.emblem{
+ width:82px;height:82px;margin:3px auto 22px;border-radius:50%;
+ border:1px solid #d9ad7c77;display:grid;place-items:center;
+ background:#d9ad7c10;font-size:36px;
+ animation:glow 2.8s ease-in-out infinite;
 }
-@keyframes glow{50%{transform:scale(1.04);box-shadow:0 0 38px #ffacd544}}
-h1{margin:0 0 16px;color:var(--light);font-size:clamp(32px,8vw,43px);line-height:1.18;font-weight:600}
-h2{margin:0 0 17px;color:#ffd5eb;font-size:clamp(24px,6vw,30px);font-weight:500;line-height:1.3}
-p{font-size:15px;line-height:1.85;color:#f1e4f3;margin:13px 0}
-.sub{font-size:12px;color:#d9c8df}
-.ornament{margin:18px 0;color:var(--pink);letter-spacing:8px}
-.rule{height:1px;margin:24px 0;background:linear-gradient(90deg,transparent,#ffc2e766,transparent)}
-button{
- width:100%;min-height:49px;margin-top:12px;padding:14px 17px;
- border:1px solid transparent;border-radius:14px;font-size:13px;
- font-weight:700;letter-spacing:.5px;cursor:pointer;
- transition:transform .2s,filter .2s;
- -webkit-tap-highlight-color:transparent
+@keyframes glow{50%{transform:scale(1.04);box-shadow:0 0 32px #d9ad7c30}}
+h1{margin:0 0 15px;color:var(--rose);font:normal clamp(32px,8vw,43px)/1.2 Georgia,serif}
+h2{margin:0 0 15px;color:var(--cream);font:normal clamp(23px,6vw,29px)/1.35 Georgia,serif}
+p{margin:12px 0;color:#e9dce0;font-size:15px;line-height:1.8}
+.sub{font-size:12px;color:var(--muted)}
+.ornament{margin:17px 0;color:var(--gold);letter-spacing:7px}
+.rule{height:1px;margin:22px 0;background:linear-gradient(90deg,transparent,#d9ad7c66,transparent)}
+.options{display:grid;gap:10px;margin-top:20px}
+.choice{
+ width:100%;min-height:47px;padding:12px 14px;
+ border:1px solid #d9ad7c66;border-radius:5px;
+ color:var(--rose);background:#ffffff06;
+ font-size:13px;line-height:1.5;cursor:pointer;
+ transition:.2s;
 }
-button:active{transform:scale(.98)}
-button:hover{filter:brightness(1.08)}
-.primary{color:#35132e;background:linear-gradient(110deg,#ffb4d8,#e1c1ff);box-shadow:0 7px 22px #d59bff25}
-.secondary{color:#ffe6f4;background:#ffffff0b;border-color:#ffffff44}
-.note{margin-top:23px;font-size:10px;line-height:1.8;color:#cbb2d3;letter-spacing:1.5px}
-.footer{margin-top:19px;font-size:9px;color:#c2a4ce;letter-spacing:2px}
+.choice:hover,.choice:focus{background:#d9ad7c18;border-color:var(--gold)}
+button{font-family:inherit}
+.btn{
+ width:100%;min-height:48px;margin-top:12px;padding:13px 15px;
+ border-radius:5px;font-size:12px;font-weight:700;
+ letter-spacing:.7px;cursor:pointer;transition:.2s;
+}
+.btn:active,.choice:active{transform:scale(.98)}
+.primary{border:1px solid var(--gold);color:#1b1113;background:linear-gradient(110deg,#c99b75,#f0d2b4)}
+.secondary{border:1px solid #d9ad7c66;color:var(--rose);background:transparent}
+.smallnote{margin-top:22px;color:#b7a0a8;font-size:9px;letter-spacing:1.5px;line-height:1.8}
+.progress{display:flex;gap:5px;justify-content:center;margin:0 0 23px}
+.progress span{height:2px;width:22px;background:#49372d}
+.progress span.on{background:var(--gold)}
 .final-love{
- margin:29px 0 10px;padding-top:22px;border-top:1px solid #ffc2e744;
- color:#ffbedf;font-size:clamp(28px,7vw,38px);font-weight:700;letter-spacing:3px;
- text-shadow:0 0 25px #ff8acb66;animation:loveGlow 2.5s ease-in-out infinite
+ margin:28px 0 12px;padding-top:24px;border-top:1px solid #d9ad7c55;
+ color:var(--rose);font:normal clamp(29px,8vw,39px) Georgia,serif;
+ letter-spacing:3px;text-shadow:0 0 25px #e9a8c766;
+ animation:loveGlow 2.5s ease-in-out infinite;
 }
-@keyframes loveGlow{50%{text-shadow:0 0 35px #ff8acbaa}}
-.final-small{font-size:11px;letter-spacing:2px;color:#d9b8ff}
-@media(max-width:360px){.card{padding:25px 17px}p{font-size:14px}}
+@keyframes loveGlow{50%{text-shadow:0 0 36px #e9a8c7aa}}
+.final-small{font-size:10px;letter-spacing:2.5px;color:var(--gold)}
+.footer{margin-top:19px;color:#947d85;font-size:9px;letter-spacing:2px}
+@media(max-width:360px){.card{padding:24px 16px}p{font-size:14px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<div id="hearts" aria-hidden="true"></div>
-
+<div id="particles" aria-hidden="true"></div>
 <main class="shell">
-<div class="brand">♡ A Little Surprise For You ♡</div>
-<section class="card">
+ <div class="brand">♡ A Little Something for You ♡</div>
+ <section class="card">
 
-<div class="page active" id="p1">
- <div class="heart">💗</div>
- <div class="eyebrow">A Private Little Surprise</div>
- <h1>Hey, You! ✨</h1>
- <div class="ornament">— ✦ —</div>
- <p>I made something special for you.</p>
- <p class="sub">A little surprise, made with a sincere heart. 💌</p>
- <button class="primary" onclick="go(2)">OPEN YOUR SURPRISE ♡</button>
- <div class="note">MADE WITH CARE · JUST FOR YOU</div>
-</div>
+  <div class="page active" id="p1">
+   <div class="emblem">♡</div>
+   <div class="eyebrow">A private little surprise</div>
+   <h1>Hey, You! ✨</h1>
+   <div class="ornament">— ✦ —</div>
+   <p>I made something special for you.</p>
+   <p class="sub">A little courage. A sincere heart. A message just for you. 💌</p>
+   <button class="btn primary" onclick="go(2)">OPEN YOUR SURPRISE ♡</button>
+   <div class="smallnote">MADE WITH SINCERITY</div>
+  </div>
 
-<div class="page" id="p2">
- <div class="eyebrow">A Little Question · 01</div>
- <div class="heart">✉️</div>
- <h2>Can I tell you something special?</h2>
- <p>There is something I have wanted to tell you for a while.</p>
- <button class="primary" onclick="go(3)">OF COURSE! 💗</button>
- <button class="secondary" onclick="go(1)">GO BACK</button>
-</div>
+  <div class="page" id="p2">
+   <div class="progress"><span class="on"></span><span></span><span></span><span></span><span></span></div>
+   <div class="eyebrow">Question 01 · A little beginning</div>
+   <div class="emblem">✉</div>
+   <h2>Can I tell you something special?</h2>
+   <p>There's something I've wanted to say for a while.</p>
+   <div class="options">
+    <button class="choice" onclick="answer(3)">Of course! 💗</button>
+    <button class="choice" onclick="answer(3)">Yes, I'm listening ✨</button>
+    <button class="choice" onclick="answer(3)">Tell me, I'm curious 💌</button>
+   </div>
+   <button class="btn secondary" onclick="go(1)">GO BACK</button>
+  </div>
 
-<div class="page" id="p3">
- <div class="eyebrow">A Little Question · 02</div>
- <div class="heart">♡</div>
- <h2>You have become someone special to me.</h2>
- <p>Would you like to hear what is in my heart?</p>
- <button class="primary" onclick="go(4)">YES, TELL ME! 💖</button>
- <button class="secondary" onclick="go(5)">I NEED SOME TIME 🌷</button>
- <div class="note">YOUR COMFORT ALWAYS MATTERS</div>
-</div>
+  <div class="page" id="p3">
+   <div class="progress"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></div>
+   <div class="eyebrow">Question 02 · Just curious</div>
+   <div class="emblem">♡</div>
+   <h2>Can I ask you something?</h2>
+   <p>Kya tum kisi ko pasand karti ho? 🌷</p>
+   <div class="options">
+    <button class="choice" onclick="answer(4)">Haan, shayad 💗</button>
+    <button class="choice" onclick="answer(4)">Abhi nahi 😊</button>
+    <button class="choice" onclick="answer(4)">It's a secret 🤭</button>
+    <button class="choice" onclick="answer(4)">I'm not sure yet ✨</button>
+   </div>
+   <button class="btn secondary" onclick="go(2)">PREVIOUS QUESTION</button>
+  </div>
 
-<div class="page" id="p4">
- <div class="heart">💌</div>
- <div class="eyebrow">A Message From My Heart</div>
- <h2>Before you read...</h2>
- <p>These words are honest, and I mean them sincerely.</p>
- <div class="rule"></div>
- <p class="sub">Are you ready for my little confession?</p>
- <button class="primary" onclick="go(6)">READ MY HEART ❤️</button>
- <button class="secondary" onclick="go(1)">START AGAIN</button>
-</div>
+  <div class="page" id="p4">
+   <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div>
+   <div class="eyebrow">Question 03 · Matters of the heart</div>
+   <div class="emblem">💗</div>
+   <h2>Have you ever had a crush on someone?</h2>
+   <p>Kabhi kisi ko dekhkar special feeling aayi hai? 🥹</p>
+   <div class="options">
+    <button class="choice" onclick="answer(5)">Yes, I have 💕</button>
+    <button class="choice" onclick="answer(5)">Maybe, I'm confused 🌷</button>
+    <button class="choice" onclick="answer(5)">No, not yet 😊</button>
+    <button class="choice" onclick="answer(5)">I won't tell you 🤭</button>
+   </div>
+   <button class="btn secondary" onclick="go(3)">PREVIOUS QUESTION</button>
+  </div>
 
-<div class="page" id="p5">
- <div class="heart">🌷</div>
- <div class="eyebrow">Take Your Time</div>
- <h2>That's Completely Okay.</h2>
- <p>Take all the time you need. Your feelings matter, and you never have to answer before you're ready.</p>
- <button class="primary" onclick="go(6)">READ MY MESSAGE 💌</button>
- <button class="secondary" onclick="go(1)">START AGAIN</button>
-</div>
+  <div class="page" id="p5">
+   <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
+   <div class="eyebrow">Question 04 · One last question</div>
+   <div class="emblem">🌹</div>
+   <h2>If someone liked you, would you want them to tell you honestly?</h2>
+   <p>What would feel right to you?</p>
+   <div class="options">
+    <button class="choice" onclick="go(6)">Yes, honesty matters ❤️</button>
+    <button class="choice" onclick="go(6)">I'd need some time 🌷</button>
+    <button class="choice" onclick="go(6)">I'd rather stay friends 🫶</button>
+    <button class="choice" onclick="go(6)">It depends on the person ✨</button>
+   </div>
+   <button class="btn secondary" onclick="go(4)">PREVIOUS QUESTION</button>
+  </div>
 
-<div class="page" id="p6">
- <div class="heart">💗</div>
- <div class="eyebrow">Something From My Heart</div>
- <h1>I Love You ❤️</h1>
- <div class="ornament">— ♡ —</div>
- <p>Sach kahun toh, <strong>main tumhare peeche pagal sa hoon.</strong> 🥹💗</p>
- <p><strong>Tum meri crush ho</strong> aur main tumse bahut pyaar karta hoon.</p>
- <p>Tumhe shayad andaaza bhi nahi ki tum mere liye kitni special ho. ✨</p>
- <div class="rule"></div>
- <p>Agar tumhari feelings mere jaisi nahi hain, toh koi baat nahi. 🫶</p>
- <p>Agar tum mujhe us nazar se nahi dekhti, toh <strong>kya hum friends ban sakte hain?</strong> 🌷</p>
- <p>Main tumhare decision ki respect karunga. Tumhari friendship bhi mere liye important hogi.</p>
- <div class="rule"></div>
- <p>Bas dil ki baat tum tak pahunchani thi. 💌</p>
- <button class="primary" onclick="go(1)">READ AGAIN ♡</button>
- <div class="final-love">I LOVE YOU ❤️</div>
- <div class="final-small">FOREVER FROM MY HEART ♡</div>
- <div class="note">NO PRESSURE · JUST HONEST FEELINGS</div>
-</div>
+  <div class="page" id="p6">
+   <div class="emblem">💌</div>
+   <div class="eyebrow">A message from my heart</div>
+   <h2>Before you read...</h2>
+   <p>I've been wanting to tell you something honestly. Whatever your feelings are, I'll respect them. ❤️</p>
+   <div class="rule"></div>
+   <p class="sub">Ready to read my confession?</p>
+   <button class="btn primary" onclick="go(7)">READ MY CONFESSION ♥</button>
+   <button class="btn secondary" onclick="go(1)">START AGAIN</button>
+  </div>
 
-</section>
-<div class="footer">A LITTLE MESSAGE · A SINCERE HEART</div>
+  <div class="page" id="p7">
+   <div class="emblem">♥</div>
+   <div class="eyebrow">My honest confession</div>
+   <h1>I Love You ❤️</h1>
+   <div class="ornament">— ♡ —</div>
+   <p>Sach kahun toh, <strong>main tumhare peeche pagal sa hoon.</strong> 🥹❤️</p>
+   <p><strong>Tum meri crush ho</strong> aur main tumse bahut pyaar karta hoon. 💗</p>
+   <p>Tum mere liye bahut special ho, aur ye baat main tumhe honestly batana chahta tha. ✨</p>
+   <div class="rule"></div>
+   <p>Agar tumhari feelings mere jaisi nahi hain, toh koi baat nahi. 🫶</p>
+   <p>Agar tum mujhe us nazar se nahi dekhti, toh <strong>kya hum friends ban sakte hain?</strong> 🌷</p>
+   <p>Main tumhare decision ki respect karunga. Tumhari friendship bhi mere liye important hogi.</p>
+   <div class="rule"></div>
+   <p>Bas dil ki baat tum tak pahunchani thi. 💌</p>
+   <button class="btn primary" onclick="go(1)">READ AGAIN ♡</button>
+   <div class="final-love">I LOVE YOU ❤️</div>
+   <div class="final-small">JUST AS YOU ARE · ALWAYS RESPECTED ♡</div>
+   <div class="smallnote">NO PRESSURE · JUST HONEST FEELINGS</div>
+  </div>
+
+ </section>
+ <div class="footer">A SMALL MESSAGE · A SINCERE HEART</div>
 </main>
 
 <script>
 function go(n){
- document.querySelectorAll('.page').forEach(function(page){
-  page.classList.remove('active');
+ document.querySelectorAll('.page').forEach(function(p){
+  p.classList.remove('active');
  });
  const target=document.getElementById('p'+n);
- if(target) target.classList.add('active');
+ if(target)target.classList.add('active');
  window.scrollTo({top:0,behavior:'smooth'});
 }
-
-const holder=document.getElementById('hearts');
-const symbols=['♡','♥','💗','✦'];
-
-function addHeart(){
- if(holder.childElementCount>20)return;
- const h=document.createElement('span');
- h.className='float';
- h.textContent=symbols[Math.floor(Math.random()*symbols.length)];
- h.style.left=Math.random()*100+'%';
- h.style.fontSize=(12+Math.random()*16)+'px';
- h.style.animationDuration=(6+Math.random()*6)+'s';
- holder.appendChild(h);
- h.addEventListener('animationend',function(){h.remove()},{once:true});
+function answer(n){
+ go(n);
 }
-for(let i=0;i<7;i++)setTimeout(addHeart,i*450);
-setInterval(addHeart,900);
+const holder=document.getElementById('particles');
+const symbols=['♡','✦','♥','✧'];
+function addParticle(){
+ if(holder.childElementCount>18)return;
+ const el=document.createElement('span');
+ el.className='particle';
+ el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+ el.style.left=Math.random()*100+'%';
+ el.style.fontSize=(11+Math.random()*15)+'px';
+ el.style.animationDuration=(7+Math.random()*6)+'s';
+ holder.appendChild(el);
+ el.addEventListener('animationend',function(){el.remove()},{once:true});
+}
+for(let i=0;i<6;i++)setTimeout(addParticle,i*450);
+setInterval(addParticle,1000);
 </script>
 </body>
 </html>
