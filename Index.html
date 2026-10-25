@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Love Story 💗</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ffd6e7, #fff0f5, #ffc1d8);
+  color: #a52b61;
+  overflow: hidden;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  padding: 30px 22px;
+  background: #ffffffdf;
+  border-radius: 28px;
+  text-align: center;
+  box-shadow: 0 12px 40px #d64b8430;
+  position: relative;
+  z-index: 2;
+}
+
+.heart {
+  font-size: 65px;
+  animation: heartbeat 1.2s infinite;
+}
+
+h1 {
+  font-size: 28px;
+  line-height: 1.4;
+}
+
+p {
+  line-height: 1.7;
+}
+
+button {
+  padding: 13px 22px;
+  margin: 7px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform .2s;
+}
+
+button:active {
+  transform: scale(.95);
+}
+
+.primary {
+  background: #e94f91;
+  color: white;
+  box-shadow: 0 5px 15px #e94f9140;
+}
+
+.secondary {
+  background: #ffe0ed;
+  color: #a52b61;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+  animation: appear .6s ease;
+}
+
+#noBtn {
+  position: relative;
+}
+
+.small {
+  font-size: 13px;
+  opacity: .8;
+}
+
+.floating {
+  position: fixed;
+  top: -40px;
+  z-index: 1;
+  pointer-events: none;
+  animation: fall linear infinite;
+}
+
+@keyframes heartbeat {
+  50% { transform: scale(1.13); }
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <section class="page active" id="page1">
+    <div class="heart">💗</div>
+    <p>✨ A LITTLE MESSAGE FOR YOU ✨</p>
+    <h1>Hey You! 🥰</h1>
+    <p>
+      Someone has a little something special to tell you...
+      Are you ready?
+    </p>
+    <button class="primary" onclick="nextPage(2)">
+      Let's Begin 💌
+    </button>
+  </section>
+
+  <section class="page" id="page2">
+    <div class="heart">💌</div>
+    <p>QUESTION 1 OF 2</p>
+    <h1>Can I tell you something special? 🌸</h1>
+    <p>I have something from my heart to share with you.</p>
+    <button class="primary" onclick="nextPage(3)">
+      Of Course! 💗
+    </button>
+    <br>
+    <button class="secondary" onclick="nextPage(1)">
+      Go Back ↩️
+    </button>
+  </section>
+
+  <section class="page" id="page3">
+    <div class="heart">❤️</div>
+    <p>THE BIG QUESTION 💖</p>
+    <h1>Will you accept my proposal? 🥹</h1>
+    <p>
+      No pressure, just a little question from the heart.
+      Whatever your answer, your feelings matter. 🌷
+    </p>
+
+    <button class="primary" onclick="showAnswer('yes')">
+      Yes! 💖
+    </button>
+
+    <button class="secondary" id="noBtn"
+      onclick="showAnswer('no')">
+      No 🙈
+    </button>
+
+    <div id="answer" aria-live="polite"></div>
+  </section>
+
+  <p class="small">Made with 💗 and a little courage</p>
+</div>
+
+<script>
+function nextPage(number) {
+  document.querySelectorAll('.page').forEach(function(page) {
+    page.classList.remove('active');
+  });
+
+  document.getElementById('page' + number).classList.add('active');
+}
+
+function showAnswer(choice) {
+  const answer = document.getElementById('answer');
+
+  if (choice === 'yes') {
+    answer.innerHTML =
+      '<h1>Thank You! 💖🥹</h1><p>You just made this moment special! 💐</p>';
+  } else {
+    answer.innerHTML =
+      '<p>That is okay 💗 Thank you for being honest. Your answer is respected. 🌷</p>';
+  }
+}
+
+for (let i = 0; i < 18; i++) {
+  const heart = document.createElement('div');
+  heart.className = 'floating';
+  heart.textContent = ['💗', '💕', '💖', '🌸'][
+    Math.floor(Math.random() * 4)
+  ];
+
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.animationDuration = (5 + Math.random() * 7) + 's';
+  heart.style.animationDelay = (Math.random() * 8) + 's';
+  heart.style.fontSize = (16 + Math.random() * 18) + 'px';
+
+  document.body.appendChild(heart);
+}
+</script>
+
+</body>
+</html>
