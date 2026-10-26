@@ -225,12 +225,34 @@ p {
   font-weight: normal;
 }
 
-.final-art {
+/* Photo Styling matching the uploaded anime couple */
+.final-art-container {
+  position: relative;
   width: 100%;
-  max-width: 350px;
-  margin: 0 auto 15px;
+  max-width: 320px;
+  margin: 0 auto 16px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 35px rgba(255, 114, 159, 0.4), 0 10px 30px rgba(0,0,0,0.6);
+  border: 1px solid rgba(255, 192, 212, 0.4);
+}
+
+.final-couple-img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  object-position: center top;
   display: block;
-  filter: drop-shadow(0 0 18px #e87ba340);
+  filter: brightness(1.03) contrast(1.05);
+}
+
+.final-art-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 40%, rgba(20, 10, 17, 0.65) 100%),
+              linear-gradient(to top, rgba(20,10,17,0.8) 0%, transparent 25%);
 }
 
 .final-title {
@@ -254,6 +276,7 @@ p {
   main { width: calc(100% - 16px); }
   .page { padding: 25px 16px; }
   .option { font-size: 11px; }
+  .final-couple-img { height: 320px; }
 }
 </style>
 </head>
@@ -412,127 +435,10 @@ p {
 <section class="page" id="final" style="overflow:hidden">
   <div class="eyebrow">A little message · Just for you</div>
 
-  <!-- Romantic couple: foreheads touching and a glowing heart between them -->
-  <svg class="final-art" viewBox="0 0 360 285" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Romantic boy and girl touching foreheads with a glowing heart between them">
-    <defs>
-      <radialGradient id="glow">
-        <stop offset="0%" stop-color="#ffb2ca" stop-opacity=".7"/>
-        <stop offset="100%" stop-color="#ffb2ca" stop-opacity="0"/>
-      </radialGradient>
-      <linearGradient id="boyHair" x1="0" y1="0" x2="1" y2="1">
-        <stop stop-color="#75475c"/>
-        <stop offset="1" stop-color="#120b12"/>
-      </linearGradient>
-      <linearGradient id="girlHair" x1="0" y1="0" x2="1" y2="1">
-        <stop stop-color="#a85e7b"/>
-        <stop offset="1" stop-color="#170b13"/>
-      </linearGradient>
-      <linearGradient id="dress" x1="0" y1="0" x2="1" y2="1">
-        <stop stop-color="#d58aa5"/>
-        <stop offset="1" stop-color="#56283c"/>
-      </linearGradient>
-      <filter id="heartLight" x="-100%" y="-100%" width="300%" height="300%">
-        <feGaussianBlur stdDeviation="5" result="blur"/>
-        <feMerge>
-          <feMergeNode in="blur"/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>
-    </defs>
-
-    <ellipse cx="180" cy="135" rx="155" ry="125" fill="url(#glow)"/>
-
-    <!-- Tiny romantic sparkles -->
-    <g fill="#ffe4ed">
-      <path d="M48 52l4 9 9 4-9 4-4 9-4-9-9-4 9-4z"/>
-      <path d="M311 65l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/>
-      <path d="M180 20l3 6 6 3-6 3-3 6-3-6-6-3 6-3z"/>
-      <circle cx="74" cy="105" r="2"/>
-      <circle cx="286" cy="107" r="2"/>
-      <circle cx="90" cy="44" r="1.8"/>
-      <circle cx="273" cy="35" r="1.8"/>
-    </g>
-
-    <!-- Boy's shoulders -->
-    <path d="M15 275Q22 220 64 198Q88 185 116 196L151 224L164 275Z"
-          fill="#21151f" stroke="#75495d" stroke-width="1.5"/>
-    <path d="M66 207L103 224L129 275H151L117 196Z" fill="#3b2635"/>
-
-    <!-- Boy's neck -->
-    <path d="M96 155L98 194Q112 208 130 192L128 155Z" fill="#c98e8b"/>
-
-    <!-- Boy's face -->
-    <path d="M70 91Q75 65 101 61Q128 62 140 85L143 104L135 114
-             Q130 141 112 158Q100 165 88 150Q76 135 72 116L65 108Z"
-          fill="#d49a93"/>
-
-    <!-- Boy's hair -->
-    <path d="M64 111Q53 90 64 69Q76 43 103 44Q131 43 145 66
-             Q155 83 143 105L134 113Q131 89 118 80
-             Q100 94 81 87Q78 103 69 118Z"
-          fill="url(#boyHair)" stroke="#98647b" stroke-width="1.2"/>
-    <path d="M65 79Q82 47 108 52Q92 61 89 76Q76 69 65 79Z" fill="#88566e"/>
-
-    <!-- Boy's closed eye -->
-    <path d="M116 113Q122 118 127 113"
-          fill="none" stroke="#814c58" stroke-width="2.2" stroke-linecap="round"/>
-    <path d="M136 107Q143 111 136 118"
-          fill="none" stroke="#c18785" stroke-width="3" stroke-linecap="round"/>
-
-    <!-- Girl's shoulders and dress -->
-    <path d="M198 275Q205 222 239 201Q263 185 289 200
-             Q328 220 345 275Z"
-          fill="url(#dress)" stroke="#c47a98" stroke-width="1.5"/>
-
-    <!-- Girl's neck -->
-    <path d="M231 155L231 192Q246 207 263 192L260 155Z" fill="#e0a59b"/>
-
-    <!-- Girl's face -->
-    <path d="M288 91Q281 65 255 61Q228 62 218 85L216 104L225 114
-             Q230 141 247 158Q258 165 270 150Q283 134 286 116L295 108Z"
-          fill="#e3aaa0"/>
-
-    <!-- Girl's hair -->
-    <path d="M296 111Q307 91 297 69Q286 43 257 43Q229 43 215 66
-             Q205 83 216 104L225 114Q229 90 242 80
-             Q260 93 279 87Q282 104 290 118Z"
-          fill="url(#girlHair)" stroke="#b36e8a" stroke-width="1.3"/>
-    <path d="M295 79Q281 47 255 52Q273 60 275 77Q286 69 295 79Z" fill="#b46c88"/>
-
-    <!-- Girl's closed eye -->
-    <path d="M243 113Q249 118 254 113"
-          fill="none" stroke="#a45b6a" stroke-width="2.2" stroke-linecap="round"/>
-    <path d="M223 107Q216 111 223 118"
-          fill="none" stroke="#d39a94" stroke-width="3" stroke-linecap="round"/>
-
-    <!-- Soft forehead highlights -->
-    <path d="M140 99Q150 104 158 105"
-          fill="none" stroke="#ffe4ec" stroke-width="2"/>
-    <path d="M220 99Q210 104 202 105"
-          fill="none" stroke="#ffe4ec" stroke-width="2"/>
-
-    <!-- Glowing heart between them -->
-    <g filter="url(#heartLight)">
-      <path d="M180 105C169 89 150 97 157 114
-               C162 125 174 133 180 139
-               C187 132 199 124 203 114
-               C210 97 191 89 180 105Z"
-            fill="#ff8fb5" stroke="#fff0f5" stroke-width="2.5"/>
-      <path d="M180 109C173 100 162 104 166 114
-               C169 121 176 126 180 129
-               C185 125 192 119 195 114
-               C198 104 187 100 180 109Z"
-            fill="#ffd5e3"/>
-    </g>
-
-    <!-- Floating hearts -->
-    <path d="M44 151C38 143 27 149 32 157L44 166L56 157C61 149 50 143 44 151Z"
-          fill="#f4a5bd"/>
-    <path d="M316 145C311 138 301 143 305 151L316 160L327 151C332 143 321 138 316 145Z"
-          fill="#f4a5bd"/>
-
-    <ellipse cx="180" cy="276" rx="125" ry="5" fill="#df809e" opacity=".25"/>
-  </svg>
+  <!-- Anime Couple Image matching your reference -->
+  <div class="final-art-container">
+    <img src="couple.png" alt="Anime boy and girl touching foreheads with glowing heart" class="final-couple-img" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80';">
+  </div>
 
   <p style="font-size:9px;letter-spacing:1.7px;color:var(--gold);text-transform:uppercase">
     No pressure · Just honest feelings
@@ -582,7 +488,7 @@ function restart() {
 }
 
 const container = document.getElementById("floating");
-const symbols = ["♡","♥","💕","💗"];
+const symbols = ["♡","♥","💕","💗","🌸"];
 
 function addHeart() {
   const h = document.createElement("span");
