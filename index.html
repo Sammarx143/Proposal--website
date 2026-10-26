@@ -1,475 +1,586 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#fff0f5">
-<title>A Little Something for You 💗</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>A Special Journey For You ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0b090a;
+      --card-bg: rgba(22, 18, 20, 0.72);
+      --card-border: rgba(247, 202, 211, 0.22);
+      --soft-pink: #f7cad0;
+      --blush-pink: #f4acb7;
+      --glow-pink: rgba(247, 202, 211, 0.35);
+      --text-main: #fdf0f2;
+      --text-muted: #d8c2c6;
+    }
 
-<style>
-:root{
- --bg:#fff0f5;
- --pink:#f7c8d9;
- --rose:#c75b7a;
- --gold:#b76e79;
- --cream:#653746;
- --muted:#946b78;
-}
-*{box-sizing:border-box}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-body{
- margin:0;
- min-height:100vh;
- padding:22px 14px;
- display:flex;
- align-items:center;
- justify-content:center;
- background:
- radial-gradient(ellipse at 10% 10%,#ffd6e5,transparent 45%),
- radial-gradient(ellipse at 90% 90%,#f8c8dc,transparent 42%),
- #fff0f5;
- color:var(--cream);
- font-family:"Segoe UI",Arial,sans-serif;
- text-align:center;
- overflow-x:hidden;
-}
+    body {
+      background: radial-gradient(circle at 50% 20%, #1c1417 0%, var(--bg-color) 85%);
+      color: var(--text-main);
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      padding: 18px;
+      position: relative;
+    }
 
-#particles{
- position:fixed;
- inset:0;
- overflow:hidden;
- pointer-events:none;
- z-index:0;
-}
+    /* Floating ambient background hearts */
+    .bg-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
 
-.particle{
- position:absolute;
- bottom:-60px;
- display:grid;
- place-items:center;
- color:#c75b7a;
- border:1px solid #ffffffc9;
- border-radius:50%;
- background:radial-gradient(
-  circle at 30% 25%,
-  #ffffffee 0%,
-  #ffe6f0bb 22%,
-  #f4a9c777 58%,
-  #d875a044 100%
- );
- box-shadow:
-  inset -5px -7px 12px #d875a044,
-  inset 4px 5px 10px #ffffffcc,
-  0 5px 18px #cf779033;
- animation:floatUp linear forwards;
- opacity:0;
-}
+    .heart-particle {
+      position: absolute;
+      color: var(--soft-pink);
+      opacity: 0.15;
+      animation: floatUp 12s infinite linear;
+      font-size: 18px;
+      text-shadow: 0 0 10px var(--glow-pink);
+    }
 
-@keyframes floatUp{
- 10%{opacity:.8}
- 100%{
-  transform:translate3d(25px,-110vh,0) rotate(35deg);
-  opacity:0;
- }
-}
+    @keyframes floatUp {
+      0% {
+        transform: translateY(105vh) scale(0.6) rotate(0deg);
+        opacity: 0;
+      }
+      20% { opacity: 0.25; }
+      80% { opacity: 0.2; }
+      100% {
+        transform: translateY(-10vh) scale(1.1) rotate(25deg);
+        opacity: 0;
+      }
+    }
 
-.shell{
- width:100%;
- max-width:470px;
- position:relative;
- z-index:1;
-}
+    /* Main Container */
+    .app-container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 440px;
+      margin: auto;
+    }
 
-.brand{
- margin-bottom:19px;
- color:#a95770;
- font-size:10px;
- letter-spacing:4px;
- text-transform:uppercase;
-}
+    /* Glassmorphism Card */
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 34px 24px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 24px var(--glow-pink);
+      text-align: center;
+      transition: all 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+      position: relative;
+    }
 
-.card{
- position:relative;
- overflow:hidden;
- padding:clamp(26px,7vw,39px) 22px;
- border:1px solid #d9a0b7;
- border-radius:20px;
- background:linear-gradient(145deg,#fffafd,#ffeaf2);
- box-shadow:
-  0 25px 75px #b76e7920,
-  inset 0 1px 2px #ffffff;
- backdrop-filter:blur(12px);
-}
+    .screen {
+      display: none;
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
 
-.card:before{
- content:"";
- position:absolute;
- top:0;left:13%;right:13%;
- height:2px;
- background:linear-gradient(90deg,transparent,#c78a94,transparent);
-}
+    .screen.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
 
-.page{display:none}
-.page.active{display:block;animation:appear .45s ease both}
+    /* Typography */
+    h1, h2 {
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: 0.5px;
+      color: var(--soft-pink);
+    }
 
-@keyframes appear{
- from{opacity:0;transform:translateY(12px)}
- to{opacity:1;transform:translateY(0)}
-}
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
 
-.eyebrow{
- margin:8px 0 19px;
- color:#a95770;
- font-size:10px;
- letter-spacing:2.5px;
- text-transform:uppercase;
-}
+    h2 {
+      font-size: 1.7rem;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 22px;
+    }
 
-.emblem{
- width:86px;
- height:86px;
- margin:3px auto 22px;
- border-radius:50%;
- border:1px solid #d9a0b7;
- display:grid;
- place-items:center;
- background:radial-gradient(circle at 30% 25%,#fff,#ffdce9 55%,#f4b4cb);
- box-shadow:
-  inset -7px -8px 14px #d875a033,
-  inset 5px 5px 12px #ffffff,
-  0 9px 24px #d875a033;
- font-size:36px;
- animation:glow 2.8s ease-in-out infinite;
-}
+    p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      font-weight: 300;
+      margin-bottom: 24px;
+    }
 
-@keyframes glow{
- 50%{
-  transform:translateY(-3px) scale(1.04);
-  box-shadow:0 0 30px #e8a5bd66,inset 4px 4px 12px #fff;
- }
-}
+    .step-indicator {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blush-pink);
+      opacity: 0.8;
+      margin-bottom: 12px;
+      display: block;
+    }
 
-h1{
- margin:0 0 15px;
- color:#b34e70;
- font:normal clamp(32px,8vw,43px)/1.2 Georgia,serif;
-}
+    /* Option Buttons */
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
 
-h2{
- margin:0 0 15px;
- color:#743b50;
- font:normal clamp(23px,6vw,29px)/1.35 Georgia,serif;
-}
+    .option-btn {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(247, 202, 211, 0.18);
+      color: var(--text-main);
+      padding: 15px 18px;
+      border-radius: 16px;
+      font-size: 0.92rem;
+      font-family: 'Montserrat', sans-serif;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+    }
 
-p{
- margin:12px 0;
- color:#754a59;
- font-size:15px;
- line-height:1.8;
-}
+    .option-btn:hover, .option-btn:active {
+      border-color: var(--soft-pink);
+      background: rgba(247, 202, 211, 0.08);
+      box-shadow: 0 0 15px rgba(247, 202, 211, 0.2);
+    }
 
-.sub{font-size:12px;color:#946b78}
+    .option-btn.selected {
+      background: rgba(244, 172, 183, 0.16);
+      border-color: var(--soft-pink);
+      color: #fff;
+      font-weight: 500;
+      box-shadow: 0 0 18px rgba(247, 202, 211, 0.25);
+    }
 
-.ornament{
- margin:17px 0;
- color:#b76e79;
- letter-spacing:7px;
-}
+    /* Nav Buttons */
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+    }
 
-.rule{
- height:1px;
- margin:22px 0;
- background:linear-gradient(90deg,transparent,#d9a0b7,transparent);
-}
+    .btn-primary, .btn-secondary {
+      border-radius: 50px;
+      padding: 13px 26px;
+      font-size: 0.88rem;
+      letter-spacing: 0.8px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      font-family: 'Montserrat', sans-serif;
+    }
 
-.options{
- display:grid;
- gap:10px;
- margin-top:20px;
-}
+    .btn-primary {
+      background: linear-gradient(135deg, #f7cad0, #e295a3);
+      color: #120e10;
+      border: none;
+      box-shadow: 0 4px 18px rgba(247, 202, 211, 0.35);
+      flex: 1;
+    }
 
-.choice{
- width:100%;
- min-height:47px;
- padding:12px 14px;
- border:1px solid #d9a0b7;
- border-radius:10px;
- color:#94475f;
- background:linear-gradient(145deg,#fff,#fff5f9);
- box-shadow:0 4px 10px #c75b7a0b;
- font-size:13px;
- line-height:1.5;
- cursor:pointer;
- transition:transform .2s,box-shadow .2s,background .2s;
-}
+    .btn-primary:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
 
-.choice:hover,.choice:focus{
- background:#fce0ea;
- border-color:#b76e79;
- transform:translateY(-2px);
- box-shadow:0 7px 16px #c75b7a20;
-}
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(247, 202, 211, 0.25);
+      color: var(--text-muted);
+      flex: 0.6;
+    }
 
-.btn{
- width:100%;
- min-height:48px;
- margin-top:12px;
- padding:13px 15px;
- border-radius:10px;
- font-size:12px;
- font-weight:700;
- letter-spacing:.7px;
- cursor:pointer;
- transition:.2s;
-}
+    .btn-secondary:hover {
+      border-color: var(--soft-pink);
+      color: var(--text-main);
+    }
 
-.btn:active,.choice:active{transform:scale(.98)}
+    /* Final Screen Silhouette & Typography */
+    .silhouette-wrapper {
+      width: 140px;
+      height: 140px;
+      margin: 10px auto 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 0 14px var(--glow-pink));
+      animation: gentlePulse 3.5s infinite ease-in-out;
+    }
 
-.primary{
- border:1px solid #c78a94;
- color:white;
- background:linear-gradient(110deg,#ce7895,#e6a7bc);
- box-shadow:0 5px 16px #d78da644,inset 0 1px #ffffff88;
-}
+    @keyframes gentlePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
 
-.primary:hover{
- transform:translateY(-2px);
- box-shadow:0 8px 22px #d78da655;
-}
+    .silhouette-svg {
+      width: 100%;
+      height: 100%;
+      fill: var(--soft-pink);
+    }
 
-.secondary{
- border:1px solid #d9a0b7;
- color:#94475f;
- background:#fffafd;
-}
+    .love-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: #fff;
+      text-shadow: 0 0 12px var(--soft-pink), 0 0 24px rgba(244, 172, 183, 0.5);
+      margin-bottom: 16px;
+    }
 
-.smallnote{
- margin-top:22px;
- color:#a87989;
- font-size:9px;
- letter-spacing:1.5px;
- line-height:1.8;
-}
-
-.progress{
- display:flex;
- gap:5px;
- justify-content:center;
- margin:0 0 23px;
-}
-
-.progress span{
- height:3px;
- width:22px;
- border-radius:5px;
- background:#f0d2dd;
-}
-
-.progress span.on{background:#c75b7a}
-
-.final-love{
- margin:28px 0 12px;
- padding-top:24px;
- border-top:1px solid #d9a0b7;
- color:#b34e70;
- font:normal clamp(29px,8vw,39px) Georgia,serif;
- letter-spacing:3px;
- text-shadow:0 0 20px #e9a8c766;
- animation:loveGlow 2.5s ease-in-out infinite;
-}
-
-@keyframes loveGlow{
- 50%{text-shadow:0 0 30px #e9a8c7aa}
-}
-
-.final-small{
- font-size:10px;
- letter-spacing:2px;
- color:#a95770;
-}
-
-.footer{
- margin-top:19px;
- color:#a87989;
- font-size:9px;
- letter-spacing:2px;
-}
-
-@media(max-width:360px){
- .card{padding:24px 16px}
- p{font-size:14px}
-}
-
-@media(prefers-reduced-motion:reduce){
- *,*:before,*:after{
-  animation:none!important;
-  transition:none!important;
- }
-}
-</style>
+    .confession-box {
+      font-size: 0.96rem;
+      line-height: 1.7;
+      color: #f7e6e9;
+      background: rgba(255, 255, 255, 0.02);
+      border-left: 2px solid var(--soft-pink);
+      padding: 14px 16px;
+      border-radius: 0 14px 14px 0;
+      text-align: left;
+      margin-bottom: 24px;
+      white-space: pre-line;
+    }
+  </style>
 </head>
-
 <body>
-<div id="particles" aria-hidden="true"></div>
 
-<main class="shell">
- <div class="brand">♡ A Little Something for You ♡</div>
+  <!-- Floating Ambient Hearts -->
+  <div class="bg-hearts" id="bgHearts"></div>
 
- <section class="card">
+  <div class="app-container">
+    <div class="glass-card">
+      
+      <!-- SCREEN 0: WELCOME -->
+      <div class="screen active" id="screen-welcome">
+        <span class="step-indicator">A Gentle Journey</span>
+        <h1>Hey Special Someone</h1>
+        <p>Mere paas aapse kehne ke liye kuch bohot dil se baatein hain... Par pehle, hamari is pyari si journey ke kuch sawaal.</p>
+        <button class="btn-primary" onclick="startQuiz()">Begin With Me ✨</button>
+      </div>
 
-  <!-- PAGE 1: INTRO -->
-  <div class="page active" id="p1">
-   <div class="emblem">♡</div>
-   <div class="eyebrow">A private little surprise</div>
-   <h1>Hey, You! ✨</h1>
-   <div class="ornament">— ✦ —</div>
-   <p>I made something special for you.</p>
-   <p class="sub">A little courage. A sincere heart. A message just for you. 💌</p>
-   <button class="btn primary" onclick="go(2)">OPEN YOUR SURPRISE ♡</button>
-   <div class="smallnote">MADE WITH SINCERITY</div>
+      <!-- QUESTION SCREENS (ORDER: 1, 2, 3, 8, 4, 5, 6, 7) -->
+
+      <!-- Question 1 -->
+      <div class="screen" id="screen-q1">
+        <span class="step-indicator">Question 1 / 8</span>
+        <h2>Jab hum pehli baar mile ya baat ki thi, aapko kaisa laga tha?</h2>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectOption(1, 'Lag raha tha bas ek normal conversation hai')"><span>Lag raha tha bas ek normal conversation hai</span></button>
+          <button class="option-btn" onclick="selectOption(1, 'Kuch alag tha, jaise purana connection ho')"><span>Kuch alag tha, jaise purana connection ho</span></button>
+          <button class="option-btn" onclick="selectOption(1, 'Thodi shyness aur thodi curiosity')"><span>Thodi shyness aur thodi curiosity</span></button>
+          <button class="option-btn" onclick="selectOption(1, 'Dil me ek alag hi smile aa gayi thi')"><span>Dil me ek alag hi smile aa gayi thi</span></button>
+        </div>
+        <div class="nav-buttons">
+          <button class="btn-secondary" onclick="prevQuestion()">Back</button>
+          <button class="btn-primary" id="next-1" disabled onclick="nextQuestion()">Next</button>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="screen" id="screen-q2">
+        <span class="step-indicator">Question 2 / 8</span>
+        <h2>Meri konsi aadat aapke chehre par smile laati hai?</h2>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectOption(2, 'Chhoti chhoti baaton par care show karna')"><span>Chhoti chhoti baaton par care show karna</span></button>
+          <button class="option-btn" onclick="selectOption(2, 'Bina wajah aapko tease karna')"><span>Bina wajah aapko tease karna</span></button>
+          <button class="option-btn" onclick="selectOption(2, 'Aapki har baat dhyan se sunna')"><span>Aapki har baat dhyan se sunna</span></button>
+          <button class="option-btn" onclick="selectOption(2, 'Sab kuch, aap jaise ho waise hi pyare ho')"><span>Sab kuch, aap jaise ho waise hi pyare ho</span></button>
+        </div>
+        <div class="nav-buttons">
+          <button class="btn-secondary" onclick="prevQuestion()">Back</button>
+          <button class="btn-primary" id="next-2" disabled onclick="nextQuestion()">Next</button>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="screen" id="screen-q3">
+        <span class="step-indicator">Question 3 / 8</span>
+        <h2>Aapke liye ek perfect date ka idea kya hai?</h2>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectOption(3, 'Late night quiet walk & deep conversations')"><span>Late night quiet walk & deep conversations</span></button>
+          <button class="option-btn" onclick="selectOption(3, 'Coffee shop aur barish ki halki bundein')"><span>Coffee shop aur barish ki halki bundein</span></button>
+          <button class="option-btn" onclick="selectOption(3, 'Long drive with favourite soft songs')"><span>Long drive with favourite soft songs</span></button>
+          <button class="option-btn" onclick="selectOption(3, 'Bas dono saath hon, jagah koi bhi ho')"><span>Bas dono saath hon, jagah koi bhi ho</span></button>
+        </div>
+        <div class="nav-buttons">
+          <button class="btn-secondary" onclick="prevQuestion()">Back</button>
+          <button class="btn-primary" id="next-3" disabled onclick="nextQuestion()">Next</button>
+        </div>
+      </div>
+
+      <!-- Question 8 (Position 4 in custom order) -->
+      <div class="screen" id="screen-q8">
+        <span class="step-indicator">Question 4 / 8</span>
+        <h2>Jab hum lambi baatein karte hain, tab kaisa feel hota hai?</h2>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectOption(8, 'Waqt ka bilkul pata hi nahi chalta')"><span>Waqt ka bilkul pata hi nahi chalta</span></button>
+          <button class="option-btn" onclick="selectOption(8, 'Lagta hai bas sunte rahein ek dusre ko')"><span>Lagta hai bas sunte rahein ek dusre ko</span></button>
+          <button class="option-btn" onclick="selectOption(8, 'Dil bohot halka aur happy feel karta hai')"><span>Dil bohot halka aur happy feel karta hai</span></button>
+          <button class="option-btn" onclick="selectOption(8, 'Poore din ki thakaan door ho jaati hai')"><span>Poore din ki thakaan door ho jaati hai</span></button>
+        </div>
+        <div class="nav-buttons">
+          <button class="btn-secondary" onclick="prevQuestion()">Back</button>
+          <button class="btn-primary" id="next-8" disabled onclick="nextQuestion()">Next</button>
+        </div>
+      </div>
+
+      <!-- Question 4 (Position 5 in custom order) -->
+      <div class="screen" id="screen-q4">
+        <span class="step-indicator">Question 5 / 8</span>
+        <h2>Kabhi aisa laga hai ki hum dono ek dusre ke bina incomplete hain?</h2>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectOption(4, 'Haan, kaafi baar aisa mehsoos hua')"><span>Haan, kaafi baar aisa mehsoos hua</span></button>
+          <button class="option-btn" onclick="selectOption(4, 'Jab bhi aap aas-paas nahi hote tab')"><span>Jab bhi aap aas-paas nahi hote tab</span></button>
+          <button class="option-btn" onclick="selectOption(4, 'Dheere dheere ye ehsaas gehra ho raha hai')"><span>Dheere dheere ye ehsaas gehra ho raha hai</span></button>
+          <button class="option-btn" onclick="selectOption(4, 'Aap meri life ka sabse zaroori hissa ban chuke ho')"><span>Aap meri life ka sabse zaroori hissa ban chuke ho</span></button>
+        </div>
+        <div class="nav-buttons">
+          <button class="btn-secondary" onclick="prevQuestion()">Back</button>
+          <button class="btn-primary" id="next-4" disabled onclick="nextQuestion()">Next</button>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="screen" id="screen-q5">
+        <span class="step-indicator">Question 6 / 8</span>
+        <h2>Agar main kabhi udaas hou, toh aap mujhe kaise cheer up karoge?</h2>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectOption(5, 'Ek tight warm hug aur pyari si baat')"><span>Ek tight warm hug aur pyari si baat</span></button>
+          <button class="option-btn" onclick="selectOption(5, 'Aapka favourite food khila kar')"><span>Aapka favourite food khila kar</span></button>
+          <button class="option-btn" onclick="selectOption(5, 'Silly jokes aur nautanki karke')"><span>Silly jokes aur nautanki karke</span></button>
+          <button class="option-btn" onclick="selectOption(5, 'Bas chupchaap aapka haath thaam kar')"><span>Bas chupchaap aapka haath thaam kar</span></button>
+        </div>
+        <div class="nav-buttons">
+          <button class="btn-secondary" onclick="prevQuestion()">Back</button>
+          <button class="btn-primary" id="next-5" disabled onclick="nextQuestion()">Next</button>
+        </div>
+      </div>
+
+      <!-- Question 6 -->
+      <div class="screen" id="screen-q6">
+        <span class="step-indicator">Question 7 / 8</span>
+        <h2>Aane wale kal me hamara rishta aap kaisa imagine karte ho?</h2>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectOption(6, 'Har mushkil me ek dusre ki dhaal ban kar')"><span>Har mushkil me ek dusre ki dhaal ban kar</span></button>
+          <button class="option-btn" onclick="selectOption(6, 'Duniya bhar me nayi yaadein banate hue')"><span>Duniya bhar me nayi yaadein banate hue</span></button>
+          <button class="option-btn" onclick="selectOption(6, 'Bohot saare hasi-mazaak aur dher saare pyaar ke saath')"><span>Bohot saare hasi-mazaak aur dher saare pyaar ke saath</span></button>
+          <button class="option-btn" onclick="selectOption(6, 'Always hand in hand, hamesha ke liye')"><span>Always hand in hand, hamesha ke liye</span></button>
+        </div>
+        <div class="nav-buttons">
+          <button class="btn-secondary" onclick="prevQuestion()">Back</button>
+          <button class="btn-primary" id="next-6" disabled onclick="nextQuestion()">Next</button>
+        </div>
+      </div>
+
+      <!-- Question 7: THE PROPOSAL QUESTION -->
+      <div class="screen" id="screen-q7">
+        <span class="step-indicator">Question 8 / 8 • Special Question</span>
+        <h2>Will you be mine forever and let me cherish you always?</h2>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectProposalOption('yes')"><span>Yes, a million times YES! ❤️</span></button>
+          <button class="option-btn" onclick="selectProposalOption('time')"><span>I need a little time, but my heart is warm</span></button>
+          <button class="option-btn" onclick="selectProposalOption('friends')"><span>I cherish you dearly, but as my closest best friend</span></button>
+          <button class="option-btn" onclick="selectProposalOption('surprise')"><span>Surprise me! Let our destiny lead us ✨</span></button>
+        </div>
+        <div class="nav-buttons">
+          <button class="btn-secondary" onclick="prevQuestion()">Back</button>
+          <button class="btn-primary" id="next-7" disabled onclick="goToFinalPage()">See My Heart 🌸</button>
+        </div>
+      </div>
+
+      <!-- SCREEN FINAL: ENDING PAGE -->
+      <div class="screen" id="screen-final">
+        
+        <!-- Boy making heart with hands Silhouette -->
+        <div class="silhouette-wrapper">
+          <svg class="silhouette-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- Head & Neck -->
+            <circle cx="100" cy="88" r="21" opacity="0.95"/>
+            <path d="M93 107 h14 v16 h-14 z" opacity="0.9"/>
+            <!-- Shoulders & Upper Body Silhouette -->
+            <path d="M60 152 C62 126 78 120 92 119 L100 120 L108 119 C122 120 138 126 140 152 C140 162 135 174 135 180 L65 180 C65 174 60 162 60 152 Z" opacity="0.95"/>
+            <!-- Left Arm raised -->
+            <path d="M68 135 C62 112 66 75 88 56 C93 52 97 54 96 59 C94 70 82 92 84 130 Z" opacity="0.98"/>
+            <!-- Right Arm raised -->
+            <path d="M132 135 C138 112 134 75 112 56 C107 52 103 54 104 59 C106 70 118 92 116 130 Z" opacity="0.98"/>
+            <!-- Hands forming a heart silhouette at the top center -->
+            <path d="M100 62 C96 54 84 50 83 62 C82 72 97 81 100 84 C103 81 118 72 117 62 C116 50 104 54 100 62 Z" fill="#f7cad0"/>
+          </svg>
+        </div>
+
+        <div class="love-text">I LOVE YOU ❤️</div>
+        
+        <div class="confession-box" id="finalMessageText">
+          <!-- Text dynamically loaded based on choice -->
+        </div>
+
+        <button class="btn-primary" onclick="restartQuiz()">Read Again ✨</button>
+      </div>
+
+    </div>
   </div>
 
-  <!-- PAGE 2: QUESTION 1 -->
-  <div class="page" id="p2">
-   <div class="progress"><span class="on"></span><span></span><span></span><span></span></div>
-   <div class="eyebrow">Question 01 · A little beginning</div>
-   <div class="emblem">✉</div>
-   <h2>Can I tell you something special?</h2>
-   <p>There's something I've wanted to say for a while.</p>
-   <div class="options">
-    <button class="choice" onclick="go(3)">Of course! 💗</button>
-    <button class="choice" onclick="go(3)">Yes, I'm listening ✨</button>
-    <button class="choice" onclick="go(3)">Tell me, I'm curious 💌</button>
-    <button class="choice" onclick="go(3)">Okay, go ahead 🌸</button>
-   </div>
-   <button class="btn secondary" onclick="go(1)">GO BACK</button>
-  </div>
+  <script>
+    // Exact requested question sequence: 1, 2, 3, 8, 4, 5, 6, 7
+    const questionSequence = ['q1', 'q2', 'q3', 'q8', 'q4', 'q5', 'q6', 'q7'];
+    let currentStepIndex = -1; // -1 means welcome screen
+    let proposalChoice = 'yes';
+    let userAnswers = {};
 
-  <!-- PAGE 3: QUESTION 2 -->
-  <div class="page" id="p3">
-   <div class="progress"><span class="on"></span><span class="on"></span><span></span><span></span></div>
-   <div class="eyebrow">Question 02 · Just curious</div>
-   <div class="emblem">♡</div>
-   <h2>Kya tum kisi ko pasand karti ho?</h2>
-   <p>Be honest… it's just a little question. 🌷</p>
-   <div class="options">
-    <button class="choice" onclick="go(4)">Haan, shayad 💗</button>
-    <button class="choice" onclick="go(4)">Abhi nahi 😊</button>
-    <button class="choice" onclick="go(4)">It's a secret 🤭</button>
-    <button class="choice" onclick="go(4)">I'm not sure yet ✨</button>
-   </div>
-   <button class="btn secondary" onclick="go(2)">PREVIOUS QUESTION</button>
-  </div>
+    // Generate floating hearts background
+    function createBackgroundHearts() {
+      const container = document.getElementById('bgHearts');
+      const symbols = ['♥', '♡', '❤'];
+      for (let i = 0; i < 22; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart-particle';
+        heart.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDelay = (Math.random() * 10) + 's';
+        heart.style.animationDuration = (8 + Math.random() * 7) + 's';
+        heart.style.fontSize = (14 + Math.random() * 16) + 'px';
+        container.appendChild(heart);
+      }
+    }
+    createBackgroundHearts();
 
-  <!-- PAGE 4: QUESTION 3 -->
-  <div class="page" id="p4">
-   <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
-   <div class="eyebrow">Question 03 · Matters of the heart</div>
-   <div class="emblem">💗</div>
-   <h2>Have you ever had a crush on someone?</h2>
-   <p>Kabhi kisi ko dekhkar special feeling aayi hai? 🥹</p>
-   <div class="options">
-    <button class="choice" onclick="go(5)">Yes, I have 💕</button>
-    <button class="choice" onclick="go(5)">Maybe, I'm confused 🌷</button>
-    <button class="choice" onclick="go(5)">No, not yet 😊</button>
-    <button class="choice" onclick="go(5)">I won't tell you 🤭</button>
-   </div>
-   <button class="btn secondary" onclick="go(3)">PREVIOUS QUESTION</button>
-  </div>
+    function showScreen(screenId) {
+      document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+      const activeScreen = document.getElementById(screenId);
+      if (activeScreen) {
+        activeScreen.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
 
-  <!-- PAGE 5: QUESTION 4 -->
-  <div class="page" id="p5">
-   <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
-   <div class="eyebrow">Question 04 · One last question</div>
-   <div class="emblem">🌹</div>
-   <h2>If someone liked you, would you want them to tell you honestly?</h2>
-   <p>What would feel right to you?</p>
-   <div class="options">
-    <button class="choice" onclick="go(6)">Yes, honesty matters ❤️</button>
-    <button class="choice" onclick="go(6)">I'd need some time 🌷</button>
-    <button class="choice" onclick="go(6)">I'd rather stay friends 🫶</button>
-    <button class="choice" onclick="go(6)">It depends on the person ✨</button>
-   </div>
-   <button class="btn secondary" onclick="go(4)">PREVIOUS QUESTION</button>
-  </div>
+    function startQuiz() {
+      currentStepIndex = 0;
+      showScreen('screen-' + questionSequence[currentStepIndex]);
+    }
 
-  <!-- PAGE 6: CONFESSION INTRO -->
-  <div class="page" id="p6">
-   <div class="emblem">💌</div>
-   <div class="eyebrow">A message from my heart</div>
-   <h2>Before you read...</h2>
-   <p>I've been wanting to tell you something honestly. Whatever your feelings are, I'll respect them. ❤️</p>
-   <div class="rule"></div>
-   <p class="sub">Ready to read my confession?</p>
-   <button class="btn primary" onclick="go(7)">READ MY CONFESSION ♥</button>
-   <button class="btn secondary" onclick="go(1)">START AGAIN</button>
-  </div>
+    function selectOption(qNum, value) {
+      userAnswers[qNum] = value;
+      const currentScreenId = 'screen-q' + qNum;
+      const screenElem = document.getElementById(currentScreenId);
+      
+      const buttons = screenElem.querySelectorAll('.option-btn');
+      buttons.forEach(btn => btn.classList.remove('selected'));
+      event.currentTarget.classList.add('selected');
 
-  <!-- PAGE 7: FINAL CONFESSION -->
-  <div class="page" id="p7">
-   <div class="emblem">♥</div>
-   <div class="eyebrow">My honest confession</div>
-   <h1>I Love You ❤️</h1>
-   <div class="ornament">— ♡ —</div>
-   <p>Sach kahun toh, <strong>main tumhare peeche pagal sa hoon.</strong> 🥹❤️</p>
-   <p><strong>Tum meri crush ho</strong> aur main tumse bahut pyaar karta hoon. 💗</p>
-   <p>Tum mere liye bahut special ho, aur ye baat main tumhe honestly batana chahta tha. ✨</p>
-   <div class="rule"></div>
-   <p>Agar tumhari feelings mere jaisi nahi hain, toh koi baat nahi. 🫶</p>
-   <p>Agar tum mujhe us nazar se nahi dekhti, toh <strong>kya hum friends ban sakte hain?</strong> 🌷</p>
-   <p>Main tumhare decision ki respect karunga. Tumhari friendship bhi mere liye important hogi.</p>
-   <div class="rule"></div>
-   <p>Bas dil ki baat tum tak pahunchani thi. 💌</p>
-   <button class="btn primary" onclick="go(1)">READ AGAIN ♡</button>
-   <div class="final-love">I LOVE YOU ❤️</div>
-   <div class="final-small">JUST AS YOU ARE · ALWAYS RESPECTED ♡</div>
-   <div class="smallnote">NO PRESSURE · JUST HONEST FEELINGS</div>
-  </div>
+      const nextBtn = document.getElementById('next-' + qNum);
+      if (nextBtn) {
+        nextBtn.removeAttribute('disabled');
+      }
+    }
 
- </section>
+    function selectProposalOption(choice) {
+      proposalChoice = choice;
+      const screenElem = document.getElementById('screen-q7');
+      const buttons = screenElem.querySelectorAll('.option-btn');
+      buttons.forEach(btn => btn.classList.remove('selected'));
+      event.currentTarget.classList.add('selected');
 
- <div class="footer">A SMALL MESSAGE · A SINCERE HEART ♡</div>
-</main>
+      const nextBtn = document.getElementById('next-7');
+      if (nextBtn) {
+        nextBtn.removeAttribute('disabled');
+      }
+    }
 
-<script>
-function go(n){
- document.querySelectorAll('.page').forEach(function(p){
-  p.classList.remove('active');
- });
- const target=document.getElementById('p'+n);
- if(target)target.classList.add('active');
- window.scrollTo({top:0,behavior:'smooth'});
-}
+    function nextQuestion() {
+      if (currentStepIndex < questionSequence.length - 1) {
+        currentStepIndex++;
+        showScreen('screen-' + questionSequence[currentStepIndex]);
+      }
+    }
 
-const holder=document.getElementById('particles');
-const symbols=['♥','♡','💗','✧'];
+    function prevQuestion() {
+      if (currentStepIndex > 0) {
+        currentStepIndex--;
+        showScreen('screen-' + questionSequence[currentStepIndex]);
+      } else {
+        currentStepIndex = -1;
+        showScreen('screen-welcome');
+      }
+    }
 
-function addParticle(){
- if(holder.childElementCount>18)return;
+    function goToFinalPage() {
+      const confessionBox = document.getElementById('finalMessageText');
 
- const el=document.createElement('span');
- el.className='particle';
- el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+      if (proposalChoice === 'friends') {
+        // Dedicated Friendship Ending
+        confessionBox.innerHTML = `Meri zindagi me aapki jagah sabse anmol hai. 
+Chahe rishta jo bhi naam le, aapki hasi, aapka sukoon aur aapki dosti mere liye hamesha sabse upar rahegi. 
 
- const size=22+Math.random()*35;
- el.style.width=size+'px';
- el.style.height=size+'px';
- el.style.left=Math.random()*100+'%';
- el.style.fontSize=(size*0.48)+'px';
- el.style.animationDuration=(7+Math.random()*6)+'s';
+Thank you for simply being you. Main hamesha aapka sabse sachha dost ban kar aapke saath rahunga. 🌸`;
+      } else {
+        // Romantic Hinglish Love Confession
+        let prefix = "";
+        if (proposalChoice === 'time') {
+          prefix = "Aap chahe jitna waqt lo, mera pyaar har pal aapke saath utna hi sabar aur sachha rahega.\n\n";
+        } else if (proposalChoice === 'surprise') {
+          prefix = "Kismat ne hume milaya hai, aur main har din ko aapke saath ek khoobsurat surprise banaunga.\n\n";
+        }
 
- holder.appendChild(el);
+        confessionBox.innerHTML = `${prefix}Aap sirf meri pasand nahi, meri har dua ka hissa ho. 
+Jab se aap meri zindagi me aaye ho, sab kuch bohot shant, khoobsurat aur roshan lagne laga hai. 
 
- el.addEventListener('animationend',function(){
-  el.remove();
- },{once:true});
-}
+Mera waada hai ki main hamesha aapki aankhon ki muskaan ko protect karunga, har mausam me aapka haath thaame rakhunga, aur aapse bepanah mohabbat karta rahunga.`;
+      }
 
-for(let i=0;i<6;i++){
- setTimeout(addParticle,i*450);
-}
-setInterval(addParticle,1000);
-</script>
+      showScreen('screen-final');
+    }
+
+    function restartQuiz() {
+      currentStepIndex = -1;
+      userAnswers = {};
+      proposalChoice = 'yes';
+      
+      document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+      document.querySelectorAll('.btn-primary').forEach(btn => {
+        if (btn.id && btn.id.startsWith('next-')) {
+          btn.setAttribute('disabled', 'true');
+        }
+      });
+
+      showScreen('screen-welcome');
+    }
+  </script>
 </body>
 </html>
