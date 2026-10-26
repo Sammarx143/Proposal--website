@@ -1,21 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#09080d">
+<meta name="theme-color" content="#160b12">
 <title>A Little Secret ♡</title>
 
 <style>
 :root {
-  --bg: #09080d;
-  --card: rgba(17, 12, 17, .88);
-  --pink: #f3bfd2;
-  --baby: #ffe3ed;
-  --muted: #c5b5c0;
-  --gold: #d8b18b;
-  --rose: #b76e79;
+  --pink: #ffc0d4;
+  --pale: #ffe8f0;
+  --gold: #e7bd9b;
+  --muted: #ddc7d0;
 }
 
 * {
@@ -26,107 +22,71 @@
 
 body {
   min-height: 100vh;
-  color: var(--baby);
+  color: var(--pale);
   font-family: Georgia, "Times New Roman", serif;
-  overflow-x: hidden;
   background:
-    radial-gradient(
-      ellipse at 85% 12%,
-      rgba(183, 110, 121, .40),
-      transparent 48%
-    ),
-    radial-gradient(
-      ellipse at 12% 88%,
-      rgba(128, 54, 73, .28),
-      transparent 45%
-    ),
-    linear-gradient(
-      125deg,
-      #080808 0%,
-      #160f13 38%,
-      #351d26 70%,
-      #70414b 100%
-    );
+    radial-gradient(ellipse at 82% 18%, rgba(195,77,119,.38), transparent 44%),
+    radial-gradient(ellipse at 12% 85%, rgba(122,41,72,.35), transparent 42%),
+    linear-gradient(130deg,#08070a,#1b0d16 45%,#4a1e32 78%,#9a526d);
   background-attachment: fixed;
+  overflow-x: hidden;
 }
 
 button {
   font: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 
-#hearts {
+#floating {
   position: fixed;
   inset: 0;
-  pointer-events: none;
   overflow: hidden;
+  pointer-events: none;
   z-index: 0;
 }
 
-.heart {
+.float {
   position: absolute;
-  bottom: -40px;
-  color: #ffb4c8;
-  opacity: .65;
-  text-shadow: 0 0 14px #ff789c;
-  animation: floatUp linear forwards;
+  bottom: -35px;
+  color: #ffc0d4;
+  text-shadow: 0 0 14px #ff729f;
+  animation: rise linear forwards;
 }
 
-@keyframes floatUp {
-  from { transform: translateY(0) rotate(0deg) scale(.7); opacity: 0; }
-  15% { opacity: .7; }
-  to { transform: translateY(-115vh) rotate(35deg) scale(1.25); opacity: 0; }
-}
-
-.sparkle {
-  position: fixed;
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: #ffe5ec;
-  box-shadow: 0 0 12px #ffb6ca;
-  pointer-events: none;
-  animation: twinkle 3s ease-in-out infinite alternate;
-}
-
-@keyframes twinkle {
-  from { opacity: .15; transform: scale(.6); }
-  to { opacity: .95; transform: scale(1.5); }
+@keyframes rise {
+  to {
+    transform: translateY(-115vh) rotate(40deg);
+    opacity: 0;
+  }
 }
 
 main {
+  width: min(100% - 24px, 520px);
+  margin: auto;
+  padding: 22px 0 42px;
   position: relative;
   z-index: 1;
-  width: min(100% - 28px, 620px);
-  margin: auto;
-  padding: 28px 0 50px;
 }
 
-.topline {
+.brand {
   text-align: center;
   color: var(--gold);
-  font-family: Arial, sans-serif;
-  font-size: 10px;
-  letter-spacing: 4px;
+  font: 9px Arial, sans-serif;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  margin: 10px 0 22px;
+  margin: 7px 0 20px;
 }
 
 .page {
   display: none;
-  position: relative;
-  padding: 34px 25px;
-  min-height: 420px;
+  min-height: 490px;
+  padding: 30px 22px;
+  border: 1px solid #d89aaa80;
+  border-radius: 22px;
+  background: linear-gradient(145deg,#0b080def,#24101def);
+  box-shadow: 0 18px 60px #0006, 0 0 25px #df73941a;
   text-align: center;
-  border: 1px solid rgba(243, 191, 210, .46);
-  border-radius: 23px;
-  background:
-    radial-gradient(ellipse at top right, rgba(183,110,121,.15), transparent 58%),
-    linear-gradient(145deg, rgba(8,8,10,.94), rgba(25,14,20,.93));
-  box-shadow:
-    0 18px 55px rgba(0,0,0,.32),
-    inset 0 0 30px rgba(243,191,210,.025),
-    0 0 22px rgba(183,110,121,.08);
-  animation: reveal .65s ease both;
+  animation: show .45s ease;
 }
 
 .page.active {
@@ -135,622 +95,507 @@ main {
   justify-content: center;
 }
 
-@keyframes reveal {
-  from { opacity: 0; transform: translateY(13px) scale(.985); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+@keyframes show {
+  from { opacity: 0; transform: translateY(9px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.eyebrow,.qnum,.foot {
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .eyebrow {
+  font-size: 9px;
   color: var(--gold);
-  font-family: Arial, sans-serif;
-  font-size: 10px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  margin-bottom: 18px;
+  margin-bottom: 17px;
 }
 
-.mini-heart {
+.qnum {
+  font-size: 9px;
+  color: var(--gold);
+  margin-bottom: 15px;
+}
+
+.heart {
+  font-size: 25px;
   color: var(--pink);
-  font-size: 24px;
+  text-shadow: 0 0 16px #ff87ae88;
   margin-bottom: 12px;
-  text-shadow: 0 0 18px rgba(255,150,180,.5);
 }
 
 h1 {
-  color: var(--baby);
-  font-size: clamp(32px, 8vw, 48px);
+  font-size: clamp(34px,8vw,46px);
   font-weight: normal;
   line-height: 1.2;
-  margin-bottom: 18px;
+  margin-bottom: 17px;
 }
 
 h2 {
-  color: var(--baby);
-  font-size: clamp(24px, 6vw, 32px);
-  line-height: 1.35;
+  font-size: clamp(23px,5.8vw,30px);
   font-weight: normal;
-  margin-bottom: 24px;
+  line-height: 1.4;
+  margin-bottom: 23px;
 }
 
 p {
+  font: 13px/1.9 Arial, sans-serif;
   color: var(--muted);
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.85;
 }
 
 .divider {
-  width: 100px;
   height: 1px;
-  margin: 23px auto;
-  background: linear-gradient(90deg, transparent, var(--gold), var(--pink), transparent);
-  position: relative;
-}
-
-.divider::after {
-  content: "♥";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  padding: 0 8px;
-  color: var(--pink);
-  background: #21131a;
-  font-size: 12px;
-}
-
-.question-number {
-  font-family: Arial, sans-serif;
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: var(--gold);
-  margin-bottom: 14px;
-}
-
-.question-title {
-  font-size: clamp(23px, 5.8vw, 30px);
-  line-height: 1.4;
-  font-weight: normal;
-  margin-bottom: 25px;
+  width: 105px;
+  margin: 22px auto;
+  background: linear-gradient(90deg,transparent,var(--gold),var(--pink),transparent);
 }
 
 .options {
   display: grid;
-  gap: 11px;
-  width: 100%;
-}
-
-.option,
-.primary,
-.secondary {
-  width: 100%;
-  min-height: 48px;
-  border-radius: 16px;
-  padding: 13px 15px;
-  cursor: pointer;
-  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
-  -webkit-tap-highlight-color: transparent;
+  gap: 10px;
 }
 
 .option {
+  padding: 13px 14px;
+  min-height: 46px;
+  border-radius: 14px;
+  border: 1px solid #f3bfd26b;
+  color: var(--pale);
+  background: #ffffff08;
   text-align: left;
-  color: var(--baby);
-  border: 1px solid rgba(243,191,210,.42);
-  background: rgba(255,255,255,.035);
-  font-family: Arial, sans-serif;
-  font-size: 13px;
-  line-height: 1.5;
+  font: 12px/1.55 Arial, sans-serif;
+  cursor: pointer;
+  transition: .2s;
 }
 
-.option:hover,
-.option:focus-visible {
-  background: rgba(183,110,121,.2);
+.option:hover {
+  background: #c45b7c30;
   border-color: var(--pink);
-  box-shadow: 0 0 17px rgba(243,191,210,.1);
   transform: translateY(-2px);
+}
+
+.primary,.secondary {
+  width: 100%;
+  min-height: 46px;
+  border-radius: 28px;
+  padding: 13px 15px;
+  cursor: pointer;
+  font: 10px Arial, sans-serif;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  transition: .2s;
 }
 
 .primary {
-  border: 1px solid rgba(255,226,235,.7);
-  color: #271319;
-  background: linear-gradient(110deg, #d98d9d, #ffe0e8, #c8798b);
-  font-family: Arial, sans-serif;
-  font-size: 11px;
+  border: 1px solid #fff0f6;
+  color: #32131f;
   font-weight: bold;
-  letter-spacing: 1.3px;
-  text-transform: uppercase;
-  box-shadow: 0 6px 24px rgba(206,105,132,.25);
+  background: linear-gradient(110deg,#d86f91,#ffe0eb,#cf6b8b);
+  box-shadow: 0 6px 22px #d56b913d;
 }
 
 .secondary {
-  color: var(--baby);
-  border: 1px solid rgba(243,191,210,.48);
-  background: transparent;
-  font-family: Arial, sans-serif;
-  font-size: 11px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
   margin-top: 10px;
+  border: 1px solid #f3bfd280;
+  color: var(--pale);
+  background: transparent;
 }
 
-.primary:hover,
-.secondary:hover {
+.primary:hover,.secondary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 26px rgba(206,105,132,.25);
 }
 
-.footer-note {
-  margin-top: 24px;
-  font-family: Arial, sans-serif;
-  font-size: 9px;
-  letter-spacing: 1.5px;
-  color: #9f8995;
-  text-transform: uppercase;
+.foot {
+  font-size: 8px;
+  color: #b69aa8;
+  margin-top: 23px;
+  letter-spacing: 1.4px;
 }
 
-.confession-text {
+.confession {
   text-align: left;
-  font-family: Arial, sans-serif;
   color: var(--muted);
-  font-size: 14px;
-  line-height: 1.95;
-  margin: 2px 0 24px;
+  font: 13px/1.9 Arial, sans-serif;
+  margin-bottom: 23px;
 }
 
-.confession-text strong {
+.confession strong {
   color: var(--pink);
   font-weight: normal;
 }
 
-.final-title {
-  font-size: clamp(30px, 8vw, 42px);
-  margin: 12px 0;
-  color: #ffe3ed;
-  text-shadow: 0 0 22px rgba(243,191,210,.24);
-}
-
-.final-heart {
-  font-size: 44px;
-  color: #ffb1c5;
-  filter: drop-shadow(0 0 15px #e56d91);
-  animation: heartbeat 1.5s ease-in-out infinite;
-}
-
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  15% { transform: scale(1.12); }
-  30% { transform: scale(1); }
-  45% { transform: scale(1.08); }
-}
-
-.couple-art {
+.final-art {
   width: 100%;
   max-width: 350px;
-  margin: 4px auto 12px;
+  margin: 0 auto 15px;
   display: block;
-  filter: drop-shadow(0 0 20px rgba(244,133,164,.15));
+  filter: drop-shadow(0 0 18px #e87ba340);
 }
 
-.couple-caption {
-  color: var(--gold);
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin: 6px 0 14px;
+.final-title {
+  font-size: clamp(34px,8vw,44px);
+  margin: 8px 0 14px;
+  text-shadow: 0 0 22px #ff9fbd3d;
 }
 
-@media (max-width: 380px) {
-  main { width: calc(100% - 20px); padding-top: 15px; }
-  .page { padding: 28px 17px; min-height: 400px; }
-  .option { font-size: 12px; }
+.pulse {
+  font-size: 36px;
+  color: #ffb2cb;
+  filter: drop-shadow(0 0 10px #f777a4);
+  animation: pulse 1.4s infinite;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-  }
+@keyframes pulse {
+  50% { transform: scale(1.12); }
+}
+
+@media(max-width:380px) {
+  main { width: calc(100% - 16px); }
+  .page { padding: 25px 16px; }
+  .option { font-size: 11px; }
 }
 </style>
 </head>
 
 <body>
-<div id="hearts" aria-hidden="true"></div>
+<div id="floating"></div>
 
 <main>
-  <div class="topline">A little secret · Just for you ♡</div>
+<div class="brand">A little secret · Just for you ♡</div>
 
-  <!-- WELCOME -->
-  <section class="page active" id="welcome">
-    <div class="eyebrow">Something special is waiting</div>
-    <div class="mini-heart">♡</div>
-    <h1>Hey, You! ♡</h1>
-    <p>Someone has something special<br>to tell you.</p>
-    <div class="divider"></div>
-    <p>But first, a few little questions...</p>
-    <p style="margin-top:18px;color:var(--pink)">Ready for a tiny journey? 🌸</p>
-    <button class="primary" style="margin-top:28px" onclick="startQuestions()">Let's Begin ♡</button>
-    <div class="footer-note">Made with a little courage ♡</div>
-  </section>
+<section class="page active" id="welcome">
+  <div class="eyebrow">Something special is waiting</div>
+  <div class="heart">♡</div>
+  <h1>Hey, You! ♡</h1>
+  <p>Someone has something special<br>to tell you.</p>
+  <div class="divider"></div>
+  <p>But first, a few little questions...</p>
+  <p style="margin-top:16px;color:var(--pink)">Ready for a tiny journey? 🌸</p>
+  <button class="primary" style="margin-top:26px" onclick="startQuestions()">Let's Begin ♡</button>
+  <div class="foot">Made with a little courage ♡</div>
+</section>
 
-  <!-- QUESTION 1 -->
-  <section class="page" id="q1">
-    <div class="question-number">QUESTION 01 / 08</div>
-    <div class="mini-heart">♥</div>
-    <h2 class="question-title">Do you know someone has a little secret for you? 👀</h2>
-    <div class="options">
-      <button class="option" onclick="answer(1)">Yes, I have a guess 💗</button>
-      <button class="option" onclick="answer(1)">No, tell me! 🤭</button>
-      <button class="option" onclick="answer(1)">Maybe I know who it is ✨</button>
-      <button class="option" onclick="answer(1)">I'm curious now 💌</button>
-    </div>
-    <div class="footer-note">One little question at a time ♡</div>
-  </section>
+<section class="page" id="q1">
+  <div class="qnum">QUESTION 01 / 08</div>
+  <div class="heart">♥</div>
+  <h2>Do you know someone has a little secret for you? 👀</h2>
+  <div class="options">
+    <button class="option" onclick="answer(1)">Yes, I have a guess 💗</button>
+    <button class="option" onclick="answer(1)">No, tell me! 🤭</button>
+    <button class="option" onclick="answer(1)">Maybe I know who it is ✨</button>
+    <button class="option" onclick="answer(1)">I'm curious now 💌</button>
+  </div>
+  <div class="foot">One little question at a time ♡</div>
+</section>
 
-  <!-- QUESTION 2 -->
-  <section class="page" id="q2">
-    <div class="question-number">QUESTION 02 / 08</div>
-    <div class="mini-heart">♥</div>
-    <h2 class="question-title">Do you like talking to me? 🌸</h2>
-    <div class="options">
-      <button class="option" onclick="answer(2)">Yess, of course ❤️</button>
-      <button class="option" onclick="answer(2)">Sometimes 🤭</button>
-      <button class="option" onclick="answer(2)">You're fun to talk to 😊</button>
-      <button class="option" onclick="answer(2)">Maybe a little 🙈</button>
-    </div>
-    <div class="footer-note">Your answer is yours ♡</div>
-  </section>
+<section class="page" id="q2">
+  <div class="qnum">QUESTION 02 / 08</div>
+  <div class="heart">♥</div>
+  <h2>Do you like talking to me? 🌸</h2>
+  <div class="options">
+    <button class="option" onclick="answer(2)">Yess, of course ❤️</button>
+    <button class="option" onclick="answer(2)">Sometimes 🤭</button>
+    <button class="option" onclick="answer(2)">You're fun to talk to 😊</button>
+    <button class="option" onclick="answer(2)">Maybe a little 🙈</button>
+  </div>
+  <div class="foot">Your answer is yours ♡</div>
+</section>
 
-  <!-- QUESTION 3 -->
-  <section class="page" id="q3">
-    <div class="question-number">QUESTION 03 / 08</div>
-    <div class="mini-heart">♥</div>
-    <h2 class="question-title">Can I tell you something from my heart? 💌</h2>
-    <div class="options">
-      <button class="option" onclick="answer(3)">Yes, tell me ❤️</button>
-      <button class="option" onclick="answer(3)">I'm listening 🥹</button>
-      <button class="option" onclick="answer(3)">Now I'm curious 👀</button>
-      <button class="option" onclick="answer(3)">Okay, go ahead 🌷</button>
-    </div>
-    <div class="footer-note">A little more courage ♡</div>
-  </section>
+<section class="page" id="q3">
+  <div class="qnum">QUESTION 03 / 08</div>
+  <div class="heart">♥</div>
+  <h2>Can I tell you something from my heart? 💌</h2>
+  <div class="options">
+    <button class="option" onclick="answer(3)">Yes, tell me ❤️</button>
+    <button class="option" onclick="answer(3)">I'm listening 🥹</button>
+    <button class="option" onclick="answer(3)">Now I'm curious 👀</button>
+    <button class="option" onclick="answer(3)">Okay, go ahead 🌷</button>
+  </div>
+  <div class="foot">A little more courage ♡</div>
+</section>
 
-  <!-- QUESTION 8: KEPT IN THE SELECTED FOURTH POSITION -->
-  <section class="page" id="q4">
-    <div class="question-number">QUESTION 04 / 08</div>
-    <div class="mini-heart">♥</div>
-    <h2 class="question-title">Will you accept my proposal? 🥹❤️</h2>
-    <p style="margin-top:-10px;margin-bottom:20px">Whatever your answer, please be honest. 💗</p>
-    <div class="options">
-      <button class="option" onclick="showPage('confession')">YES! ❤️😍</button>
-      <button class="option" onclick="showPage('confession')">I need some time 🌷</button>
-      <button class="option" onclick="showPage('friendship')">Can we be friends? 🫶</button>
-      <button class="option" onclick="showPage('confession')">I'm surprised! 🙈</button>
-    </div>
-    <div class="footer-note">Your choice will be respected ♡</div>
-  </section>
+<section class="page" id="q4">
+  <div class="qnum">QUESTION 04 / 08</div>
+  <div class="heart">♥</div>
+  <h2>Have you ever had a crush on someone? 💕</h2>
+  <div class="options">
+    <button class="option" onclick="answer(4)">Yes 🙈</button>
+    <button class="option" onclick="answer(4)">Maybe 🤭</button>
+    <button class="option" onclick="answer(4)">Not yet 🌸</button>
+    <button class="option" onclick="answer(4)">That's a secret 🤫</button>
+  </div>
+  <div class="foot">Secrets are safe here ♡</div>
+</section>
 
-  <!-- QUESTION 4 -->
-  <section class="page" id="q5">
-    <div class="question-number">QUESTION 05 / 08</div>
-    <div class="mini-heart">♥</div>
-    <h2 class="question-title">Have you ever had a crush on someone? 💕</h2>
-    <div class="options">
-      <button class="option" onclick="answer(5)">Yes 🙈</button>
-      <button class="option" onclick="answer(5)">Maybe 🤭</button>
-      <button class="option" onclick="answer(5)">Not yet 🌸</button>
-      <button class="option" onclick="answer(5)">That's a secret 🤫</button>
-    </div>
-    <div class="footer-note">Secrets are safe here ♡</div>
-  </section>
+<section class="page" id="q5">
+  <div class="qnum">QUESTION 05 / 08</div>
+  <div class="heart">♥</div>
+  <h2>What would you do if someone secretly liked you? 👀</h2>
+  <div class="options">
+    <button class="option" onclick="answer(5)">I'd be happy 💗</button>
+    <button class="option" onclick="answer(5)">I'd ask who it is 🤭</button>
+    <button class="option" onclick="answer(5)">I'd feel shy 🙈</button>
+    <button class="option" onclick="answer(5)">It depends on who it is ❤️</button>
+  </div>
+  <div class="foot">No wrong answers ♡</div>
+</section>
 
-  <!-- QUESTION 5 -->
-  <section class="page" id="q6">
-    <div class="question-number">QUESTION 06 / 08</div>
-    <div class="mini-heart">♥</div>
-    <h2 class="question-title">What would you do if someone secretly liked you? 👀</h2>
-    <div class="options">
-      <button class="option" onclick="answer(6)">I'd be happy 💗</button>
-      <button class="option" onclick="answer(6)">I'd ask who it is 🤭</button>
-      <button class="option" onclick="answer(6)">I'd feel shy 🙈</button>
-      <button class="option" onclick="answer(6)">It depends on who it is ❤️</button>
-    </div>
-    <div class="footer-note">No wrong answers ♡</div>
-  </section>
+<section class="page" id="q6">
+  <div class="qnum">QUESTION 06 / 08</div>
+  <div class="heart">♥</div>
+  <h2>Would you give someone a chance to express their feelings? 💌</h2>
+  <div class="options">
+    <button class="option" onclick="answer(6)">Of course ❤️</button>
+    <button class="option" onclick="answer(6)">Maybe, let's see 🌷</button>
+    <button class="option" onclick="answer(6)">I'd need some time 🥹</button>
+    <button class="option" onclick="answer(6)">I prefer friendship 🫶</button>
+  </div>
+  <div class="foot">Every feeling deserves respect ♡</div>
+</section>
 
-  <!-- QUESTION 6 -->
-  <section class="page" id="q7">
-    <div class="question-number">QUESTION 07 / 08</div>
-    <div class="mini-heart">♥</div>
-    <h2 class="question-title">Would you give someone a chance to express their feelings? 💌</h2>
-    <div class="options">
-      <button class="option" onclick="answer(7)">Of course ❤️</button>
-      <button class="option" onclick="answer(7)">Maybe, let's see 🌷</button>
-      <button class="option" onclick="answer(7)">I'd need some time 🥹</button>
-      <button class="option" onclick="answer(7)">I prefer friendship 🫶</button>
-    </div>
-    <div class="footer-note">Every feeling deserves respect ♡</div>
-  </section>
+<section class="page" id="q7">
+  <div class="qnum">QUESTION 07 / 08</div>
+  <div class="heart">♥</div>
+  <h2>Are you ready for one little surprise? 🎁</h2>
+  <div class="options">
+    <button class="option" onclick="answer(7)">YESSS! 💗</button>
+    <button class="option" onclick="answer(7)">Show me already 🤭</button>
+    <button class="option" onclick="answer(7)">I'm ready ✨</button>
+    <button class="option" onclick="answer(7)">Okay, surprise me! ❤️</button>
+  </div>
+  <div class="foot">Almost there ♡</div>
+</section>
 
-  <!-- QUESTION 7 -->
-  <section class="page" id="q8">
-    <div class="question-number">QUESTION 08 / 08</div>
-    <div class="mini-heart">♥</div>
-    <h2 class="question-title">Are you ready for one little surprise? 🎁</h2>
-    <div class="options">
-      <button class="option" onclick="showPage('confession')">YESSS! 💗</button>
-      <button class="option" onclick="showPage('confession')">Show me already 🤭</button>
-      <button class="option" onclick="showPage('confession')">I'm ready ✨</button>
-      <button class="option" onclick="showPage('confession')">Okay, surprise me! ❤️</button>
-    </div>
-    <div class="footer-note">Almost there ♡</div>
-  </section>
+<section class="page" id="q8">
+  <div class="qnum">QUESTION 08 / 08</div>
+  <div class="heart">♥</div>
+  <h2>Will you accept my proposal? 🥹❤️</h2>
+  <p style="margin:-10px 0 20px">Whatever your answer, please be honest. 💗</p>
+  <div class="options">
+    <button class="option" onclick="showPage('confession')">YES! ❤️😍</button>
+    <button class="option" onclick="showPage('confession')">I need some time 🌷</button>
+    <button class="option" onclick="showPage('friendship')">Can we be friends? 🫶</button>
+    <button class="option" onclick="showPage('confession')">I'm surprised! 🙈</button>
+  </div>
+  <div class="foot">Your choice will be respected ♡</div>
+</section>
 
-  <!-- CONFESSION -->
-  <section class="page" id="confession">
-    <div class="eyebrow">Something from my heart</div>
-    <div class="mini-heart">♡</div>
-    <h2>My Confession 💌</h2>
-    <div class="divider"></div>
-    <div class="confession-text">
-      Pata nahi kaise kahun, but tum mere liye special ho. <strong>❤️</strong><br>
-      Tumse baat karna, tumhari smile aur tumhari presence mere din ko thoda aur achha bana deti hai.<br><br>
-      Shayad ye feelings friendship se thodi zyada hain. Main bas honestly tumhe batana chahta tha. <strong>💗</strong><br><br>
-      Tumhara answer jo bhi ho, main uski respect karunga. No pressure, no expectations. 🌷
-    </div>
-    <button class="primary" onclick="showPage('final')">One Last Thing ♡</button>
-    <button class="secondary" onclick="showPage('friendship')">Let's Be Friends 🫶</button>
-    <div class="footer-note">From the heart, with courage ♡</div>
-  </section>
+<section class="page" id="confession">
+  <div class="eyebrow">Something from my heart</div>
+  <div class="heart">♡</div>
+  <h2>My Confession 💌</h2>
+  <div class="divider"></div>
+  <div class="confession">
+    Pata nahi kaise kahun, but tum mere liye special ho. <strong>❤️</strong><br>
+    Tumse baat karna, tumhari smile aur tumhari presence mere din ko thoda aur achha bana deti hai.<br><br>
+    Shayad ye feelings friendship se thodi zyada hain. Main bas honestly tumhe batana chahta tha. <strong>💗</strong><br><br>
+    Tumhara answer jo bhi ho, main uski respect karunga. No pressure, no expectations. 🌷
+  </div>
+  <button class="primary" onclick="showPage('final')">One Last Thing ♡</button>
+  <button class="secondary" onclick="showPage('friendship')">Let's Be Friends 🫶</button>
+  <div class="foot">From the heart, with courage ♡</div>
+</section>
 
-  <!-- FRIENDSHIP -->
-  <section class="page" id="friendship">
-    <div class="eyebrow">A beautiful beginning</div>
-    <div class="mini-heart">♡</div>
-    <h2>Friendship? 💗</h2>
-    <div class="divider"></div>
-    <p>Of course! ❤️</p>
-    <p style="margin-top:15px">
-      Tumhari friendship bhi mere liye special hogi.
-      Har beautiful story ko love story banna zaroori nahi.
-    </p>
-    <p style="margin-top:20px">
-      Thank you for being honest.<br>
-      Let's keep it simple, happy and respectful. 🌸
-    </p>
-    <button class="primary" style="margin-top:28px" onclick="showPage('final')">One Last Thing ♡</button>
-    <div class="footer-note">A little kindness means a lot ♡</div>
-  </section>
+<section class="page" id="friendship">
+  <div class="eyebrow">A beautiful beginning</div>
+  <div class="heart">♡</div>
+  <h2>Friendship? 💗</h2>
+  <div class="divider"></div>
+  <p>Of course! ❤️</p>
+  <p style="margin-top:15px">Tumhari friendship bhi mere liye special hogi. Har beautiful story ko love story banna zaroori nahi.</p>
+  <p style="margin-top:20px">Thank you for being honest.<br>Let's keep it simple, happy and respectful. 🌸</p>
+  <button class="primary" style="margin-top:25px" onclick="showPage('final')">One Last Thing ♡</button>
+  <div class="foot">A little kindness means a lot ♡</div>
+</section>
 
-  <!-- FINAL PAGE: BOY AND GIRL TOUCHING FOREHEADS -->
-  <section class="page" id="final">
-    <div class="eyebrow">A little message · Just for you</div>
+<section class="page" id="final" style="overflow:hidden">
+  <div class="eyebrow">A little message · Just for you</div>
 
-    <svg class="couple-art" viewBox="0 0 360 285" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A boy and a girl gently touching foreheads, with a glowing heart between them">
-      <defs>
-        <linearGradient id="boyHair" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#44313b"/>
-          <stop offset="100%" stop-color="#100d13"/>
-        </linearGradient>
-        <linearGradient id="girlHair" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#60323e"/>
-          <stop offset="100%" stop-color="#170e15"/>
-        </linearGradient>
-        <linearGradient id="boyCoat" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#30202a"/>
-          <stop offset="100%" stop-color="#09090c"/>
-        </linearGradient>
-        <linearGradient id="girlDress" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#b76e85"/>
-          <stop offset="100%" stop-color="#3b1b2a"/>
-        </linearGradient>
-        <radialGradient id="glow">
-          <stop offset="0%" stop-color="#ffb7ce" stop-opacity=".55"/>
-          <stop offset="100%" stop-color="#ff8fb5" stop-opacity="0"/>
-        </radialGradient>
-        <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
-          <feGaussianBlur stdDeviation="5" result="blur"/>
-          <feMerge>
-            <feMergeNode in="blur"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-      </defs>
+  <!-- Romantic couple: foreheads touching and a glowing heart between them -->
+  <svg class="final-art" viewBox="0 0 360 285" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Romantic boy and girl touching foreheads with a glowing heart between them">
+    <defs>
+      <radialGradient id="glow">
+        <stop offset="0%" stop-color="#ffb2ca" stop-opacity=".7"/>
+        <stop offset="100%" stop-color="#ffb2ca" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="boyHair" x1="0" y1="0" x2="1" y2="1">
+        <stop stop-color="#75475c"/>
+        <stop offset="1" stop-color="#120b12"/>
+      </linearGradient>
+      <linearGradient id="girlHair" x1="0" y1="0" x2="1" y2="1">
+        <stop stop-color="#a85e7b"/>
+        <stop offset="1" stop-color="#170b13"/>
+      </linearGradient>
+      <linearGradient id="dress" x1="0" y1="0" x2="1" y2="1">
+        <stop stop-color="#d58aa5"/>
+        <stop offset="1" stop-color="#56283c"/>
+      </linearGradient>
+      <filter id="heartLight" x="-100%" y="-100%" width="300%" height="300%">
+        <feGaussianBlur stdDeviation="5" result="blur"/>
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
 
-      <!-- Soft romantic glow -->
-      <ellipse cx="180" cy="143" rx="138" ry="122" fill="url(#glow)"/>
+    <ellipse cx="180" cy="135" rx="155" ry="125" fill="url(#glow)"/>
 
-      <!-- Tiny stars -->
-      <g fill="#ffd6e2">
-        <path d="M42 65 L45 73 L53 76 L45 79 L42 87 L39 79 L31 76 L39 73Z" opacity=".8"/>
-        <path d="M306 54 L309 61 L316 64 L309 67 L306 74 L303 67 L296 64 L303 61Z" opacity=".75"/>
-        <circle cx="77" cy="111" r="2"/>
-        <circle cx="286" cy="105" r="2"/>
-        <circle cx="180" cy="35" r="2.5"/>
-      </g>
+    <!-- Tiny romantic sparkles -->
+    <g fill="#ffe4ed">
+      <path d="M48 52l4 9 9 4-9 4-4 9-4-9-9-4 9-4z"/>
+      <path d="M311 65l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/>
+      <path d="M180 20l3 6 6 3-6 3-3 6-3-6-6-3 6-3z"/>
+      <circle cx="74" cy="105" r="2"/>
+      <circle cx="286" cy="107" r="2"/>
+      <circle cx="90" cy="44" r="1.8"/>
+      <circle cx="273" cy="35" r="1.8"/>
+    </g>
 
-      <!-- Boy's shoulders and body -->
-      <path d="M26 276 Q25 219 72 196 Q96 184 127 193 L155 276Z"
-            fill="url(#boyCoat)" stroke="#5e3b4b" stroke-width="1.3"/>
-      <path d="M77 206 Q93 223 112 238 L133 276 L155 276 L126 194Z"
-            fill="#211720"/>
+    <!-- Boy's shoulders -->
+    <path d="M15 275Q22 220 64 198Q88 185 116 196L151 224L164 275Z"
+          fill="#21151f" stroke="#75495d" stroke-width="1.5"/>
+    <path d="M66 207L103 224L129 275H151L117 196Z" fill="#3b2635"/>
 
-      <!-- Boy's neck -->
-      <path d="M105 164 L105 194 Q117 211 134 199 L132 167Z"
-            fill="#b98280"/>
+    <!-- Boy's neck -->
+    <path d="M96 155L98 194Q112 208 130 192L128 155Z" fill="#c98e8b"/>
 
-      <!-- Boy's face in profile, facing right -->
-      <path d="M69 94
-               Q75 65 105 62
-               Q135 64 143 94
-               L141 124
-               Q138 150 120 166
-               Q110 174 100 162
-               Q82 148 77 127
-               L67 117
-               Q61 108 69 104Z"
-            fill="#c9908a"/>
+    <!-- Boy's face -->
+    <path d="M70 91Q75 65 101 61Q128 62 140 85L143 104L135 114
+             Q130 141 112 158Q100 165 88 150Q76 135 72 116L65 108Z"
+          fill="#d49a93"/>
 
-      <!-- Boy's hair -->
-      <path d="M67 113
-               Q54 94 63 74
-               Q72 46 105 46
-               Q133 45 147 68
-               Q153 83 145 101
-               L137 109
-               Q133 93 121 83
-               Q105 95 82 91
-               Q79 105 72 118Z"
-            fill="url(#boyHair)" stroke="#6a4855" stroke-width="1.4"/>
-      <path d="M65 82 Q80 46 108 54 Q91 60 88 76 Q78 70 65 82Z"
-            fill="#533542"/>
-      <path d="M82 120 Q88 123 93 120" fill="none" stroke="#6c3d43" stroke-width="2" stroke-linecap="round"/>
-      <path d="M67 115 Q61 119 69 124" fill="none" stroke="#b98280" stroke-width="3" stroke-linecap="round"/>
+    <!-- Boy's hair -->
+    <path d="M64 111Q53 90 64 69Q76 43 103 44Q131 43 145 66
+             Q155 83 143 105L134 113Q131 89 118 80
+             Q100 94 81 87Q78 103 69 118Z"
+          fill="url(#boyHair)" stroke="#98647b" stroke-width="1.2"/>
+    <path d="M65 79Q82 47 108 52Q92 61 89 76Q76 69 65 79Z" fill="#88566e"/>
 
-      <!-- Girl's body -->
-      <path d="M205 276 Q211 220 240 200 Q260 186 285 198 Q327 218 334 276Z"
-            fill="url(#girlDress)" stroke="#a96b7e" stroke-width="1.3"/>
+    <!-- Boy's closed eye -->
+    <path d="M116 113Q122 118 127 113"
+          fill="none" stroke="#814c58" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M136 107Q143 111 136 118"
+          fill="none" stroke="#c18785" stroke-width="3" stroke-linecap="round"/>
 
-      <!-- Girl's neck -->
-      <path d="M237 164 L236 193 Q247 208 263 194 L262 164Z"
-            fill="#d9a09d"/>
+    <!-- Girl's shoulders and dress -->
+    <path d="M198 275Q205 222 239 201Q263 185 289 200
+             Q328 220 345 275Z"
+          fill="url(#dress)" stroke="#c47a98" stroke-width="1.5"/>
 
-      <!-- Girl's face in profile, facing left -->
-      <path d="M287 95
-               Q280 65 253 63
-               Q225 65 218 93
-               L219 124
-               Q222 151 242 167
-               Q251 174 261 162
-               Q279 148 283 127
-               L294 116
-               Q300 108 292 103Z"
-            fill="#dba39d"/>
+    <!-- Girl's neck -->
+    <path d="M231 155L231 192Q246 207 263 192L260 155Z" fill="#e0a59b"/>
 
-      <!-- Girl's long hair -->
-      <path d="M292 113
-               Q307 94 298 70
-               Q287 44 255 45
-               Q226 45 213 69
-               Q206 84 213 103
-               L220 116
-               Q226 91 239 82
-               Q255 94 278 90
-               Q281 105 288 119Z"
-            fill="url(#girlHair)" stroke="#8c5366" stroke-width="1.4"/>
-      <path d="M296 83 Q285 49 253 53 Q274 62 275 79 Q285 71 296 83Z"
-            fill="#874b60"/>
-      <path d="M267 120 Q261 123 256 120" fill="none" stroke="#9d5864" stroke-width="2" stroke-linecap="round"/>
-      <path d="M293 114 Q300 119 292 124" fill="none" stroke="#dba39d" stroke-width="3" stroke-linecap="round"/>
+    <!-- Girl's face -->
+    <path d="M288 91Q281 65 255 61Q228 62 218 85L216 104L225 114
+             Q230 141 247 158Q258 165 270 150Q283 134 286 116L295 108Z"
+          fill="#e3aaa0"/>
 
-      <!-- Foreheads gently touching -->
-      <path d="M143 102 Q151 108 159 109" fill="none" stroke="#f6c3c8" stroke-width="1.5" opacity=".85"/>
-      <path d="M217 102 Q209 108 201 109" fill="none" stroke="#f6c3c8" stroke-width="1.5" opacity=".85"/>
+    <!-- Girl's hair -->
+    <path d="M296 111Q307 91 297 69Q286 43 257 43Q229 43 215 66
+             Q205 83 216 104L225 114Q229 90 242 80
+             Q260 93 279 87Q282 104 290 118Z"
+          fill="url(#girlHair)" stroke="#b36e8a" stroke-width="1.3"/>
+    <path d="M295 79Q281 47 255 52Q273 60 275 77Q286 69 295 79Z" fill="#b46c88"/>
 
-      <!-- Glowing heart between their foreheads -->
-      <g filter="url(#softGlow)">
-        <path d="M180 106
-                 C169 91 151 99 157 113
-                 C161 123 173 131 180 138
-                 C187 131 199 123 203 113
-                 C209 99 191 91 180 106Z"
-              fill="#ffb3cb" stroke="#fff0f5" stroke-width="1.8"/>
-        <path d="M180 110
-                 C173 101 162 105 166 114
-                 C169 120 176 125 180 129
-                 C185 124 192 119 195 114
-                 C198 105 187 101 180 110Z"
-              fill="#ff6f9d" opacity=".8"/>
-      </g>
+    <!-- Girl's closed eye -->
+    <path d="M243 113Q249 118 254 113"
+          fill="none" stroke="#a45b6a" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M223 107Q216 111 223 118"
+          fill="none" stroke="#d39a94" stroke-width="3" stroke-linecap="round"/>
 
-      <!-- Tiny floating hearts -->
-      <g fill="#ffb8ce">
-        <path d="M43 151 C37 143 26 149 31 156 L43 166 L55 156 C60 149 49 143 43 151Z" opacity=".75"/>
-        <path d="M316 145 C311 138 301 143 305 150 L316 159 L327 150 C331 143 321 138 316 145Z" opacity=".8"/>
-      </g>
+    <!-- Soft forehead highlights -->
+    <path d="M140 99Q150 104 158 105"
+          fill="none" stroke="#ffe4ec" stroke-width="2"/>
+    <path d="M220 99Q210 104 202 105"
+          fill="none" stroke="#ffe4ec" stroke-width="2"/>
 
-      <!-- Grounding glow -->
-      <ellipse cx="180" cy="276" rx="126" ry="5" fill="#d47d98" opacity=".16"/>
-    </svg>
+    <!-- Glowing heart between them -->
+    <g filter="url(#heartLight)">
+      <path d="M180 105C169 89 150 97 157 114
+               C162 125 174 133 180 139
+               C187 132 199 124 203 114
+               C210 97 191 89 180 105Z"
+            fill="#ff8fb5" stroke="#fff0f5" stroke-width="2.5"/>
+      <path d="M180 109C173 100 162 104 166 114
+               C169 121 176 126 180 129
+               C185 125 192 119 195 114
+               C198 104 187 100 180 109Z"
+            fill="#ffd5e3"/>
+    </g>
 
-    <div class="couple-caption">No pressure · Just honest feelings</div>
-    <div class="final-heart">♡</div>
-    <h1 class="final-title">I LOVE YOU ❤️</h1>
-    <p>Whatever your answer, thank you for reading this little message.</p>
-    <p style="margin-top:8px">You deserve happiness. 💗</p>
-    <div class="divider"></div>
-    <button class="primary" onclick="restart()">Read Again ♡</button>
-    <div class="footer-note">A little courage, from the heart ♡</div>
-  </section>
+    <!-- Floating hearts -->
+    <path d="M44 151C38 143 27 149 32 157L44 166L56 157C61 149 50 143 44 151Z"
+          fill="#f4a5bd"/>
+    <path d="M316 145C311 138 301 143 305 151L316 160L327 151C332 143 321 138 316 145Z"
+          fill="#f4a5bd"/>
+
+    <ellipse cx="180" cy="276" rx="125" ry="5" fill="#df809e" opacity=".25"/>
+  </svg>
+
+  <p style="font-size:9px;letter-spacing:1.7px;color:var(--gold);text-transform:uppercase">
+    No pressure · Just honest feelings
+  </p>
+
+  <div class="divider"></div>
+  <div class="pulse">♡</div>
+  <h1 class="final-title">I LOVE YOU <span style="color:#ff8eb2">♥</span></h1>
+  <p>Whatever your answer, thank you for reading<br>this little message.</p>
+  <p style="margin-top:12px;color:var(--pink)">You deserve happiness. 💗</p>
+  <div class="divider"></div>
+  <button class="primary" onclick="restart()">Read Again ♡</button>
+  <div class="foot">A little courage, from the heart ♡</div>
+</section>
 </main>
 
 <script>
-const questionOrder = [
-  "q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8"
-];
-
-let currentQuestion = 0;
+const questions = ["q1","q2","q3","q4","q5","q6","q7","q8"];
+let current = 0;
 
 function showPage(id) {
   document.querySelectorAll(".page").forEach(page => {
     page.classList.remove("active");
   });
-
-  const target = document.getElementById(id);
-  if (target) {
-    target.classList.add("active");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const page = document.getElementById(id);
+  if (page) {
+    page.classList.add("active");
+    window.scrollTo({top: 0, behavior: "smooth"});
   }
 }
 
 function startQuestions() {
-  currentQuestion = 0;
-  showPage(questionOrder[currentQuestion]);
+  current = 0;
+  showPage(questions[current]);
 }
 
-function answer() {
-  currentQuestion++;
-
-  if (currentQuestion < questionOrder.length) {
-    showPage(questionOrder[currentQuestion]);
-  } else {
-    showPage("confession");
+function answer(n) {
+  if (n < 8) {
+    current = n;
+    showPage(questions[current]);
   }
 }
 
 function restart() {
-  currentQuestion = 0;
+  current = 0;
   showPage("welcome");
 }
 
-/* Floating romantic hearts */
-const heartContainer = document.getElementById("hearts");
-const heartSymbols = ["♡", "♥", "💕", "💗"];
+const container = document.getElementById("floating");
+const symbols = ["♡","♥","💕","💗"];
 
-function createHeart() {
-  const heart = document.createElement("span");
-  heart.className = "heart";
-  heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (12 + Math.random() * 17) + "px";
-  heart.style.animationDuration = (7 + Math.random() * 7) + "s";
-  heartContainer.appendChild(heart);
-
-  setTimeout(() => heart.remove(), 15000);
+function addHeart() {
+  const h = document.createElement("span");
+  h.className = "float";
+  h.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.fontSize = (12 + Math.random() * 16) + "px";
+  h.style.animationDuration = (7 + Math.random() * 7) + "s";
+  container.appendChild(h);
+  setTimeout(() => h.remove(), 15000);
 }
 
-setInterval(createHeart, 900);
-
-/* Soft background sparkles */
-for (let i = 0; i < 22; i++) {
-  const sparkle = document.createElement("span");
-  sparkle.className = "sparkle";
-  sparkle.style.left = Math.random() * 100 + "vw";
-  sparkle.style.top = Math.random() * 100 + "vh";
-  sparkle.style.animationDelay = Math.random() * 3 + "s";
-  document.body.appendChild(sparkle);
-}
+setInterval(addHeart, 850);
 </script>
 </body>
 </html>
