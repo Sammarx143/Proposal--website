@@ -681,37 +681,3 @@ setInterval(addHeart,1200);
 </body>
   </html>
   
-  <div class="footer">A LITTLE COURAGE · A LOT OF HEART ♡</div>
-</main>
-
-<script>
-function go(n){
-  document.querySelectorAll('.page').forEach(function(page){
-    page.classList.remove('active');
-  });
-  const target=document.getElementById('p'+n);
-  if(target) target.classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-const holder=document.getElementById('hearts');
-const symbols=['♡','♥','♡','✧'];
-
-function addHeart(){
-  if(holder.childElementCount>18)return;
-  const el=document.createElement('span');
-  el.className='float-heart';
-  el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
-  const size=14+Math.random()*22;
-  el.style.fontSize=size+'px';
-  el.style.left=Math.random()*100+'%';
-  el.style.animationDuration=(8+Math.random()*7)+'s';
-  holder.appendChild(el);
-  el.addEventListener('animationend',function(){el.remove();},{once:true});
-}
-for(let i=0;i<6;i++)setTimeout(addHeart,i*500);
-setInterval(addHeart,1200);
-</script>
-</body>
-  </html>
-        
