@@ -1,586 +1,717 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>A Special Journey For You ❤️</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-color: #0b090a;
-      --card-bg: rgba(22, 18, 20, 0.72);
-      --card-border: rgba(247, 202, 211, 0.22);
-      --soft-pink: #f7cad0;
-      --blush-pink: #f4acb7;
-      --glow-pink: rgba(247, 202, 211, 0.35);
-      --text-main: #fdf0f2;
-      --text-muted: #d8c2c6;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08080b">
+<title>A Little Secret ♡</title>
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    body {
-      background: radial-gradient(circle at 50% 20%, #1c1417 0%, var(--bg-color) 85%);
-      color: var(--text-main);
-      font-family: 'Montserrat', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow-x: hidden;
-      padding: 18px;
-      position: relative;
-    }
-
-    /* Floating ambient background hearts */
-    .bg-hearts {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-
-    .heart-particle {
-      position: absolute;
-      color: var(--soft-pink);
-      opacity: 0.15;
-      animation: floatUp 12s infinite linear;
-      font-size: 18px;
-      text-shadow: 0 0 10px var(--glow-pink);
-    }
-
-    @keyframes floatUp {
-      0% {
-        transform: translateY(105vh) scale(0.6) rotate(0deg);
-        opacity: 0;
-      }
-      20% { opacity: 0.25; }
-      80% { opacity: 0.2; }
-      100% {
-        transform: translateY(-10vh) scale(1.1) rotate(25deg);
-        opacity: 0;
-      }
-    }
-
-    /* Main Container */
-    .app-container {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 440px;
-      margin: auto;
-    }
-
-    /* Glassmorphism Card */
-    .glass-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid var(--card-border);
-      border-radius: 28px;
-      padding: 34px 24px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 24px var(--glow-pink);
-      text-align: center;
-      transition: all 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
-      position: relative;
-    }
-
-    .screen {
-      display: none;
-      opacity: 0;
-      transform: translateY(12px) scale(0.98);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-
-    .screen.active {
-      display: block;
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-
-    /* Typography */
-    h1, h2 {
-      font-family: 'Cormorant Garamond', serif;
-      letter-spacing: 0.5px;
-      color: var(--soft-pink);
-    }
-
-    h1 {
-      font-size: 2.2rem;
-      font-weight: 600;
-      line-height: 1.25;
-      margin-bottom: 14px;
-    }
-
-    h2 {
-      font-size: 1.7rem;
-      font-weight: 600;
-      line-height: 1.35;
-      margin-bottom: 22px;
-    }
-
-    p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.6;
-      font-weight: 300;
-      margin-bottom: 24px;
-    }
-
-    .step-indicator {
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--blush-pink);
-      opacity: 0.8;
-      margin-bottom: 12px;
-      display: block;
-    }
-
-    /* Option Buttons */
-    .options-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 26px;
-    }
-
-    .option-btn {
-      width: 100%;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(247, 202, 211, 0.18);
-      color: var(--text-main);
-      padding: 15px 18px;
-      border-radius: 16px;
-      font-size: 0.92rem;
-      font-family: 'Montserrat', sans-serif;
-      text-align: left;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: all 0.25s ease;
-    }
-
-    .option-btn:hover, .option-btn:active {
-      border-color: var(--soft-pink);
-      background: rgba(247, 202, 211, 0.08);
-      box-shadow: 0 0 15px rgba(247, 202, 211, 0.2);
-    }
-
-    .option-btn.selected {
-      background: rgba(244, 172, 183, 0.16);
-      border-color: var(--soft-pink);
-      color: #fff;
-      font-weight: 500;
-      box-shadow: 0 0 18px rgba(247, 202, 211, 0.25);
-    }
-
-    /* Nav Buttons */
-    .nav-buttons {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .btn-primary, .btn-secondary {
-      border-radius: 50px;
-      padding: 13px 26px;
-      font-size: 0.88rem;
-      letter-spacing: 0.8px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #f7cad0, #e295a3);
-      color: #120e10;
-      border: none;
-      box-shadow: 0 4px 18px rgba(247, 202, 211, 0.35);
-      flex: 1;
-    }
-
-    .btn-primary:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-      box-shadow: none;
-    }
-
-    .btn-secondary {
-      background: transparent;
-      border: 1px solid rgba(247, 202, 211, 0.25);
-      color: var(--text-muted);
-      flex: 0.6;
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--soft-pink);
-      color: var(--text-main);
-    }
-
-    /* Final Screen Silhouette & Typography */
-    .silhouette-wrapper {
-      width: 140px;
-      height: 140px;
-      margin: 10px auto 20px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      filter: drop-shadow(0 0 14px var(--glow-pink));
-      animation: gentlePulse 3.5s infinite ease-in-out;
-    }
-
-    @keyframes gentlePulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    .silhouette-svg {
-      width: 100%;
-      height: 100%;
-      fill: var(--soft-pink);
-    }
-
-    .love-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      color: #fff;
-      text-shadow: 0 0 12px var(--soft-pink), 0 0 24px rgba(244, 172, 183, 0.5);
-      margin-bottom: 16px;
-    }
-
-    .confession-box {
-      font-size: 0.96rem;
-      line-height: 1.7;
-      color: #f7e6e9;
-      background: rgba(255, 255, 255, 0.02);
-      border-left: 2px solid var(--soft-pink);
-      padding: 14px 16px;
-      border-radius: 0 14px 14px 0;
-      text-align: left;
-      margin-bottom: 24px;
-      white-space: pre-line;
-    }
-  </style>
+<style>
+:root {
+  --black:#08080b;
+  --panel:#121116;
+  --pink:#f5bfd5;
+  --baby:#ffdfeb;
+  --muted:#c9b9c3;
+  --line:#f5bfd544;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;padding:22px 14px;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff3f8;
+  font-family:"Segoe UI",Arial,sans-serif;text-align:center;
+  background:
+    radial-gradient(ellipse at 50% 0%,#34232c 0%,transparent 48%),
+    radial-gradient(ellipse at 100% 100%,#211923 0%,transparent 45%),
+    var(--black);
+  overflow-x:hidden;
+}
+#hearts{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.float-heart{
+  position:absolute;bottom:-60px;color:#f5bfd5;
+  opacity:0;text-shadow:0 0 12px #f5bfd544;
+  animation:rise linear forwards;
+}
+@keyframes rise{
+  10%{opacity:.45}
+  100%{transform:translateY(-115vh) rotate(30deg);opacity:0}
+}
+.wrap{width:100%;max-width:460px;position:relative;z-index:1}
+.brand{
+  margin:0 0 20px;color:var(--pink);
+  font-size:10px;letter-spacing:4px
+}
+.card{
+  position:relative;padding:clamp(24px,6vw,35px) 21px;
+  border:1px solid #f5bfd52b;border-radius:24px;
+  background:linear-gradient(145deg,#17141aee,#0d0c10f7);
+  box-shadow:0 15px 60px #0008,0 0 30px #f5bfd50a;
+  backdrop-filter:blur(14px);overflow:hidden;
+}
+.card:before{
+  content:"";position:absolute;top:0;left:15%;right:15%;height:1px;
+  background:linear-gradient(90deg,transparent,#f5bfd5,transparent)
+}
+.page{display:none}
+.page.active{display:block;animation:appear .4s ease both}
+@keyframes appear{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.orb{
+  width:78px;height:78px;margin:0 auto 22px;
+  display:grid;place-items:center;border-radius:50%;
+  font-size:32px;color:#fff;
+  background:radial-gradient(circle at 30% 25%,#fff7fa,#f5bfd5 35%,#8d6578 100%);
+  box-shadow:inset -5px -6px 12px #3b263288,
+             inset 4px 4px 10px #ffffff99,0 0 25px #f5bfd51c;
+}
+.tag{font-size:10px;letter-spacing:3px;color:var(--pink);margin-bottom:17px;text-transform:uppercase}
+h1{
+  margin:0 0 15px;color:var(--baby);
+  font:normal clamp(32px,8vw,43px)/1.2 Georgia,serif
+}
+h2{
+  margin:0 0 14px;color:#ffe9f1;
+  font:normal clamp(22px,6vw,28px)/1.4 Georgia,serif
+}
+p{font-size:14px;line-height:1.85;color:#e8d7df}
+.muted{font-size:12px;color:var(--muted)}
+.line{height:1px;margin:21px 0;background:linear-gradient(90deg,transparent,#f5bfd555,transparent)}
+.progress{display:flex;justify-content:center;gap:5px;margin-bottom:23px}
+.progress span{width:20px;height:3px;border-radius:5px;background:#3a3038}
+.progress span.on{background:var(--pink)}
+.choices{display:grid;gap:10px;margin-top:20px}
+.choice,.btn{
+  width:100%;min-height:47px;padding:12px 14px;
+  border-radius:12px;font-size:13px;line-height:1.5;
+  cursor:pointer;transition:transform .2s,background .2s,border .2s;
+}
+.choice{
+  color:#f9e5ed;border:1px solid #f5bfd52c;
+  background:linear-gradient(120deg,#211b22,#151218)
+}
+.choice:hover{border-color:#f5bfd5;transform:translateY(-2px);background:#28202a}
+.btn{margin-top:12px;font-weight:650;letter-spacing:1px}
+.primary{
+  color:#21151c;background:linear-gradient(100deg,#ffe4ed,#f2bfd3);
+  border:1px solid #fff0f5;box-shadow:0 5px 20px #f5bfd515
+}
+.primary:hover{transform:translateY(-2px);background:#fff0f5}
+.secondary{color:var(--pink);background:#141116;border:1px solid #f5bfd52e}
+.final{
+  margin-top:22px;padding:16px 0 6px;
+  color:#ffdfeb;font:normal clamp(30px,8vw,42px) Georgia,serif;
+  letter-spacing:2px;text-shadow:0 0 20px #f5bfd544;
+}
+.scene{
+  position:relative;overflow:hidden;margin:22px -8px 10px;
+  min-height:255px;border-radius:18px;
+  background:
+    radial-gradient(ellipse at 50% 53%,#f3c6d62c 0%,transparent 43%),
+    linear-gradient(180deg,#17141b,#09090c);
+  border:1px solid #f5bfd522;
+}
+.scene svg{width:100%;height:255px;display:block}
+.scene-caption{
+  position:absolute;bottom:10px;left:0;right:0;
+  color:#f8d9e4;font-size:10px;letter-spacing:3px
+}
+.scene-heart{
+  fill:none;stroke:#f5bfd5;stroke-width:2.5;stroke-linecap:round;
+  filter:drop-shadow(0 0 7px #f5bfd5);
+}
+.footer{margin-top:20px;color:#ad9ba6;font-size:9px;letter-spacing:3px}
+@media(max-width:360px){.card{padding:23px 15px}}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
 </head>
 <body>
+<div id="hearts" aria-hidden="true"></div>
+<main class="wrap">
+  <div class="brand">♡ MADE WITH LOVE ♡</div>
+  <section class="card">
 
-  <!-- Floating Ambient Hearts -->
-  <div class="bg-hearts" id="bgHearts"></div>
-
-  <div class="app-container">
-    <div class="glass-card">
-      
-      <!-- SCREEN 0: WELCOME -->
-      <div class="screen active" id="screen-welcome">
-        <span class="step-indicator">A Gentle Journey</span>
-        <h1>Hey Special Someone</h1>
-        <p>Mere paas aapse kehne ke liye kuch bohot dil se baatein hain... Par pehle, hamari is pyari si journey ke kuch sawaal.</p>
-        <button class="btn-primary" onclick="startQuiz()">Begin With Me ✨</button>
-      </div>
-
-      <!-- QUESTION SCREENS (ORDER: 1, 2, 3, 8, 4, 5, 6, 7) -->
-
-      <!-- Question 1 -->
-      <div class="screen" id="screen-q1">
-        <span class="step-indicator">Question 1 / 8</span>
-        <h2>Jab hum pehli baar mile ya baat ki thi, aapko kaisa laga tha?</h2>
-        <div class="options-grid">
-          <button class="option-btn" onclick="selectOption(1, 'Lag raha tha bas ek normal conversation hai')"><span>Lag raha tha bas ek normal conversation hai</span></button>
-          <button class="option-btn" onclick="selectOption(1, 'Kuch alag tha, jaise purana connection ho')"><span>Kuch alag tha, jaise purana connection ho</span></button>
-          <button class="option-btn" onclick="selectOption(1, 'Thodi shyness aur thodi curiosity')"><span>Thodi shyness aur thodi curiosity</span></button>
-          <button class="option-btn" onclick="selectOption(1, 'Dil me ek alag hi smile aa gayi thi')"><span>Dil me ek alag hi smile aa gayi thi</span></button>
-        </div>
-        <div class="nav-buttons">
-          <button class="btn-secondary" onclick="prevQuestion()">Back</button>
-          <button class="btn-primary" id="next-1" disabled onclick="nextQuestion()">Next</button>
-        </div>
-      </div>
-
-      <!-- Question 2 -->
-      <div class="screen" id="screen-q2">
-        <span class="step-indicator">Question 2 / 8</span>
-        <h2>Meri konsi aadat aapke chehre par smile laati hai?</h2>
-        <div class="options-grid">
-          <button class="option-btn" onclick="selectOption(2, 'Chhoti chhoti baaton par care show karna')"><span>Chhoti chhoti baaton par care show karna</span></button>
-          <button class="option-btn" onclick="selectOption(2, 'Bina wajah aapko tease karna')"><span>Bina wajah aapko tease karna</span></button>
-          <button class="option-btn" onclick="selectOption(2, 'Aapki har baat dhyan se sunna')"><span>Aapki har baat dhyan se sunna</span></button>
-          <button class="option-btn" onclick="selectOption(2, 'Sab kuch, aap jaise ho waise hi pyare ho')"><span>Sab kuch, aap jaise ho waise hi pyare ho</span></button>
-        </div>
-        <div class="nav-buttons">
-          <button class="btn-secondary" onclick="prevQuestion()">Back</button>
-          <button class="btn-primary" id="next-2" disabled onclick="nextQuestion()">Next</button>
-        </div>
-      </div>
-
-      <!-- Question 3 -->
-      <div class="screen" id="screen-q3">
-        <span class="step-indicator">Question 3 / 8</span>
-        <h2>Aapke liye ek perfect date ka idea kya hai?</h2>
-        <div class="options-grid">
-          <button class="option-btn" onclick="selectOption(3, 'Late night quiet walk & deep conversations')"><span>Late night quiet walk & deep conversations</span></button>
-          <button class="option-btn" onclick="selectOption(3, 'Coffee shop aur barish ki halki bundein')"><span>Coffee shop aur barish ki halki bundein</span></button>
-          <button class="option-btn" onclick="selectOption(3, 'Long drive with favourite soft songs')"><span>Long drive with favourite soft songs</span></button>
-          <button class="option-btn" onclick="selectOption(3, 'Bas dono saath hon, jagah koi bhi ho')"><span>Bas dono saath hon, jagah koi bhi ho</span></button>
-        </div>
-        <div class="nav-buttons">
-          <button class="btn-secondary" onclick="prevQuestion()">Back</button>
-          <button class="btn-primary" id="next-3" disabled onclick="nextQuestion()">Next</button>
-        </div>
-      </div>
-
-      <!-- Question 8 (Position 4 in custom order) -->
-      <div class="screen" id="screen-q8">
-        <span class="step-indicator">Question 4 / 8</span>
-        <h2>Jab hum lambi baatein karte hain, tab kaisa feel hota hai?</h2>
-        <div class="options-grid">
-          <button class="option-btn" onclick="selectOption(8, 'Waqt ka bilkul pata hi nahi chalta')"><span>Waqt ka bilkul pata hi nahi chalta</span></button>
-          <button class="option-btn" onclick="selectOption(8, 'Lagta hai bas sunte rahein ek dusre ko')"><span>Lagta hai bas sunte rahein ek dusre ko</span></button>
-          <button class="option-btn" onclick="selectOption(8, 'Dil bohot halka aur happy feel karta hai')"><span>Dil bohot halka aur happy feel karta hai</span></button>
-          <button class="option-btn" onclick="selectOption(8, 'Poore din ki thakaan door ho jaati hai')"><span>Poore din ki thakaan door ho jaati hai</span></button>
-        </div>
-        <div class="nav-buttons">
-          <button class="btn-secondary" onclick="prevQuestion()">Back</button>
-          <button class="btn-primary" id="next-8" disabled onclick="nextQuestion()">Next</button>
-        </div>
-      </div>
-
-      <!-- Question 4 (Position 5 in custom order) -->
-      <div class="screen" id="screen-q4">
-        <span class="step-indicator">Question 5 / 8</span>
-        <h2>Kabhi aisa laga hai ki hum dono ek dusre ke bina incomplete hain?</h2>
-        <div class="options-grid">
-          <button class="option-btn" onclick="selectOption(4, 'Haan, kaafi baar aisa mehsoos hua')"><span>Haan, kaafi baar aisa mehsoos hua</span></button>
-          <button class="option-btn" onclick="selectOption(4, 'Jab bhi aap aas-paas nahi hote tab')"><span>Jab bhi aap aas-paas nahi hote tab</span></button>
-          <button class="option-btn" onclick="selectOption(4, 'Dheere dheere ye ehsaas gehra ho raha hai')"><span>Dheere dheere ye ehsaas gehra ho raha hai</span></button>
-          <button class="option-btn" onclick="selectOption(4, 'Aap meri life ka sabse zaroori hissa ban chuke ho')"><span>Aap meri life ka sabse zaroori hissa ban chuke ho</span></button>
-        </div>
-        <div class="nav-buttons">
-          <button class="btn-secondary" onclick="prevQuestion()">Back</button>
-          <button class="btn-primary" id="next-4" disabled onclick="nextQuestion()">Next</button>
-        </div>
-      </div>
-
-      <!-- Question 5 -->
-      <div class="screen" id="screen-q5">
-        <span class="step-indicator">Question 6 / 8</span>
-        <h2>Agar main kabhi udaas hou, toh aap mujhe kaise cheer up karoge?</h2>
-        <div class="options-grid">
-          <button class="option-btn" onclick="selectOption(5, 'Ek tight warm hug aur pyari si baat')"><span>Ek tight warm hug aur pyari si baat</span></button>
-          <button class="option-btn" onclick="selectOption(5, 'Aapka favourite food khila kar')"><span>Aapka favourite food khila kar</span></button>
-          <button class="option-btn" onclick="selectOption(5, 'Silly jokes aur nautanki karke')"><span>Silly jokes aur nautanki karke</span></button>
-          <button class="option-btn" onclick="selectOption(5, 'Bas chupchaap aapka haath thaam kar')"><span>Bas chupchaap aapka haath thaam kar</span></button>
-        </div>
-        <div class="nav-buttons">
-          <button class="btn-secondary" onclick="prevQuestion()">Back</button>
-          <button class="btn-primary" id="next-5" disabled onclick="nextQuestion()">Next</button>
-        </div>
-      </div>
-
-      <!-- Question 6 -->
-      <div class="screen" id="screen-q6">
-        <span class="step-indicator">Question 7 / 8</span>
-        <h2>Aane wale kal me hamara rishta aap kaisa imagine karte ho?</h2>
-        <div class="options-grid">
-          <button class="option-btn" onclick="selectOption(6, 'Har mushkil me ek dusre ki dhaal ban kar')"><span>Har mushkil me ek dusre ki dhaal ban kar</span></button>
-          <button class="option-btn" onclick="selectOption(6, 'Duniya bhar me nayi yaadein banate hue')"><span>Duniya bhar me nayi yaadein banate hue</span></button>
-          <button class="option-btn" onclick="selectOption(6, 'Bohot saare hasi-mazaak aur dher saare pyaar ke saath')"><span>Bohot saare hasi-mazaak aur dher saare pyaar ke saath</span></button>
-          <button class="option-btn" onclick="selectOption(6, 'Always hand in hand, hamesha ke liye')"><span>Always hand in hand, hamesha ke liye</span></button>
-        </div>
-        <div class="nav-buttons">
-          <button class="btn-secondary" onclick="prevQuestion()">Back</button>
-          <button class="btn-primary" id="next-6" disabled onclick="nextQuestion()">Next</button>
-        </div>
-      </div>
-
-      <!-- Question 7: THE PROPOSAL QUESTION -->
-      <div class="screen" id="screen-q7">
-        <span class="step-indicator">Question 8 / 8 • Special Question</span>
-        <h2>Will you be mine forever and let me cherish you always?</h2>
-        <div class="options-grid">
-          <button class="option-btn" onclick="selectProposalOption('yes')"><span>Yes, a million times YES! ❤️</span></button>
-          <button class="option-btn" onclick="selectProposalOption('time')"><span>I need a little time, but my heart is warm</span></button>
-          <button class="option-btn" onclick="selectProposalOption('friends')"><span>I cherish you dearly, but as my closest best friend</span></button>
-          <button class="option-btn" onclick="selectProposalOption('surprise')"><span>Surprise me! Let our destiny lead us ✨</span></button>
-        </div>
-        <div class="nav-buttons">
-          <button class="btn-secondary" onclick="prevQuestion()">Back</button>
-          <button class="btn-primary" id="next-7" disabled onclick="goToFinalPage()">See My Heart 🌸</button>
-        </div>
-      </div>
-
-      <!-- SCREEN FINAL: ENDING PAGE -->
-      <div class="screen" id="screen-final">
-        
-        <!-- Boy making heart with hands Silhouette -->
-        <div class="silhouette-wrapper">
-          <svg class="silhouette-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <!-- Head & Neck -->
-            <circle cx="100" cy="88" r="21" opacity="0.95"/>
-            <path d="M93 107 h14 v16 h-14 z" opacity="0.9"/>
-            <!-- Shoulders & Upper Body Silhouette -->
-            <path d="M60 152 C62 126 78 120 92 119 L100 120 L108 119 C122 120 138 126 140 152 C140 162 135 174 135 180 L65 180 C65 174 60 162 60 152 Z" opacity="0.95"/>
-            <!-- Left Arm raised -->
-            <path d="M68 135 C62 112 66 75 88 56 C93 52 97 54 96 59 C94 70 82 92 84 130 Z" opacity="0.98"/>
-            <!-- Right Arm raised -->
-            <path d="M132 135 C138 112 134 75 112 56 C107 52 103 54 104 59 C106 70 118 92 116 130 Z" opacity="0.98"/>
-            <!-- Hands forming a heart silhouette at the top center -->
-            <path d="M100 62 C96 54 84 50 83 62 C82 72 97 81 100 84 C103 81 118 72 117 62 C116 50 104 54 100 62 Z" fill="#f7cad0"/>
-          </svg>
-        </div>
-
-        <div class="love-text">I LOVE YOU ❤️</div>
-        
-        <div class="confession-box" id="finalMessageText">
-          <!-- Text dynamically loaded based on choice -->
-        </div>
-
-        <button class="btn-primary" onclick="restartQuiz()">Read Again ✨</button>
-      </div>
-
+    <div class="page active" id="p1">
+      <div class="orb">♡</div>
+      <div class="tag">A little surprise for you</div>
+      <h1>Hey, You! ♡</h1>
+      <div class="line"></div>
+      <p>Someone has a little secret to tell you...</p>
+      <p class="muted">Are you ready for a little surprise? 💌</p>
+      <button class="btn primary" onclick="go(2)">OPEN YOUR SURPRISE ♡</button>
     </div>
-  </div>
 
-  <script>
-    // Exact requested question sequence: 1, 2, 3, 8, 4, 5, 6, 7
-    const questionSequence = ['q1', 'q2', 'q3', 'q8', 'q4', 'q5', 'q6', 'q7'];
-    let currentStepIndex = -1; // -1 means welcome screen
-    let proposalChoice = 'yes';
-    let userAnswers = {};
+    <div class="page" id="p2">
+      <div class="progress"><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="tag">Question 01 of 08</div><div class="orb">👀</div>
+      <h2>Do you know someone has a little secret for you? 👀</h2>
+      <div class="choices">
+        <button class="choice" onclick="go(3)">Yes, I have a guess 💗</button>
+        <button class="choice" onclick="go(3)">No, tell me! 🤭</button>
+        <button class="choice" onclick="go(3)">Maybe I know who it is ✨</button>
+        <button class="choice" onclick="go(3)">I'm curious now 💌</button>
+      </div>
+      <button class="btn secondary" onclick="go(1)">← GO BACK</button>
+    </div>
 
-    // Generate floating hearts background
-    function createBackgroundHearts() {
-      const container = document.getElementById('bgHearts');
-      const symbols = ['♥', '♡', '❤'];
-      for (let i = 0; i < 22; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'heart-particle';
-        heart.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDelay = (Math.random() * 10) + 's';
-        heart.style.animationDuration = (8 + Math.random() * 7) + 's';
-        heart.style.fontSize = (14 + Math.random() * 16) + 'px';
-        container.appendChild(heart);
-      }
-    }
-    createBackgroundHearts();
+    <div class="page" id="p3">
+      <div class="progress"><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="tag">Question 02 of 08</div><div class="orb">🌸</div>
+      <h2>Do you like talking to me? 🌸</h2>
+      <div class="choices">
+        <button class="choice" onclick="go(4)">Yess, of course ❤️</button>
+        <button class="choice" onclick="go(4)">Sometimes 🤭</button>
+        <button class="choice" onclick="go(4)">You're fun to talk to 😊</button>
+        <button class="choice" onclick="go(4)">Maybe a little 🙈</button>
+      </div>
+      <button class="btn secondary" onclick="go(2)">← PREVIOUS</button>
+    </div>
 
-    function showScreen(screenId) {
-      document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
-      const activeScreen = document.getElementById(screenId);
-      if (activeScreen) {
-        activeScreen.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    }
+    <div class="page" id="p4">
+      <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="tag">Question 03 of 08</div><div class="orb">💌</div>
+      <h2>Can I tell you something from my heart? 💌</h2>
+      <div class="choices">
+        <button class="choice" onclick="go(5)">Yes, tell me ❤️</button>
+        <button class="choice" onclick="go(5)">I'm listening 🥹</button>
+        <button class="choice" onclick="go(5)">Now I'm curious 👀</button>
+        <button class="choice" onclick="go(5)">Okay, go ahead 🌷</button>
+      </div>
+      <button class="btn secondary" onclick="go(3)">← PREVIOUS</button>
+    </div>
 
-    function startQuiz() {
-      currentStepIndex = 0;
-      showScreen('screen-' + questionSequence[currentStepIndex]);
-    }
+    <div class="page" id="p5">
+      <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span></div>
+      <div class="tag">Question 04 of 08</div><div class="orb">💕</div>
+      <h2>Have you ever had a crush on someone? 💕</h2>
+      <div class="choices">
+        <button class="choice" onclick="go(6)">Yes 🙈</button>
+        <button class="choice" onclick="go(6)">Maybe 🤭</button>
+        <button class="choice" onclick="go(6)">Not yet 🌸</button>
+        <button class="choice" onclick="go(6)">That's a secret 🤫</button>
+      </div>
+      <button class="btn secondary" onclick="go(4)">← PREVIOUS</button>
+    </div>
 
-    function selectOption(qNum, value) {
-      userAnswers[qNum] = value;
-      const currentScreenId = 'screen-q' + qNum;
-      const screenElem = document.getElementById(currentScreenId);
-      
-      const buttons = screenElem.querySelectorAll('.option-btn');
-      buttons.forEach(btn => btn.classList.remove('selected'));
-      event.currentTarget.classList.add('selected');
+    <div class="page" id="p6">
+      <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span></div>
+      <div class="tag">Question 05 of 08</div><div class="orb">♡</div>
+      <h2>What would you do if someone secretly liked you? 👀</h2>
+      <div class="choices">
+        <button class="choice" onclick="go(7)">I'd be happy 💗</button>
+        <button class="choice" onclick="go(7)">I'd ask who it is 🤭</button>
+        <button class="choice" onclick="go(7)">I'd feel shy 🙈</button>
+        <button class="choice" onclick="go(7)">It depends on who it is ❤️</button>
+      </div>
+      <button class="btn secondary" onclick="go(5)">← PREVIOUS</button>
+    </div>
 
-      const nextBtn = document.getElementById('next-' + qNum);
-      if (nextBtn) {
-        nextBtn.removeAttribute('disabled');
-      }
-    }
+    <div class="page" id="p7">
+      <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div>
+      <div class="tag">Question 06 of 08</div><div class="orb">🌷</div>
+      <h2>Would you give someone a chance to express their feelings? 💌</h2>
+      <div class="choices">
+        <button class="choice" onclick="go(8)">Of course ❤️</button>
+        <button class="choice" onclick="go(8)">Maybe, let's see 🌷</button>
+        <button class="choice" onclick="go(8)">I'd need some time 🥹</button>
+        <button class="choice" onclick="go(8)">I prefer friendship 🫶</button>
+      </div>
+      <button class="btn secondary" onclick="go(6)">← PREVIOUS</button>
+    </div>
 
-    function selectProposalOption(choice) {
-      proposalChoice = choice;
-      const screenElem = document.getElementById('screen-q7');
-      const buttons = screenElem.querySelectorAll('.option-btn');
-      buttons.forEach(btn => btn.classList.remove('selected'));
-      event.currentTarget.classList.add('selected');
+    <div class="page" id="p8">
+      <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
+      <div class="tag">Question 07 of 08</div><div class="orb">🎁</div>
+      <h2>Are you ready for one little surprise? 🎁</h2>
+      <div class="choices">
+        <button class="choice" onclick="go(9)">YESSS! 💗</button>
+        <button class="choice" onclick="go(9)">Show me already 🤭</button>
+        <button class="choice" onclick="go(9)">I'm ready ✨</button>
+        <button class="choice" onclick="go(9)">Okay, surprise me! ❤️</button>
+      </div>
+      <button class="btn secondary" onclick="go(7)">← PREVIOUS</button>
+    </div>
 
-      const nextBtn = document.getElementById('next-7');
-      if (nextBtn) {
-        nextBtn.removeAttribute('disabled');
-      }
-    }
+    <div class="page" id="p9">
+      <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
+      <div class="tag">Question 08 of 08 · The big question</div><div class="orb">❤️</div>
+      <h2>Will you accept my proposal? 🥹❤️</h2>
+      <p>Whatever your answer, you can be honest. 💗</p>
+      <div class="choices">
+        <button class="choice" onclick="go(10)">YES! ❤️😍</button>
+        <button class="choice" onclick="go(10)">I need some time 🌷</button>
+        <button class="choice" onclick="go(11)">Can we be friends? 🫶</button>
+        <button class="choice" onclick="go(10)">I'm surprised! 🙈</button>
+      </div>
+      <button class="btn secondary" onclick="go(8)">← PREVIOUS</button>
+    </div>
 
-    function nextQuestion() {
-      if (currentStepIndex < questionSequence.length - 1) {
-        currentStepIndex++;
-        showScreen('screen-' + questionSequence[currentStepIndex]);
-      }
-    }
+    <div class="page" id="p10">
+      <div class="orb">💌</div>
+      <div class="tag">A message from my heart</div>
+      <h1>My Confession ♡</h1><div class="line"></div>
+      <p>Sach kahun toh, main tumhe bahut special maanta hoon. 🥹❤️</p>
+      <p>Tum meri crush ho aur main tumse apne dil ki baat kehna chahta tha. 💗</p>
+      <p>Tumhari smile aur tumhara saath mere liye special hai. ✨</p>
+      <div class="line"></div>
+      <p>Agar tumhari feelings mere jaisi nahi hain, toh koi baat nahi. 🫶</p>
+      <p>Agar tum comfortable ho, toh kya hum friends ban sakte hain?</p>
+      <p>Main tumhare decision ki respect karunga. 🌸</p>
+      <button class="btn primary" onclick="go(12)">ONE LAST THING ♡</button>
+      <button class="btn secondary" onclick="go(1)">START AGAIN</button>
+    </div>
 
-    function prevQuestion() {
-      if (currentStepIndex > 0) {
-        currentStepIndex--;
-        showScreen('screen-' + questionSequence[currentStepIndex]);
-      } else {
-        currentStepIndex = -1;
-        showScreen('screen-welcome');
-      }
-    }
+    <div class="page" id="p11">
+      <div class="orb">🫶</div>
+      <div class="tag">A sincere message</div>
+      <h1>That's Okay ♡</h1>
+      <p>Tumhari feelings important hain. Main tumhare decision ki respect karta hoon.</p>
+      <p>Agar tum comfortable ho, toh hum friends reh sakte hain. No pressure, no expectations. 🌷</p>
+      <button class="btn primary" onclick="go(12)">CONTINUE 💌</button>
+      <button class="btn secondary" onclick="go(9)">GO BACK</button>
+    </div>
 
-    function goToFinalPage() {
-      const confessionBox = document.getElementById('finalMessageText');
+    <div class="page" id="p12">
+      <div class="tag">From the bottom of my heart</div>
+      <h1>For You ♡</h1>
+      <p>Jo bhi tumhara answer ho, thank you for reading my little message. 🥹</p>
+      <p>Tum khush raho — bas yahi chahta hoon. 🌸</p>
 
-      if (proposalChoice === 'friends') {
-        // Dedicated Friendship Ending
-        confessionBox.innerHTML = `Meri zindagi me aapki jagah sabse anmol hai. 
-Chahe rishta jo bhi naam le, aapki hasi, aapka sukoon aur aapki dosti mere liye hamesha sabse upar rahegi. 
+      <div class="scene">
+        <svg viewBox="0 0 340 255" role="img" aria-label="A boy making a heart shape with his hands">
+          <defs>
+            <radialGradient id="glow">
+              <stop offset="0" stop-color="#f5bfd5" stop-opacity=".65"/>
+              <stop offset="1" stop-color="#f5bfd5" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="shirt" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#29252c"/>
+              <stop offset="1" stop-color="#08080b"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="170" cy="125" rx="115" ry="105" fill="url(#glow)"/>
+          <circle cx="170" cy="77" r="26" fill="#111014" stroke="#d9a6bb" stroke-opacity=".5" stroke-width="1.5"/>
+          <path d="M144 73 Q143 42 170 43 Q197 43 196 73 Q182 58 170 58 Q158 58 144 73Z" fill="#07070a"/>
+          <path d="M145 99 Q112 104 100 135 L84 207 Q170 231 256 207 L240 135 Q228 104 195 99 L183 113 L157 113Z" fill="url(#shirt)" stroke="#d9a6bb" stroke-opacity=".22"/>
+          <!-- Arms lifted toward the centre -->
+          <path d="M112 127 L132 101 L151 113 L143 143 L162 130 L170 145 L148 164 L123 158Z" fill="#171318" stroke="#e2b5c6" stroke-opacity=".55" stroke-width="1.5"/>
+          <path d="M228 127 L208 101 L189 113 L197 143 L178 130 L170 145 L192 164 L217 158Z" fill="#171318" stroke="#e2b5c6" stroke-opacity=".55" stroke-width="1.5"/>
+          <!-- Hands forming a heart -->
+          <path d="M151 113 Q139 94 153 91 Q163 90 170 104 Q177 90 187 91 Q201 94 189 113 L170 132Z"
+                fill="#e7b9c9" fill-opacity=".95" stroke="#fff0f5" stroke-width="1.5"/>
+          <path d="M170 104 Q177 90 187 91 Q201 94 189 113 L170 132Z" fill="#f5bfd5"/>
+          <path class="scene-heart" d="M170 146 C158 132 139 143 170 168 C201 143 182 132 170 146Z" opacity=".8"/>
+          <g fill="#f5bfd5">
+            <circle cx="72" cy="76" r="2"/><circle cx="263" cy="92" r="2.5"/>
+            <circle cx="91" cy="185" r="1.8"/><circle cx="248" cy="174" r="2"/>
+            <path d="M91 110 l3 5 5 3 -5 3 -3 5 -3 -5 -5 -3 5 -3Z"/>
+            <path d="M250 48 l3 5 5 3 -5 3 -3 5 -3 -5 -5 -3 5 -3Z"/>
+          </g>
+          <text x="170" y="231" fill="#f5bfd5" font-size="10" letter-spacing="3" text-anchor="middle">JUST FOR YOU ♡</text>
+        </svg>
+        <div class="scene-caption">A LITTLE HEART, JUST FOR YOU</div>
+      </div>
 
-Thank you for simply being you. Main hamesha aapka sabse sachha dost ban kar aapke saath rahunga. 🌸`;
-      } else {
-        // Romantic Hinglish Love Confession
-        let prefix = "";
-        if (proposalChoice === 'time') {
-          prefix = "Aap chahe jitna waqt lo, mera pyaar har pal aapke saath utna hi sabar aur sachha rahega.\n\n";
-        } else if (proposalChoice === 'surprise') {
-          prefix = "Kismat ne hume milaya hai, aur main har din ko aapke saath ek khoobsurat surprise banaunga.\n\n";
-        }
+      <div class="final">I LOVE YOU ❤️</div>
+      <p class="muted">NO PRESSURE · JUST HONEST FEELINGS</p>
+      <button class="btn primary" onclick="go(1)">READ AGAIN ♡</button>
+    </div>
 
-        confessionBox.innerHTML = `${prefix}Aap sirf meri pasand nahi, meri har dua ka hissa ho. 
-Jab se aap meri zindagi me aaye ho, sab kuch bohot shant, khoobsurat aur roshan lagne laga hai. 
+  </section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08080b">
+<title>A Little Secret ♡</title>
 
-Mera waada hai ki main hamesha aapki aankhon ki muskaan ko protect karunga, har mausam me aapka haath thaame rakhunga, aur aapse bepanah mohabbat karta rahunga.`;
-      }
+<style>
+:root {
+  --black:#08080b;
+  --panel:#121116;
+  --pink:#f5bfd5;
+  --baby:#ffdfeb;
+  --muted:#c9b9c3;
+  --line:#f5bfd544;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;padding:22px 14px;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff3f8;
+  font-family:"Segoe UI",Arial,sans-serif;text-align:center;
+  background:
+    radial-gradient(ellipse at 50% 0%,#34232c 0%,transparent 48%),
+    radial-gradient(ellipse at 100% 100%,#211923 0%,transparent 45%),
+    var(--black);
+  overflow-x:hidden;
+}
+#hearts{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.float-heart{
+  position:absolute;bottom:-60px;color:#f5bfd5;
+  opacity:0;text-shadow:0 0 12px #f5bfd544;
+  animation:rise linear forwards;
+}
+@keyframes rise{
+  10%{opacity:.45}
+  100%{transform:translateY(-115vh) rotate(30deg);opacity:0}
+}
+.wrap{width:100%;max-width:460px;position:relative;z-index:1}
+.brand{
+  margin:0 0 20px;color:var(--pink);
+  font-size:10px;letter-spacing:4px
+}
+.card{
+  position:relative;padding:clamp(24px,6vw,35px) 21px;
+  border:1px solid #f5bfd52b;border-radius:24px;
+  background:linear-gradient(145deg,#17141aee,#0d0c10f7);
+  box-shadow:0 15px 60px #0008,0 0 30px #f5bfd50a;
+  backdrop-filter:blur(14px);overflow:hidden;
+}
+.card:before{
+  content:"";position:absolute;top:0;left:15%;right:15%;height:1px;
+  background:linear-gradient(90deg,transparent,#f5bfd5,transparent)
+}
+.page{display:none}
+.page.active{display:block;animation:appear .4s ease both}
+@keyframes appear{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.orb{
+  width:78px;height:78px;margin:0 auto 22px;
+  display:grid;place-items:center;border-radius:50%;
+  font-size:32px;color:#fff;
+  background:radial-gradient(circle at 30% 25%,#fff7fa,#f5bfd5 35%,#8d6578 100%);
+  box-shadow:inset -5px -6px 12px #3b263288,
+             inset 4px 4px 10px #ffffff99,0 0 25px #f5bfd51c;
+}
+.tag{font-size:10px;letter-spacing:3px;color:var(--pink);margin-bottom:17px;text-transform:uppercase}
+h1{
+  margin:0 0 15px;color:var(--baby);
+  font:normal clamp(32px,8vw,43px)/1.2 Georgia,serif
+}
+h2{
+  margin:0 0 14px;color:#ffe9f1;
+  font:normal clamp(22px,6vw,28px)/1.4 Georgia,serif
+}
+p{font-size:14px;line-height:1.85;color:#e8d7df}
+.muted{font-size:12px;color:var(--muted)}
+.line{height:1px;margin:21px 0;background:linear-gradient(90deg,transparent,#f5bfd555,transparent)}
+.progress{display:flex;justify-content:center;gap:5px;margin-bottom:23px}
+.progress span{width:20px;height:3px;border-radius:5px;background:#3a3038}
+.progress span.on{background:var(--pink)}
+.choices{display:grid;gap:10px;margin-top:20px}
+.choice,.btn{
+  width:100%;min-height:47px;padding:12px 14px;
+  border-radius:12px;font-size:13px;line-height:1.5;
+  cursor:pointer;transition:transform .2s,background .2s,border .2s;
+}
+.choice{
+  color:#f9e5ed;border:1px solid #f5bfd52c;
+  background:linear-gradient(120deg,#211b22,#151218)
+}
+.choice:hover{border-color:#f5bfd5;transform:translateY(-2px);background:#28202a}
+.btn{margin-top:12px;font-weight:650;letter-spacing:1px}
+.primary{
+  color:#21151c;background:linear-gradient(100deg,#ffe4ed,#f2bfd3);
+  border:1px solid #fff0f5;box-shadow:0 5px 20px #f5bfd515
+}
+.primary:hover{transform:translateY(-2px);background:#fff0f5}
+.secondary{color:var(--pink);background:#141116;border:1px solid #f5bfd52e}
+.final{
+  margin-top:22px;padding:16px 0 6px;
+  color:#ffdfeb;font:normal clamp(30px,8vw,42px) Georgia,serif;
+  letter-spacing:2px;text-shadow:0 0 20px #f5bfd544;
+}
+.scene{
+  position:relative;overflow:hidden;margin:22px -8px 10px;
+  min-height:255px;border-radius:18px;
+  background:
+    radial-gradient(ellipse at 50% 53%,#f3c6d62c 0%,transparent 43%),
+    linear-gradient(180deg,#17141b,#09090c);
+  border:1px solid #f5bfd522;
+}
+.scene svg{width:100%;height:255px;display:block}
+.scene-caption{
+  position:absolute;bottom:10px;left:0;right:0;
+  color:#f8d9e4;font-size:10px;letter-spacing:3px
+}
+.scene-heart{
+  fill:none;stroke:#f5bfd5;stroke-width:2.5;stroke-linecap:round;
+  filter:drop-shadow(0 0 7px #f5bfd5);
+}
+.footer{margin-top:20px;color:#ad9ba6;font-size:9px;letter-spacing:3px}
+@media(max-width:360px){.card{padding:23px 15px}}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<div id="hearts" aria-hidden="true"></div>
+<main class="wrap">
+  <div class="brand">♡ MADE WITH LOVE ♡</div>
+  <section class="card">
 
-      showScreen('screen-final');
-    }
+    <div class="page active" id="p1">
+      <div class="orb">♡</div>
+      <div class="tag">A little surprise for you</div>
+      <h1>Hey, You! ♡</h1>
+      <div class="line"></div>
+      <p>Someone has a little secret to tell you...</p>
+      <p class="muted">Are you ready for a little surprise? 💌</p>
+      <button class="btn primary" onclick="go(2)">OPEN YOUR SURPRISE ♡</button>
+    </div>
 
-    function restartQuiz() {
-      currentStepIndex = -1;
-      userAnswers = {};
-      proposalChoice = 'yes';
-      
-      document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
-      document.querySelectorAll('.btn-primary').forEach(btn => {
-        if (btn.id && btn.id.startsWith('next-')) {
-          btn.setAttribute('disabled', 'true');
-        }
-      });
+    <div class="page" id="p2">
+      <div class="progress"><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="tag">Question 01 of 08</div><div class="orb">👀</div>
+      <h2>Do you know someone has a little secret for you? 👀</h2>
+      <div class="choices">
+        <button class="choice" onclick="go(3)">Yes, I have a guess 💗</button>
+        <button class="choice" onclick="go(3)">No, tell me! 🤭</button>
+        <button class="choice" onclick="go(3)">Maybe I know who it is ✨</button>
+        <button class="choice" onclick="go(3)">I'm curious now 💌</button>
+      </div>
+      <button class="btn secondary" onclick="go(1)">← GO BACK</button>
+    </div>
 
-      showScreen('screen-welcome');
-    }
-  </script>
+    <div class="page" id="p3">
+      <div class="progress"><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="tag">Question 02 of 08</div><div class="orb">🌸</div>
+      <h2>Do you like talking to me? 🌸</h2>
+      <div class="choices">
+        <button class="choice" onclick="go(4)">Yess, of course ❤️</button>
+        <button class="choice" onclick="go(4)">Sometimes 🤭</button>
+        <button class="choice" onclick="go(4)">You're fun to talk to 😊</button>
+        <button class="choice" onclick="go(4)">Maybe a little 🙈</button>
+      </div>
+      <button class="btn secondary" onclick="go(2)">← PREVIOUS</button>
+    </div>
+
+    <div class="page" id="p4">
+      <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="tag">Question 03 of 08</div><div class="orb">💌</div>
+      <h2>Can I tell you something from my heart? 💌</h2>
+      <div class="choices">
+        <button class="choice" onclick="go(5)">Yes, tell me ❤️</button>
+        <button class="choice" onclick="go(5)">I'm listening 🥹</button>
+        <button class="choice" onclick="go(5)">Now I'm curious 👀</button>
+        <button class="choice" onclick="go(5)">Okay, go ahead 🌷</button>
+      </div>
+      <button class="btn secondary" onclick="go(3)">← PREVIOUS</button>
+    </div>
+
+    <div class="page" id="p5">
+      <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span></div>
+      <div class="tag">Question 04 of 08</div><div class="orb">💕</div>
+      <h2>Have you ever had a crush on someone? 💕</h2>
+      <div class="choices">
+        <button class="choice" onclick="go(6)">Yes 🙈</button>
+        <button class="choice" onclick="go(6)">Maybe 🤭</button>
+        <button class="choice" onclick="go(6)">Not yet 🌸</button>
+        <button class="choice" onclick="go(6)">That's a secret 🤫</button>
+      </div>
+      <button class="btn secondary" onclick="go(4)">← PREVIOUS</button>
+    </div>
+
+    <div class="page" id="p6">
+      <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span></div>
+      <div class="tag">Question 05 of 08</div><div class="orb">♡</div>
+      <h2>What would you do if someone secretly liked you? 👀</h2>
+      <div class="choices">
+        <button class="choice" onclick="go(7)">I'd be happy 💗</button>
+        <button class="choice" onclick="go(7)">I'd ask who it is 🤭</button>
+        <button class="choice" onclick="go(7)">I'd feel shy 🙈</button>
+        <button class="choice" onclick="go(7)">It depends on who it is ❤️</button>
+      </div>
+      <button class="btn secondary" onclick="go(5)">← PREVIOUS</button>
+    </div>
+
+    <div class="page" id="p7">
+      <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div>
+      <div class="tag">Question 06 of 08</div><div class="orb">🌷</div>
+      <h2>Would you give someone a chance to express their feelings? 💌</h2>
+      <div class="choices">
+        <button class="choice" onclick="go(8)">Of course ❤️</button>
+        <button class="choice" onclick="go(8)">Maybe, let's see 🌷</button>
+        <button class="choice" onclick="go(8)">I'd need some time 🥹</button>
+        <button class="choice" onclick="go(8)">I prefer friendship 🫶</button>
+      </div>
+      <button class="btn secondary" onclick="go(6)">← PREVIOUS</button>
+    </div>
+
+    <div class="page" id="p8">
+      <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
+      <div class="tag">Question 07 of 08</div><div class="orb">🎁</div>
+      <h2>Are you ready for one little surprise? 🎁</h2>
+      <div class="choices">
+        <button class="choice" onclick="go(9)">YESSS! 💗</button>
+        <button class="choice" onclick="go(9)">Show me already 🤭</button>
+        <button class="choice" onclick="go(9)">I'm ready ✨</button>
+        <button class="choice" onclick="go(9)">Okay, surprise me! ❤️</button>
+      </div>
+      <button class="btn secondary" onclick="go(7)">← PREVIOUS</button>
+    </div>
+
+    <div class="page" id="p9">
+      <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
+      <div class="tag">Question 08 of 08 · The big question</div><div class="orb">❤️</div>
+      <h2>Will you accept my proposal? 🥹❤️</h2>
+      <p>Whatever your answer, you can be honest. 💗</p>
+      <div class="choices">
+        <button class="choice" onclick="go(10)">YES! ❤️😍</button>
+        <button class="choice" onclick="go(10)">I need some time 🌷</button>
+        <button class="choice" onclick="go(11)">Can we be friends? 🫶</button>
+        <button class="choice" onclick="go(10)">I'm surprised! 🙈</button>
+      </div>
+      <button class="btn secondary" onclick="go(8)">← PREVIOUS</button>
+    </div>
+
+    <div class="page" id="p10">
+      <div class="orb">💌</div>
+      <div class="tag">A message from my heart</div>
+      <h1>My Confession ♡</h1><div class="line"></div>
+      <p>Sach kahun toh, main tumhe bahut special maanta hoon. 🥹❤️</p>
+      <p>Tum meri crush ho aur main tumse apne dil ki baat kehna chahta tha. 💗</p>
+      <p>Tumhari smile aur tumhara saath mere liye special hai. ✨</p>
+      <div class="line"></div>
+      <p>Agar tumhari feelings mere jaisi nahi hain, toh koi baat nahi. 🫶</p>
+      <p>Agar tum comfortable ho, toh kya hum friends ban sakte hain?</p>
+      <p>Main tumhare decision ki respect karunga. 🌸</p>
+      <button class="btn primary" onclick="go(12)">ONE LAST THING ♡</button>
+      <button class="btn secondary" onclick="go(1)">START AGAIN</button>
+    </div>
+
+    <div class="page" id="p11">
+      <div class="orb">🫶</div>
+      <div class="tag">A sincere message</div>
+      <h1>That's Okay ♡</h1>
+      <p>Tumhari feelings important hain. Main tumhare decision ki respect karta hoon.</p>
+      <p>Agar tum comfortable ho, toh hum friends reh sakte hain. No pressure, no expectations. 🌷</p>
+      <button class="btn primary" onclick="go(12)">CONTINUE 💌</button>
+      <button class="btn secondary" onclick="go(9)">GO BACK</button>
+    </div>
+
+    <div class="page" id="p12">
+      <div class="tag">From the bottom of my heart</div>
+      <h1>For You ♡</h1>
+      <p>Jo bhi tumhara answer ho, thank you for reading my little message. 🥹</p>
+      <p>Tum khush raho — bas yahi chahta hoon. 🌸</p>
+
+      <div class="scene">
+        <svg viewBox="0 0 340 255" role="img" aria-label="A boy making a heart shape with his hands">
+          <defs>
+            <radialGradient id="glow">
+              <stop offset="0" stop-color="#f5bfd5" stop-opacity=".65"/>
+              <stop offset="1" stop-color="#f5bfd5" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="shirt" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#29252c"/>
+              <stop offset="1" stop-color="#08080b"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="170" cy="125" rx="115" ry="105" fill="url(#glow)"/>
+          <circle cx="170" cy="77" r="26" fill="#111014" stroke="#d9a6bb" stroke-opacity=".5" stroke-width="1.5"/>
+          <path d="M144 73 Q143 42 170 43 Q197 43 196 73 Q182 58 170 58 Q158 58 144 73Z" fill="#07070a"/>
+          <path d="M145 99 Q112 104 100 135 L84 207 Q170 231 256 207 L240 135 Q228 104 195 99 L183 113 L157 113Z" fill="url(#shirt)" stroke="#d9a6bb" stroke-opacity=".22"/>
+          <!-- Arms lifted toward the centre -->
+          <path d="M112 127 L132 101 L151 113 L143 143 L162 130 L170 145 L148 164 L123 158Z" fill="#171318" stroke="#e2b5c6" stroke-opacity=".55" stroke-width="1.5"/>
+          <path d="M228 127 L208 101 L189 113 L197 143 L178 130 L170 145 L192 164 L217 158Z" fill="#171318" stroke="#e2b5c6" stroke-opacity=".55" stroke-width="1.5"/>
+          <!-- Hands forming a heart -->
+          <path d="M151 113 Q139 94 153 91 Q163 90 170 104 Q177 90 187 91 Q201 94 189 113 L170 132Z"
+                fill="#e7b9c9" fill-opacity=".95" stroke="#fff0f5" stroke-width="1.5"/>
+          <path d="M170 104 Q177 90 187 91 Q201 94 189 113 L170 132Z" fill="#f5bfd5"/>
+          <path class="scene-heart" d="M170 146 C158 132 139 143 170 168 C201 143 182 132 170 146Z" opacity=".8"/>
+          <g fill="#f5bfd5">
+            <circle cx="72" cy="76" r="2"/><circle cx="263" cy="92" r="2.5"/>
+            <circle cx="91" cy="185" r="1.8"/><circle cx="248" cy="174" r="2"/>
+            <path d="M91 110 l3 5 5 3 -5 3 -3 5 -3 -5 -5 -3 5 -3Z"/>
+            <path d="M250 48 l3 5 5 3 -5 3 -3 5 -3 -5 -5 -3 5 -3Z"/>
+          </g>
+          <text x="170" y="231" fill="#f5bfd5" font-size="10" letter-spacing="3" text-anchor="middle">JUST FOR YOU ♡</text>
+        </svg>
+        <div class="scene-caption">A LITTLE HEART, JUST FOR YOU</div>
+      </div>
+
+      <div class="final">I LOVE YOU ❤️</div>
+      <p class="muted">NO PRESSURE · JUST HONEST FEELINGS</p>
+      <button class="btn primary" onclick="go(1)">READ AGAIN ♡</button>
+    </div>
+
+  </section>
+  <div class="footer">A LITTLE COURAGE · A LOT OF HEART ♡</div>
+</main>
+
+<script>
+function go(n){
+  document.querySelectorAll('.page').forEach(function(page){
+    page.classList.remove('active');
+  });
+  const target=document.getElementById('p'+n);
+  if(target) target.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+const holder=document.getElementById('hearts');
+const symbols=['♡','♥','♡','✧'];
+
+function addHeart(){
+  if(holder.childElementCount>18)return;
+  const el=document.createElement('span');
+  el.className='float-heart';
+  el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+  const size=14+Math.random()*22;
+  el.style.fontSize=size+'px';
+  el.style.left=Math.random()*100+'%';
+  el.style.animationDuration=(8+Math.random()*7)+'s';
+  holder.appendChild(el);
+  el.addEventListener('animationend',function(){el.remove();},{once:true});
+}
+for(let i=0;i<6;i++)setTimeout(addHeart,i*500);
+setInterval(addHeart,1200);
+</script>
 </body>
-</html>
+  </html>
+  
+  <div class="footer">A LITTLE COURAGE · A LOT OF HEART ♡</div>
+</main>
+
+<script>
+function go(n){
+  document.querySelectorAll('.page').forEach(function(page){
+    page.classList.remove('active');
+  });
+  const target=document.getElementById('p'+n);
+  if(target) target.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+const holder=document.getElementById('hearts');
+const symbols=['♡','♥','♡','✧'];
+
+function addHeart(){
+  if(holder.childElementCount>18)return;
+  const el=document.createElement('span');
+  el.className='float-heart';
+  el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+  const size=14+Math.random()*22;
+  el.style.fontSize=size+'px';
+  el.style.left=Math.random()*100+'%';
+  el.style.animationDuration=(8+Math.random()*7)+'s';
+  holder.appendChild(el);
+  el.addEventListener('animationend',function(){el.remove();},{once:true});
+}
+for(let i=0;i<6;i++)setTimeout(addHeart,i*500);
+setInterval(addHeart,1200);
+</script>
+</body>
+  </html>
+        
