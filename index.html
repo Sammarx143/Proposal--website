@@ -8,295 +8,177 @@
 <title>A Little Secret ♡</title>
 
 <style>
-:root {
-  --pink:#f7cbd5;
+:root{
   --rose:#dc7896;
-  --deep:#9f4969;
-  --cream:#fff8f4;
+  --deep:#a65376;
   --ink:#684354;
-  --line:rgba(174,91,123,.28);
+  --line:#e6b6c6;
 }
-
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
 body{
-  margin:0;
-  min-height:100vh;
-  color:var(--ink);
+  margin:0;min-height:100vh;color:var(--ink);
   font-family:Georgia,"Times New Roman",serif;
   background:
-    radial-gradient(ellipse at 15% 10%,#fff9f4 0,transparent 40%),
-    radial-gradient(ellipse at 90% 80%,#f4c4d0 0,transparent 42%),
-    linear-gradient(145deg,#f9e6e8,#f4d3df 48%,#fff0e8);
+    radial-gradient(ellipse at 10% 10%,#fffaf5,transparent 42%),
+    radial-gradient(ellipse at 90% 90%,#f1c5d3,transparent 45%),
+    linear-gradient(145deg,#f9e6e8,#f4d3df 50%,#fff0e8);
   overflow-x:hidden;
 }
 button{font:inherit;cursor:pointer}
-button:focus-visible{outline:3px solid #b95d80;outline-offset:3px}
-
-#petals{
-  position:fixed;inset:0;pointer-events:none;
-  overflow:hidden;z-index:0;
-}
-.petal{
-  position:absolute;top:-35px;
-  color:#d97f9b;
-  opacity:.58;
-  animation:fall linear infinite;
-  filter:drop-shadow(0 2px 3px #fff);
-}
+#petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.petal{position:absolute;top:-30px;color:#d97f9b;opacity:.55;animation:fall linear infinite}
 @keyframes fall{
-  0%{transform:translate3d(0,-8vh,0) rotate(0)}
-  100%{transform:translate3d(70px,110vh,0) rotate(540deg)}
-}
-@keyframes float{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-10px)}
-}
-@keyframes glow{
-  0%,100%{box-shadow:0 0 12px #e89bb9}
-  50%{box-shadow:0 0 30px #e89bb9,0 0 50px #f6d0dc}
+  to{transform:translate(65px,110vh) rotate(520deg)}
 }
 @keyframes appear{
-  from{opacity:0;transform:translateY(15px) scale(.98)}
-  to{opacity:1;transform:translateY(0) scale(1)}
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes float{
+  50%{transform:translateY(-10px)}
 }
 @keyframes pulse{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.08)}
+  50%{transform:scale(1.09)}
 }
-
 main{
-  position:relative;z-index:1;
-  min-height:100vh;
+  position:relative;z-index:1;min-height:100vh;
   display:flex;align-items:center;justify-content:center;
-  padding:24px 14px;
+  padding:22px 13px;
 }
 .page{
   display:none;width:100%;max-width:510px;
-  margin:auto;text-align:center;
-  animation:appear .65s ease both;
+  margin:auto;text-align:center;animation:appear .45s ease both;
 }
 .page.active{display:block}
 .card{
-  position:relative;
-  overflow:hidden;
-  padding:32px 23px;
-  border:1px solid rgba(255,255,255,.9);
-  border-radius:26px;
-  background:rgba(255,249,247,.73);
-  backdrop-filter:blur(14px);
-  box-shadow:0 18px 55px rgba(159,73,105,.12),
-             inset 0 0 0 1px rgba(213,139,163,.12);
+  position:relative;overflow:hidden;
+  padding:30px 22px;border:1px solid #fff;
+  border-radius:25px;background:rgba(255,249,247,.78);
+  backdrop-filter:blur(12px);
+  box-shadow:0 18px 50px #9f49691a,inset 0 0 0 1px #d58ba31c;
 }
 .card:before{
-  content:"";
-  position:absolute;inset:7px;
-  border:1px solid rgba(195,119,148,.18);
-  border-radius:20px;
-  pointer-events:none;
+  content:"";position:absolute;inset:7px;
+  border:1px solid #c3779426;border-radius:19px;pointer-events:none;
 }
 .eyebrow{
   font-size:10px;letter-spacing:3px;text-transform:uppercase;
-  color:#a76a82;margin-bottom:18px;
+  color:#a76a82;margin-bottom:17px;
 }
-h1,h2,p{position:relative}
 h1{
-  font-size:clamp(38px,10vw,60px);
-  font-weight:normal;font-style:italic;
-  line-height:1.05;margin:10px 0 12px;
-  color:#a84f76;
+  font-size:clamp(39px,10vw,58px);font-weight:normal;
+  font-style:italic;line-height:1.08;color:#a84f76;
+  margin:10px 0;
 }
 h2{
-  font-size:clamp(22px,6vw,29px);
-  font-weight:normal;line-height:1.35;
-  margin:12px 0 22px;
+  font-size:clamp(22px,6vw,29px);font-weight:normal;
+  line-height:1.35;margin:13px 0 22px;
 }
-p{line-height:1.8;font-size:14px}
-.subtitle{
-  letter-spacing:4px;font-size:10px;
-  text-transform:uppercase;color:#a76a82;
-}
-.heart-icon{
-  color:#d86f94;font-size:24px;
-  display:inline-block;animation:pulse 2s infinite;
-}
-.landing-art{
-  position:relative;height:170px;margin:0 auto 14px;
-  display:grid;place-items:center;
-}
-.big-heart{
-  font-size:105px;color:#db83a1;
-  text-shadow:0 0 18px #f3c0d0,0 0 42px #eaa8c1;
-  animation:float 4s ease-in-out infinite;
-}
-.moon{
-  position:absolute;right:14%;top:0;
-  font-size:42px;color:#d8a5af;
-}
-.flower{
-  position:absolute;font-size:30px;
-  filter:drop-shadow(0 4px 5px #e8bbc7);
-}
-.flower.left{left:4%;bottom:12px}
+p{font-size:14px;line-height:1.8}
+.subtitle{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#a76a82}
+.heart-icon{font-size:25px;color:#d86f94;display:inline-block;animation:pulse 2s infinite}
+.landing-art{height:165px;position:relative;display:grid;place-items:center}
+.big-heart{font-size:105px;color:#db83a1;text-shadow:0 0 18px #f3c0d0,0 0 42px #eaa8c1;animation:float 4s ease-in-out infinite}
+.moon{position:absolute;right:13%;top:0;font-size:42px;color:#d8a5af}
+.flower{position:absolute;font-size:29px}
+.flower.left{left:5%;bottom:8px}
 .flower.right{right:5%;bottom:4px}
-
 .primary,.secondary{
-  border-radius:30px;padding:13px 23px;
-  min-width:150px;border:1px solid #d98ca7;
-  transition:.25s;
+  border-radius:30px;padding:12px 22px;
+  min-width:145px;border:1px solid #d98ca7;transition:.2s;
 }
 .primary{
-  color:white;
-  background:linear-gradient(135deg,#e78eab,#c7658a);
+  color:white;background:linear-gradient(135deg,#e78eab,#c7658a);
   box-shadow:0 6px 18px #d98ca766;
 }
-.primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px #d98ca799}
-.secondary{
-  background:rgba(255,255,255,.45);color:#a65376;
-}
-.actions{
-  display:flex;flex-wrap:wrap;justify-content:center;
-  gap:10px;margin-top:22px;
-}
-.progress-line{
-  height:4px;background:#f0d6df;border-radius:8px;
-  margin:0 0 24px;overflow:hidden;
-}
-.progress-fill{
-  height:100%;width:0;
-  background:linear-gradient(90deg,#dc7896,#edafbd);
-  transition:width .35s;
-}
-.question-number{
-  font-size:10px;letter-spacing:2px;
-  color:#a66d83;margin-bottom:12px;
-}
-.question{
-  font-size:clamp(22px,5.6vw,29px);
-  line-height:1.35;margin:0 0 23px;
-}
+.primary:hover{transform:translateY(-2px)}
+.secondary{background:#fff8f5;color:#a65376}
+.progress-line{height:4px;background:#f0d6df;border-radius:8px;margin:0 0 22px;overflow:hidden}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#dc7896,#edafbd);transition:width .3s}
+.question-number{font-size:10px;letter-spacing:2px;color:#a66d83;margin-bottom:12px}
+.question{font-size:clamp(22px,5.6vw,29px);line-height:1.35;margin:0 0 23px}
 .options{display:grid;gap:10px;text-align:left}
 .option{
-  display:flex;align-items:center;gap:11px;
-  width:100%;padding:13px 14px;
-  color:#694556;text-align:left;
+  display:flex;align-items:center;gap:11px;width:100%;
+  padding:13px 14px;text-align:left;color:#694556;
   border:1px solid #e6b6c6;border-radius:15px;
-  background:rgba(255,255,255,.43);
-  transition:.2s;
+  background:#ffffff70;transition:background .2s,border .2s,transform .2s;
 }
-.option .arrow{color:#c56f8f;font-size:17px}
+.option .arrow{color:#c56f8f;font-size:18px}
 .option:hover,.option.selected{
   border-color:#d27e9c;
   background:linear-gradient(100deg,#fff8f7,#f9dce5);
   transform:translateX(3px);
-  box-shadow:0 5px 14px #d98ca722;
 }
-.next-row{
-  display:flex;justify-content:space-between;
-  align-items:center;gap:10px;margin-top:22px;
-}
+.option.selected{box-shadow:0 4px 14px #d98ca722}
+.option:disabled{cursor:default}
+.back-row{display:flex;justify-content:flex-start;margin-top:20px}
 .small-button{
   border:1px solid #dba0b4;border-radius:25px;
-  padding:10px 18px;background:#fff8f5;color:#a65376;
+  padding:9px 17px;background:#fff8f5;color:#a65376;
 }
-.small-button:disabled{opacity:.4;cursor:not-allowed}
-.note{
-  color:#a16d82;font-size:12px;font-style:italic;
-}
-.letter-copy{max-width:360px;margin:0 auto 18px}
+.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px}
+.divider{width:80px;height:1px;background:#d9a0b4;margin:18px auto}
+.letter-copy{max-width:365px;margin:0 auto 18px}
 .letter-copy p{margin:10px 0}
-.divider{
-  width:80px;height:1px;background:#d9a0b4;
-  margin:18px auto;
-}
+.note{color:#a16d82;font-size:12px;font-style:italic}
 .couple-frame{
-  position:relative;margin:20px auto 16px;
-  max-width:330px;padding:8px;
-  border:1px solid #fff;
-  border-radius:18px;background:#fff9f4;
-  box-shadow:0 10px 30px #bd779044;
+  position:relative;margin:20px auto 16px;max-width:330px;
+  padding:8px;border:1px solid white;border-radius:17px;
+  background:#fff9f4;box-shadow:0 10px 30px #bd779044;
   transform:rotate(-1deg);
 }
-.couple-frame img{
-  display:block;width:100%;height:auto;
-  max-height:300px;object-fit:contain;border-radius:12px;
-}
-.final-title{
-  font-size:clamp(33px,9vw,48px);
-  color:#c04e79;font-style:normal;
-  letter-spacing:1px;text-shadow:0 2px 15px #f3b2c9;
-}
-.final-heart{
-  font-size:55px;display:block;
-  color:#e47d9f;animation:pulse 1.7s infinite;
-  margin:10px;
-}
+.couple-frame img{display:block;width:100%;height:auto;max-height:300px;object-fit:contain;border-radius:11px}
+.final-title{font-size:clamp(33px,9vw,48px);font-style:normal;color:#c04e79;text-shadow:0 2px 15px #f3b2c9}
+.final-heart{font-size:55px;display:block;color:#e47d9f;animation:pulse 1.7s infinite;margin:10px}
 .game-area{
-  position:relative;height:250px;overflow:hidden;
-  border-radius:20px;border:1px solid #e6b6c6;
-  background:linear-gradient(180deg,#f8dbe3,#fff4ed);
+  position:relative;height:250px;overflow:hidden;border-radius:20px;
+  border:1px solid #e6b6c6;background:linear-gradient(180deg,#f8dbe3,#fff4ed);
   margin:18px 0 12px;
 }
 .game-heart{
-  position:absolute;border:0;background:transparent;
-  color:#df7097;font-size:30px;padding:4px;
-  filter:drop-shadow(0 3px 4px #d78ba8);
-  animation:pulse 1.5s infinite;
+  position:absolute;border:0;background:transparent;color:#df7097;
+  font-size:30px;padding:4px;animation:pulse 1.5s infinite;
 }
-.game-heart:active{transform:scale(.7)}
 .score{font-size:15px;color:#a65376}
-.envelope-stage{
-  display:grid;place-items:center;
-  min-height:235px;perspective:800px;
-  margin:10px 0;
-}
+.envelope-stage{display:grid;place-items:center;min-height:230px;perspective:800px;margin:10px 0}
 .envelope{
   position:relative;width:min(290px,82vw);height:180px;
   border:1px solid #dfa1b6;border-radius:7px;
   background:linear-gradient(145deg,#f6c5d3,#eaa0b8);
-  box-shadow:0 15px 30px #b9668740;
-  cursor:pointer;transform-style:preserve-3d;
+  box-shadow:0 15px 30px #b9668740;cursor:pointer;
 }
 .envelope:before{
   content:"";position:absolute;inset:0;
   background:linear-gradient(35deg,transparent 49%,#e9a6ba 50%),
              linear-gradient(-35deg,transparent 49%,#f3b8c9 50%);
-  opacity:.95;
 }
 .flap{
   position:absolute;z-index:3;top:0;left:0;width:100%;height:55%;
   background:linear-gradient(160deg,#fce0e7,#e9a1b8);
   clip-path:polygon(0 0,100% 0,50% 100%);
-  transform-origin:top center;
-  transition:transform .8s ease;
+  transform-origin:top center;transition:transform .8s;
 }
 .seal{
   position:absolute;z-index:4;left:50%;top:48%;
-  transform:translate(-50%,-50%);
-  width:40px;height:40px;border-radius:50%;
-  background:#c96688;color:white;
-  display:grid;place-items:center;
-  border:2px solid #f8d7e0;
-  box-shadow:0 3px 10px #a34b6b55;
+  transform:translate(-50%,-50%);width:40px;height:40px;
+  border-radius:50%;background:#c96688;color:white;
+  display:grid;place-items:center;border:2px solid #f8d7e0;
 }
 .envelope.open .flap{transform:rotateX(180deg)}
 .envelope.open .seal{opacity:0;transition:.3s}
 .letter-sheet{
-  display:none;position:relative;
-  margin:18px auto 0;max-width:400px;
-  padding:27px 21px;border-radius:5px;
-  background:linear-gradient(140deg,#fffaf1,#fbe6df);
-  border:1px solid #e8c4b8;
-  box-shadow:0 10px 30px #ac718b25;
-  animation:appear .8s ease both;
+  display:none;margin:18px auto 0;max-width:400px;padding:25px 20px;
+  border-radius:5px;background:linear-gradient(140deg,#fffaf1,#fbe6df);
+  border:1px solid #e8c4b8;box-shadow:0 10px 30px #ac718b25;
+  animation:appear .7s ease both;
 }
 .letter-sheet.show{display:block}
 .letter-sheet h2{font-style:italic;color:#b85b7d}
 .letter-sheet p{line-height:1.9}
 footer{font-size:10px;letter-spacing:1px;color:#ad7a8c;margin-top:22px}
-
 @media(max-width:380px){
-  .card{padding:27px 17px}
+  .card{padding:26px 16px}
   .option{padding:11px}
   .landing-art{height:145px}
 }
@@ -305,13 +187,10 @@ footer{font-size:10px;letter-spacing:1px;color:#ad7a8c;margin-top:22px}
 }
 </style>
 </head>
-
 <body>
 <div id="petals" aria-hidden="true"></div>
-
 <main>
 
-<!-- LANDING -->
 <section class="page active" id="landing">
   <div class="card">
     <div class="eyebrow">A little secret · just for you</div>
@@ -330,7 +209,6 @@ footer{font-size:10px;letter-spacing:1px;color:#ad7a8c;margin-top:22px}
   </div>
 </section>
 
-<!-- QUESTIONS -->
 <section class="page" id="questionPage">
   <div class="card">
     <div class="question-number" id="qNumber">QUESTION 01 / 08</div>
@@ -338,14 +216,12 @@ footer{font-size:10px;letter-spacing:1px;color:#ad7a8c;margin-top:22px}
     <div class="heart-icon">♡</div>
     <h2 class="question" id="qText"></h2>
     <div class="options" id="options"></div>
-    <div class="next-row">
+    <div class="back-row">
       <button class="small-button" onclick="previousQuestion()">← Back</button>
-      <button class="primary" id="nextButton" disabled onclick="nextQuestion()">Next →</button>
     </div>
   </div>
 </section>
 
-<!-- CONFESSION -->
 <section class="page" id="confession">
   <div class="card">
     <div class="eyebrow">Something from my heart 💌</div>
@@ -364,7 +240,6 @@ footer{font-size:10px;letter-spacing:1px;color:#ad7a8c;margin-top:22px}
   </div>
 </section>
 
-<!-- FRIENDSHIP -->
 <section class="page" id="friendship">
   <div class="card">
     <div class="eyebrow">A beautiful beginning</div>
@@ -379,7 +254,6 @@ footer{font-size:10px;letter-spacing:1px;color:#ad7a8c;margin-top:22px}
   </div>
 </section>
 
-<!-- HEART GAME -->
 <section class="page" id="game">
   <div class="card">
     <div class="eyebrow">A tiny surprise</div>
@@ -392,7 +266,6 @@ footer{font-size:10px;letter-spacing:1px;color:#ad7a8c;margin-top:22px}
   </div>
 </section>
 
-<!-- ENVELOPE -->
 <section class="page" id="envelopePage">
   <div class="card">
     <div class="eyebrow">A little message · just for you</div>
@@ -409,7 +282,6 @@ footer{font-size:10px;letter-spacing:1px;color:#ad7a8c;margin-top:22px}
   </div>
 </section>
 
-<!-- LETTER -->
 <section class="page" id="letterPage">
   <div class="card">
     <div class="eyebrow">A message from the heart</div>
@@ -425,15 +297,13 @@ footer{font-size:10px;letter-spacing:1px;color:#ad7a8c;margin-top:22px}
   </div>
 </section>
 
-<!-- FINAL -->
 <section class="page" id="finalPage">
   <div class="card">
     <div class="eyebrow">Forever in this little moment</div>
     <span class="final-heart">♡</span>
     <div class="couple-frame">
-      <img src="./couple.png"
-           alt="Romantic illustration of a couple"
-           onerror="this.style.display='none';document.getElementById('imageFallback').style.display='block'">
+      <img src="./couple.png" alt="Romantic couple illustration"
+        onerror="this.style.display='none';document.getElementById('imageFallback').style.display='block'">
       <div id="imageFallback" style="display:none;padding:30px 10px;color:#b65b7d">
         <span style="font-size:55px">💗</span>
         <p>Your special picture goes here ♡</p>
@@ -451,50 +321,50 @@ footer{font-size:10px;letter-spacing:1px;color:#ad7a8c;margin-top:22px}
 </main>
 
 <script>
-const questions = [
-  {
-    q:"Do you know someone has a little secret for you? 👀",
-    a:["Yes, I have a guess 💗","No, tell me! 🤭","Maybe I know who it is ✨","I'm curious now 💌"]
-  },
-  {
-    q:"Do you like talking to me? 🌸",
-    a:["Yess, of course ❤️","Sometimes 🤭","You're fun to talk to 😊","Maybe a little 🙈"]
-  },
-  {
-    q:"Can I tell you something from my heart? 💌",
-    a:["Yes, tell me ❤️","I'm listening 🥹","Now I'm curious 👀","Okay, go ahead 🌷"]
-  },
-  {
-    q:"Have you ever had a crush on someone? 💕",
-    a:["Yes 🙈","Maybe 🤭","Not yet 🌸","That's a secret 🤫"]
-  },
-  {
-    q:"What would you do if someone secretly liked you? 👀",
-    a:["I'd be happy 💗","I'd ask who it is 🤭","I'd feel shy 🙈","It depends on who it is ❤️"]
-  },
-  {
-    q:"Would you give someone a chance to express their feelings? 💌",
-    a:["Of course ❤️","Maybe, let's see 🌷","I'd need some time 🥹","I prefer friendship 🫶"]
-  },
-  {
-    q:"Are you ready for one little surprise? 🎁",
-    a:["YESSS! 💗","Show me already 🤭","I'm ready ✨","Okay, surprise me! ❤️"]
-  },
-  {
-    q:"Will you accept my proposal? 🥹❤️",
-    a:["YES! ❤️😍","I need some time 🌷","Can we be friends? 🫶","I'm surprised! 🙈"]
-  }
+const questions=[
+ {
+  q:"Do you know someone has a little secret for you? 👀",
+  a:["Yes, I have a guess 💗","No, tell me! 🤭","Maybe I know who it is ✨","I'm curious now 💌"]
+ },
+ {
+  q:"Do you like talking to me? 🌸",
+  a:["Yess, of course ❤️","Sometimes 🤭","You're fun to talk to 😊","Maybe a little 🙈"]
+ },
+ {
+  q:"Can I tell you something from my heart? 💌",
+  a:["Yes, tell me ❤️","I'm listening 🥹","Now I'm curious 👀","Okay, go ahead 🌷"]
+ },
+ {
+  q:"Have you ever had a crush on someone? 💕",
+  a:["Yes 🙈","Maybe 🤭","Not yet 🌸","That's a secret 🤫"]
+ },
+ {
+  q:"What would you do if someone secretly liked you? 👀",
+  a:["I'd be happy 💗","I'd ask who it is 🤭","I'd feel shy 🙈","It depends on who it is ❤️"]
+ },
+ {
+  q:"Would you give someone a chance to express their feelings? 💌",
+  a:["Of course ❤️","Maybe, let's see 🌷","I'd need some time 🥹","I prefer friendship 🫶"]
+ },
+ {
+  q:"Are you ready for one little surprise? 🎁",
+  a:["YESSS! 💗","Show me already 🤭","I'm ready ✨","Okay, surprise me! ❤️"]
+ },
+ {
+  q:"Will you accept my proposal? 🥹❤️",
+  a:["YES! ❤️😍","I need some time 🌷","Can we be friends? 🫶","I'm surprised! 🙈"]
+ }
 ];
 
 let current=0;
 let selected=Array(questions.length).fill(null);
+let advanceTimer=null;
 let score=0;
-let gameStarted=false;
 
 function showPage(id){
+  clearTimeout(advanceTimer);
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  const page=document.getElementById(id);
-  page.classList.add('active');
+  document.getElementById(id).classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -511,10 +381,8 @@ function renderQuestion(){
   document.getElementById('progress').style.width=
     `${((current+1)/questions.length)*100}%`;
   document.getElementById('qText').textContent=q.q;
-  document.getElementById('options').innerHTML='';
-  document.getElementById('nextButton').disabled=selected[current]===null;
-  document.getElementById('nextButton').textContent=
-    current===7?'Finish ♡':'Next →';
+  const box=document.getElementById('options');
+  box.innerHTML='';
 
   q.a.forEach((answer,index)=>{
     const btn=document.createElement('button');
@@ -525,28 +393,35 @@ function renderQuestion(){
     const label=document.createElement('span');
     label.textContent=answer;
     btn.append(arrow,label);
+
     btn.onclick=()=>{
+      if(selected[current]!==null)return;
       selected[current]=index;
-      renderQuestion();
+      box.querySelectorAll('button').forEach(b=>b.disabled=true);
+      btn.classList.add('selected');
+
+      // Automatically move on after selecting an option.
+      advanceTimer=setTimeout(()=>{
+        if(current<7){
+          current++;
+          renderQuestion();
+        }else{
+          if(selected[7]===2)showPage('friendship');
+          else showPage('confession');
+        }
+      },350);
     };
-    document.getElementById('options').appendChild(btn);
+    box.appendChild(btn);
   });
 }
 
 function previousQuestion(){
-  if(current>0){current--;renderQuestion();}
-  else showPage('landing');
-}
-
-function nextQuestion(){
-  if(selected[current]===null)return;
-  if(current<7){
-    current++;
+  clearTimeout(advanceTimer);
+  if(current>0){
+    current--;
     renderQuestion();
   }else{
-    // The friendship option stays available and is respected.
-    if(selected[7]===2)showPage('friendship');
-    else showPage('confession');
+    showPage('landing');
   }
 }
 
@@ -556,9 +431,8 @@ function openGame(){
   document.getElementById('gameNext').style.display='none';
   document.getElementById('gameMessage').textContent=
     'Every little heart has a surprise ✨';
-  document.getElementById('gameArea').innerHTML='';
-  showPage('game');
   createGameHearts();
+  showPage('game');
 }
 
 function createGameHearts(){
@@ -567,7 +441,7 @@ function createGameHearts(){
   for(let i=0;i<10;i++){
     const heart=document.createElement('button');
     heart.className='game-heart';
-    heart.innerHTML='♡';
+    heart.textContent='♡';
     heart.setAttribute('aria-label','Collect heart');
     heart.style.left=(5+Math.random()*82)+'%';
     heart.style.top=(5+Math.random()*75)+'%';
@@ -600,10 +474,14 @@ function openEnvelope(){
   },650);
 }
 document.getElementById('envelope').addEventListener('keydown',e=>{
-  if(e.key==='Enter'||e.key===' '){e.preventDefault();openEnvelope();}
+  if(e.key==='Enter'||e.key===' '){
+    e.preventDefault();
+    openEnvelope();
+  }
 });
 
 function restart(){
+  clearTimeout(advanceTimer);
   current=0;
   selected=Array(questions.length).fill(null);
   score=0;
@@ -612,7 +490,7 @@ function restart(){
   showPage('landing');
 }
 
-// Decorative floating petals; no external libraries needed.
+// Lightweight falling petals, no external libraries required.
 const petalLayer=document.getElementById('petals');
 for(let i=0;i<20;i++){
   const p=document.createElement('span');
