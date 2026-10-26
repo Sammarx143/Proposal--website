@@ -225,19 +225,19 @@ p {
   font-weight: normal;
 }
 
-/* Premium Photo Frame */
-.photo-box {
+/* Beautiful Rounded Image Frame */
+.photo-frame {
   width: 100%;
   max-width: 320px;
   margin: 0 auto 16px;
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid rgba(255, 192, 212, 0.45);
-  box-shadow: 0 0 28px rgba(255, 114, 159, 0.35), 0 12px 35px rgba(0,0,0,0.6);
-  background: #150912;
+  box-shadow: 0 0 30px rgba(255, 114, 159, 0.35), 0 10px 30px rgba(0,0,0,0.7);
+  background: #140912;
 }
 
-.photo-box img {
+.photo-frame img {
   width: 100%;
   height: auto;
   display: block;
@@ -422,10 +422,9 @@ p {
 <section class="page" id="final" style="overflow:hidden">
   <div class="eyebrow">A little message · Just for you</div>
 
-  <!-- EXACT COUPLE PHOTO -->
-  <div class="photo-box">
-    <!-- Bas yahan 'couple.png' ko apne image URL ya file name se replace kar dena -->
-    <img src="couple.png" alt="Boy and girl touching foreheads with glowing heart">
+  <!-- EXACT DIRECT LINK TO YOUR ANIME ART -->
+  <div class="photo-frame">
+    <img src="https://raw.githubusercontent.com/silentpixels143/Proposal/main/couple.png" alt="Boy and girl touching foreheads with glowing heart" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80';">
   </div>
 
   <p style="font-size:9px;letter-spacing:1.7px;color:var(--gold);text-transform:uppercase">
