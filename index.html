@@ -225,23 +225,22 @@ p {
   font-weight: normal;
 }
 
-/* Detailed Anime Couple Illustration Card */
-.art-card {
+/* Premium Photo Frame */
+.photo-box {
   width: 100%;
-  max-width: 330px;
+  max-width: 320px;
   margin: 0 auto 16px;
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid rgba(255, 192, 212, 0.45);
-  box-shadow: 0 0 30px rgba(255, 114, 159, 0.35), 0 14px 40px rgba(0,0,0,0.7);
-  background: #11070e;
-  position: relative;
+  box-shadow: 0 0 28px rgba(255, 114, 159, 0.35), 0 12px 35px rgba(0,0,0,0.6);
+  background: #150912;
 }
 
-.art-card svg {
-  display: block;
+.photo-box img {
   width: 100%;
   height: auto;
+  display: block;
 }
 
 .final-title {
@@ -423,175 +422,10 @@ p {
 <section class="page" id="final" style="overflow:hidden">
   <div class="eyebrow">A little message · Just for you</div>
 
-  <!-- Pure SVG Exact Anime Couple with Glowing Heart and Cherry Blossoms -->
-  <div class="art-card">
-    <svg viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <radialGradient id="bgGlow" cx="50%" cy="40%" r="65%">
-          <stop offset="0%" stop-color="#731f3e" stop-opacity="0.9"/>
-          <stop offset="50%" stop-color="#34101e" stop-opacity="0.95"/>
-          <stop offset="100%" stop-color="#0e040a" stop-opacity="1"/>
-        </radialGradient>
-        <radialGradient id="heartGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#ffffff"/>
-          <stop offset="25%" stop-color="#ff99bb"/>
-          <stop offset="70%" stop-color="#ff3377" stop-opacity="0.6"/>
-          <stop offset="100%" stop-color="#ff3377" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="boyJacket" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#1e1820"/>
-          <stop offset="100%" stop-color="#0a080c"/>
-        </linearGradient>
-        <linearGradient id="girlDress" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#ab5976"/>
-          <stop offset="60%" stop-color="#803550"/>
-          <stop offset="100%" stop-color="#3b1424"/>
-        </linearGradient>
-        <linearGradient id="boyHair" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#3d212b"/>
-          <stop offset="60%" stop-color="#1f0f15"/>
-          <stop offset="100%" stop-color="#0a0306"/>
-        </linearGradient>
-        <linearGradient id="girlHair" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#4d2432"/>
-          <stop offset="50%" stop-color="#2a121c"/>
-          <stop offset="100%" stop-color="#0f0509"/>
-        </linearGradient>
-        <filter id="neonBlur" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur1"/>
-          <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="blur2"/>
-          <feMerge>
-            <feMergeNode in="blur2"/>
-            <feMergeNode in="blur1"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-      </defs>
-
-      <!-- Background Atmosphere -->
-      <rect width="400" height="520" fill="url(#bgGlow)"/>
-
-      <!-- Top Cherry Blossom Branch Silhouette -->
-      <g opacity="0.8">
-        <path d="M-10 10 Q60 30 110 5 Q140 -5 170 12" stroke="#220b14" stroke-width="5" fill="none"/>
-        <circle cx="50" cy="22" r="7" fill="#fca8c4"/>
-        <circle cx="62" cy="18" r="6" fill="#fca8c4"/>
-        <circle cx="56" cy="30" r="6.5" fill="#fca8c4"/>
-        <circle cx="45" cy="26" r="6" fill="#fca8c4"/>
-        <circle cx="100" cy="12" r="8" fill="#fda4c2"/>
-        <circle cx="112" cy="8" r="7" fill="#fda4c2"/>
-        <circle cx="108" cy="22" r="7" fill="#fda4c2"/>
-      </g>
-
-      <!-- Atmospheric Bokeh Light Orbs -->
-      <circle cx="80" cy="180" r="18" fill="#ff7da7" opacity="0.12"/>
-      <circle cx="320" cy="160" r="22" fill="#ff7da7" opacity="0.14"/>
-      <circle cx="200" cy="80" r="35" fill="#ff99bb" opacity="0.15"/>
-
-      <!-- BOY FIGURE (Left) -->
-      <!-- Jacket / Shoulders -->
-      <path d="M-20 520 L-20 340 Q40 310 115 320 Q145 325 170 380 L180 520 Z" fill="url(#boyJacket)"/>
-      <path d="M90 325 Q130 350 145 420 L160 520" stroke="#362833" stroke-width="3" fill="none"/>
-      <!-- Collar -->
-      <path d="M110 320 L140 295 L148 350 Z" fill="#2d222a"/>
-
-      <!-- Neck -->
-      <path d="M125 240 L130 310 Q145 315 160 300 L155 240 Z" fill="#d99b91"/>
-
-      <!-- Head / Face -->
-      <path d="M100 150 Q115 105 155 105 Q195 110 200 160 Q205 210 185 245 Q165 268 150 268 Q130 250 115 220 Z" fill="#e8aba2"/>
-      <!-- Soft Cheek Blush -->
-      <ellipse cx="170" cy="205" rx="14" ry="7" fill="#ff5e83" opacity="0.45"/>
-      <!-- Closed Eye -->
-      <path d="M162 175 Q176 182 186 173" stroke="#522b33" stroke-width="2.6" stroke-linecap="round" fill="none"/>
-      <path d="M170 178 Q178 184 184 177" stroke="#753d48" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-      <!-- Eyebrow -->
-      <path d="M158 158 Q174 154 188 165" stroke="#331920" stroke-width="2.8" stroke-linecap="round" fill="none"/>
-      <!-- Nose & Lips contour -->
-      <path d="M198 178 L203 194 L196 200" stroke="#c9827b" stroke-width="2" fill="none" stroke-linejoin="round"/>
-      <path d="M188 225 Q195 227 190 231" stroke="#a4585c" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-
-      <!-- Boy's Anime Hair -->
-      <path d="M85 180 Q80 120 120 85 Q165 55 215 90 Q225 115 220 145 Q210 145 195 130 Q190 145 175 140 Q160 155 150 145 Q135 170 120 175 Q105 200 95 220 Q85 235 85 180 Z" fill="url(#boyHair)"/>
-      <path d="M125 80 Q160 65 195 85 Q180 100 170 120 Q155 110 140 125 Q135 105 125 80 Z" fill="#4d2c38" opacity="0.6"/>
-
-      <!-- GIRL FIGURE (Right) -->
-      <!-- Dress / Shoulders -->
-      <path d="M420 520 L420 345 Q360 315 285 325 Q255 330 230 385 L220 520 Z" fill="url(#girlDress)"/>
-      <path d="M295 328 Q260 380 240 520" stroke="#63253a" stroke-width="2.5" fill="none"/>
-      <path d="M330 335 Q295 400 270 520" stroke="#732b43" stroke-width="2" fill="none"/>
-
-      <!-- Girl's Neck -->
-      <path d="M275 240 L270 310 Q255 315 240 300 L245 240 Z" fill="#ebaea4"/>
-
-      <!-- Head / Face -->
-      <path d="M300 150 Q285 105 245 105 Q205 110 200 160 Q195 210 215 245 Q235 268 250 268 Q270 250 285 220 Z" fill="#f5bbb1"/>
-      <!-- Soft Cheek Blush -->
-      <ellipse cx="230" cy="205" rx="15" ry="7.5" fill="#ff5e83" opacity="0.5"/>
-      <!-- Closed Eye & Long Eyelashes -->
-      <path d="M238 175 Q224 182 214 173" stroke="#522b33" stroke-width="2.6" stroke-linecap="round" fill="none"/>
-      <path d="M230 178 Q222 184 216 177" stroke="#753d48" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-      <path d="M217 174 L213 170" stroke="#522b33" stroke-width="1.8" stroke-linecap="round"/>
-      <!-- Eyebrow -->
-      <path d="M242 158 Q226 154 212 165" stroke="#331920" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-      <!-- Nose & Gentle Smile -->
-      <path d="M202 178 L197 194 L204 200" stroke="#d48a83" stroke-width="2" fill="none" stroke-linejoin="round"/>
-      <path d="M212 225 Q205 227 210 231" stroke="#b3575c" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-
-      <!-- Girl's Flowing Hair -->
-      <path d="M315 180 Q325 110 280 80 Q230 50 185 95 Q180 115 190 135 Q200 145 215 130 Q220 148 235 140 Q250 160 260 145 Q275 170 290 185 Q325 240 335 340 Q350 430 320 520 L370 520 Q400 370 345 230 Z" fill="url(#girlHair)"/>
-      <!-- Front tendrils falling softly -->
-      <path d="M255 140 Q240 190 248 250 Q245 290 260 330" stroke="#250f19" stroke-width="7" stroke-linecap="round" fill="none"/>
-      <path d="M268 145 Q260 210 270 270" stroke="#3d1d29" stroke-width="5" stroke-linecap="round" fill="none"/>
-
-      <!-- Cherry Blossoms in Girl's Hair -->
-      <g transform="translate(325, 175) scale(0.9)">
-        <circle cx="0" cy="0" r="5" fill="#fca8c4"/>
-        <circle cx="-6" cy="-4" r="5" fill="#fca8c4"/>
-        <circle cx="6" cy="-4" r="5" fill="#fca8c4"/>
-        <circle cx="-4" cy="5" r="5" fill="#fca8c4"/>
-        <circle cx="4" cy="5" r="5" fill="#fca8c4"/>
-        <circle cx="0" cy="0" r="2.5" fill="#ffffff"/>
-      </g>
-
-      <!-- FOREHEAD CONTACT GLOW & SPARKS -->
-      <ellipse cx="200" cy="138" rx="8" ry="4" fill="#ffffff" opacity="0.4" filter="url(#neonBlur)"/>
-
-      <!-- THE GLOWING PINK HEART IN CENTER -->
-      <g transform="translate(200, 192)">
-        <!-- Outer Glowing Aura -->
-        <circle cx="0" cy="0" r="45" fill="url(#heartGlow)"/>
-        
-        <!-- Glowing Heart Shape -->
-        <path d="M0 16 C-1.5 14.5 -18 3 -18 -9 C-18 -18 -8 -22 0 -13 C8 -22 18 -18 18 -9 C18 3 1.5 14.5 0 16 Z" 
-              fill="none" stroke="#ff3877" stroke-width="4.5" filter="url(#neonBlur)"/>
-        <path d="M0 16 C-1.5 14.5 -18 3 -18 -9 C-18 -18 -8 -22 0 -13 C8 -22 18 -18 18 -9 C18 3 1.5 14.5 0 16 Z" 
-              fill="#ffeef4" stroke="#ffffff" stroke-width="2"/>
-        
-        <!-- Center sparkle -->
-        <circle cx="0" cy="-3" r="3" fill="#ffffff" filter="url(#neonBlur)"/>
-      </g>
-
-      <!-- FLOATING SAKURA PETALS (Foreground) -->
-      <!-- Left side petals -->
-      <path d="M35 120 Q50 110 45 130 Q40 145 35 120 Z" fill="#ff94b8" opacity="0.85" transform="rotate(25 35 120)"/>
-      <path d="M75 280 Q90 270 85 290 Q80 305 75 280 Z" fill="#ff7da7" opacity="0.8" transform="rotate(-15 75 280)"/>
-      <path d="M20 440 Q38 430 32 452 Q26 470 20 440 Z" fill="#ff94b8" opacity="0.9" transform="rotate(40 20 440)"/>
-
-      <!-- Right side petals -->
-      <path d="M360 140 Q375 130 370 150 Q365 165 360 140 Z" fill="#ff94b8" opacity="0.85" transform="rotate(-30 360 140)"/>
-      <path d="M330 290 Q348 280 342 302 Q335 320 330 290 Z" fill="#ff7da7" opacity="0.8" transform="rotate(20 330 290)"/>
-      <path d="M370 450 Q388 440 382 462 Q375 480 370 450 Z" fill="#ff94b8" opacity="0.9" transform="rotate(-10 370 450)"/>
-
-      <!-- Center tiny petals -->
-      <path d="M190 320 Q200 312 196 326 Q192 336 190 320 Z" fill="#ffb2cb" opacity="0.9" transform="rotate(50 190 320)"/>
-      <path d="M215 270 Q225 262 222 276 Q218 286 215 270 Z" fill="#ffb2cb" opacity="0.9" transform="rotate(-40 215 270)"/>
-      <path d="M165 240 Q173 234 170 245 Q167 253 165 240 Z" fill="#ffffff" opacity="0.75"/>
-      <path d="M235 242 Q243 236 240 247 Q237 255 235 242 Z" fill="#ffffff" opacity="0.75"/>
-
-      <!-- Bottom Cinematic Vignette Gradient -->
-      <rect y="420" width="400" height="100" fill="url(#bgGlow)" opacity="0.85"/>
-    </svg>
+  <!-- EXACT COUPLE PHOTO -->
+  <div class="photo-box">
+    <!-- Bas yahan 'couple.png' ko apne image URL ya file name se replace kar dena -->
+    <img src="couple.png" alt="Boy and girl touching foreheads with glowing heart">
   </div>
 
   <p style="font-size:9px;letter-spacing:1.7px;color:var(--gold);text-transform:uppercase">
