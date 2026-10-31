@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -186,6 +187,7 @@ h2{font-size:clamp(26px,6vw,37px);line-height:1.35}
 .friendship-icon{font-size:60px;margin-bottom:18px}
 .footer-note{color:#b0968d;font-size:12px;margin-top:25px}
 
+/* Existing floating hearts */
 .heart{
   position:fixed;bottom:-80px;z-index:20;pointer-events:none;color:var(--rose);
   animation:heartFloat linear forwards;
@@ -202,6 +204,21 @@ h2{font-size:clamp(26px,6vw,37px);line-height:1.35}
   75%{transform:translate3d(-18px,-85vh,0) rotate(-10deg) scale(1.1)}
   100%{transform:translate3d(12px,-120vh,0) rotate(25deg) scale(1.2);opacity:0}
 }
+
+/* NEW: Welcome screen floating hearts */
+.welcome-heart{
+  position:fixed;bottom:-70px;z-index:1;pointer-events:none;
+  color:var(--rose);opacity:0;
+  filter:drop-shadow(0 3px 8px rgba(199,127,140,.22));
+  animation:welcomeHeartFloat linear forwards;
+}
+@keyframes welcomeHeartFloat{
+  0%{transform:translate3d(0,0,0) rotate(-15deg) scale(.7);opacity:0}
+  15%{opacity:.65}
+  50%{transform:translate3d(18px,-50vh,0) rotate(12deg) scale(1)}
+  100%{transform:translate3d(-15px,-115vh,0) rotate(25deg) scale(1.15);opacity:0}
+}
+
 .glow-particle{
   position:fixed;pointer-events:none;z-index:19;width:5px;height:5px;border-radius:50%;
   background:#e7c77d;box-shadow:0 0 8px rgba(231,199,125,.7),0 0 18px rgba(231,199,125,.35);
@@ -492,6 +509,32 @@ function showPage(id){
     window.scrollTo({top:0,behavior:"smooth"});
   }
 }
+
+/* NEW: WELCOME SCREEN FLOATING HEARTS */
+function startWelcomeHearts(){
+  const symbols=["♡","♥","ღ","❥","୨୧","ꨄ"];
+  const colors=["#c77f8c","#d9a2aa","#c9a45c","#e6b9c0","#b96f83"];
+
+  setInterval(()=>{
+    const welcome=document.getElementById("welcome");
+
+    if(!welcome || !welcome.classList.contains("active")) return;
+
+    const heart=document.createElement("span");
+    heart.className="welcome-heart";
+    heart.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(16+Math.random()*24)+"px";
+    heart.style.color=colors[Math.floor(Math.random()*colors.length)];
+    heart.style.animationDuration=(8+Math.random()*5)+"s";
+
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),14000);
+  },700);
+}
+
+/* Start welcome hearts as soon as the page loads */
+startWelcomeHearts();
 
 /* START QUIZ */
 function startQuestions(){
